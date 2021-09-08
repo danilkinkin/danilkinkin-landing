@@ -1,17 +1,5 @@
 @font-face {
-    font-family: 'Gilroy';
-    src: url('./Gilroy-ExtraBold.otf');
-    font-weight: bold;
-}
-
-@font-face {
-    font-family: 'Gilroy';
-    src: url('./Gilroy-Light.otf');
-    font-weight: normal;
-}
-
-@font-face {
-    font-family: 'Red Hat Display';
-    src: url('./RedHatDisplay-Bold.ttf');
-    font-weight: bold;
+    font-family: "Manrope";
+    src: local("Manrope"), url("Manrope-VariableFont_wght.ttf") format("truetype");
+    font-weight: 200 800;
 }

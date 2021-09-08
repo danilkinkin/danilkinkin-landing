@@ -5,8 +5,8 @@ import Document, {
     Main,
     NextScript,
 } from 'next/document';
-import { ServerStyleSheets } from '@material-ui/core/styles';
-import theme from '@/theme';
+// import jss, { SheetsRegistry } from 'jss';
+// import theme from '@/theme';
 
 export default class MyDocument extends Document {
     render() {
@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     {/* PWA primary color */}
-                    <meta name="theme-color" content={theme.palette.primary.main} />
+                    <meta name="theme-color" content="#f00" />
                 </Head>
                 <body>
                     <Main />
@@ -25,8 +25,8 @@ export default class MyDocument extends Document {
     }
 }
 
-MyDocument.getInitialProps = async (ctx) => {
-    const sheets = new ServerStyleSheets();
+/* MyDocument.getInitialProps = async (ctx) => {
+    const sheets = new SheetsRegistry();
     const originalRenderPage = ctx.renderPage;
 
     ctx.renderPage = () => originalRenderPage({ enhanceApp: (App) => (props) => sheets.collect(<App {...props} />) });
@@ -37,4 +37,4 @@ MyDocument.getInitialProps = async (ctx) => {
         ...initialProps,
         styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
     };
-};
+}; */
