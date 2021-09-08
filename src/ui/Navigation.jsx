@@ -4,7 +4,7 @@ import Container from '@/ui-components/Container';
 
 const useStyles = createUseStyles({
     root: {
-        position: 'absolute',
+        position: 'fixed',
         bottom: 40,
         maxWidth: 'inherit',
     },

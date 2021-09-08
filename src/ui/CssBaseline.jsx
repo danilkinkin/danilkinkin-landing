@@ -7,6 +7,7 @@ const styles = {
         body: {
             margin: 0,
             fontFamily: 'Manrope, sans-serif',
+            overflow: 'hidden auto',
         },
         '::selection': {
             background: theme.palette.primary

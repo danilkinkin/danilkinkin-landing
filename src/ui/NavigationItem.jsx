@@ -1,6 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import theme from '@/theme';
+import NextLink from '@/ui-components/NextLink';
 
 const useStyles = createUseStyles({
     root: {
@@ -17,9 +18,9 @@ function NavigationItem({ title, to }) {
     const classes = useStyles();
 
     return (
-        <a href={to || '#'} className={classes.root}>
+        <NextLink to={to || '#'} className={classes.root}>
             {title}
-        </a>
+        </NextLink>
     );
 }
 
