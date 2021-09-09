@@ -31,7 +31,6 @@ function IndexPage() {
 
     useEffect(() => {
         const handleRouteChange = (url, { shallow }) => {
-            setPath(url);
             if (url === '/') {
                 console.log('scroll to about');
                 document.documentElement.scrollTo({
@@ -46,7 +45,12 @@ function IndexPage() {
                     left: 0,
                     behavior: 'smooth'
                 });
+            } else {
+                router.replace('/');
+                return;
             }
+
+            setPath(url);
             console.log(
                 `App is changing to ${url} ${
                     shallow ? 'with' : 'without'
@@ -68,7 +72,7 @@ function IndexPage() {
             </div>
             <div className={clsx(classes.mainBlock, path.includes('/contacts') && classes.shiftMainBlock)}>
                 <AboutMeScreen />
-                <ProjectsScreen />
+                {/* <ProjectsScreen /> */}
             </div>
             <Navigation>
                 {path === '/contacts' && (
@@ -77,12 +81,12 @@ function IndexPage() {
                 {path !== '/contacts' && (
                     <NavigationItem title="/contact with me" to="/contacts" />
                 )}
-                {path !== '/projects' && (
+                {/* path !== '/projects' && (
                     <NavigationItem title="/my projects" to="/projects" />
                 )}
                 {path === '/projects' && (
                     <NavigationItem title="/about me" to="/" />
-                )}
+                ) */}
             </Navigation>
         </div>
     );
