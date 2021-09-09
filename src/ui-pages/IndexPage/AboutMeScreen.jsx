@@ -80,13 +80,9 @@ function AboutMeScreen() {
                     <p className={classes.about}>
                         Hi, I am
                         {' '}
-                        <a
-                            href="/projects"
-                            rel="noreferrer"
-                            className={classes.marker}
-                        >
+                        <span className={classes.marker}>
                             developing web applications
-                        </a>
+                        </span>
                         , and other interesting little things.
                         My name is Danil Zakhvatkin, I am
                         {' '}

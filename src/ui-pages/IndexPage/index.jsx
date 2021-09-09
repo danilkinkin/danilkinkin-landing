@@ -32,30 +32,19 @@ function IndexPage() {
     useEffect(() => {
         const handleRouteChange = (url, { shallow }) => {
             if (url === '/') {
-                console.log('scroll to about');
                 document.documentElement.scrollTo({
                     top: 0,
                     left: 0,
-                    behavior: 'smooth'
+                    behavior: 'smooth',
                 });
-            } else if (url === '/projects') {
-                console.log('scroll to projects');
-                document.documentElement.scrollTo({
-                    top: document.documentElement.clientHeight,
-                    left: 0,
-                    behavior: 'smooth'
-                });
+            } else if (url === '/contacts') {
+
             } else {
                 router.replace('/');
                 return;
             }
 
             setPath(url);
-            console.log(
-                `App is changing to ${url} ${
-                    shallow ? 'with' : 'without'
-                } shallow routing`,
-            );
         };
 
         router.events.on('routeChangeStart', handleRouteChange);

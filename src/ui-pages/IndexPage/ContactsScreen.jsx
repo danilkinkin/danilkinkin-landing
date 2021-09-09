@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import getMyAge from '@/utils/getMyAge';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
 import Container from '@/ui-components/Container';
 import theme from '@/theme';
 import NextLink from '@/ui-components/NextLink';
+import ExternalOpenIcon from '@/icons/ExternalOpen';
+import MailIcon from '@/icons/Mail';
 
 const useStyles = createUseStyles({
     root: {
@@ -15,8 +16,39 @@ const useStyles = createUseStyles({
     header: {
         fontSize: 48,
         color: theme.palette.text.secondary,
+        margin: 0,
+        marginBottom: theme.spacing,
+    },
+    link: {
+        listStyle: 'none',
+        padding: [2, 0],
+        '& a': {
+            fontSize: 18,
+            textDecoration: 'unset',
+            fontWeight: 550,
+            color: theme.palette.text.primary,
+        },
+        '& a:hover': {
+            color: theme.palette.primary,
+        },
+    },
+    icon: {
+        marginLeft: theme.spacing
     },
 });
+
+function LinkService({ name, href }) {
+    const classes = useStyles();
+
+    return (
+        <li className={classes.link}>
+            <NextLink to={href} target="_blank">
+                {name}
+                <ExternalOpenIcon className={classes.icon} />
+            </NextLink>
+        </li>
+    );
+}
 
 function ContactsScreen() {
     const classes = useStyles();
@@ -26,24 +58,17 @@ function ContactsScreen() {
             <Container>
                 <h2 className={classes.header}>/contact with me</h2>
                 <nav>
-                    <li>
-                        <NextLink>hello@danilkinkin.com</NextLink>
+                    <li className={classes.link}>
+                        <NextLink to="mailto:hello@danilkinkin.com">
+                            hello@danilkinkin.com
+                            <MailIcon className={classes.icon} />
+                        </NextLink>
                     </li>
-                    <li>
-                        <NextLink>github</NextLink>
-                    </li>
-                    <li>
-                        <NextLink>telegram</NextLink>
-                    </li>
-                    <li>
-                        <NextLink>instagram</NextLink>
-                    </li>
-                    <li>
-                        <NextLink>habr</NextLink>
-                    </li>
-                    <li>
-                        <NextLink>hh</NextLink>
-                    </li>
+                    <LinkService name="github" href="https://github.com/danilkinkin" />
+                    <LinkService name="telegram" href="https://t.me/danilkinkin" />
+                    <LinkService name="instagram" href="https://www.instagram.com/danilkinkin/" />
+                    <LinkService name="habr" href="https://habr.com/ru/users/danilkinkin/" />
+                    <LinkService name="hh" href="https://samara.hh.ru/resume/06760663ff05853e470039ed1f414d56723455" />
                 </nav>
             </Container>
         </aside>
