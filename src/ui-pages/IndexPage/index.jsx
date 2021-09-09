@@ -13,14 +13,14 @@ const useStyles = createUseStyles({
     root: {},
     contacts: {
         width: 680,
-        transition: theme.transitions.default,
+        transition: theme.transitions.enter,
         position: 'fixed',
         left: 0,
         top: 0,
         transform: 'translateX(-680px)',
     },
     shiftContactsBlock: { transform: 'translateX(0)' },
-    mainBlock: { transition: theme.transitions.default },
+    mainBlock: { transition: theme.transitions.enter },
     shiftMainBlock: { transform: 'translateX(70vw)' },
 });
 
