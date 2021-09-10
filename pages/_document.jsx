@@ -7,6 +7,7 @@ import Document, {
 } from 'next/document';
 // import jss, { SheetsRegistry } from 'jss';
 // import theme from '@/theme';
+import { JssProvider, SheetsRegistry, createGenerateId } from 'react-jss';
 
 export default class MyDocument extends Document {
     render() {
@@ -25,16 +26,27 @@ export default class MyDocument extends Document {
     }
 }
 
-/* MyDocument.getInitialProps = async (ctx) => {
-    const sheets = new SheetsRegistry();
+MyDocument.getInitialProps = async (ctx) => {
+    const registry = new SheetsRegistry();
+    const generateId = createGenerateId();
     const originalRenderPage = ctx.renderPage;
 
-    ctx.renderPage = () => originalRenderPage({ enhanceApp: (App) => (props) => sheets.collect(<App {...props} />) });
+    ctx.renderPage = () => originalRenderPage({
+        enhanceApp: (App) => (props) => (
+            <JssProvider registry={registry} generateId={generateId}>
+                <App {...props} />
+            </JssProvider>
+        ),
+    });
 
     const initialProps = await Document.getInitialProps(ctx);
-
     return {
         ...initialProps,
-        styles: [...React.Children.toArray(initialProps.styles), sheets.getStyleElement()],
+        styles: (
+            <React.Fragment>
+                {initialProps.styles}
+                <style id="server-side-styles">{registry.toString()}</style>
+            </React.Fragment>
+        ),
     };
-}; */
+};
