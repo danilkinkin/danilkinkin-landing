@@ -7,7 +7,6 @@ import theme from '@/theme';
 import clsx from 'clsx';
 import AboutMeScreen from './AboutMeScreen';
 import ContactsScreen from './ContactsScreen';
-import ProjectsScreen from './ProjectsScreen';
 
 const useStyles = createUseStyles({
     root: {},
@@ -22,14 +21,21 @@ const useStyles = createUseStyles({
     shiftContactsBlock: { transform: 'translateX(0)' },
     mainBlock: { transition: theme.transitions.enter },
     shiftMainBlock: { transform: 'translateX(70vw)' },
+    shiftMainBlockFirstFrame: {
+        transform: 'translateX(90vw)',
+        opacity: 0,
+    },
 });
 
-function IndexPage() {
+function IndexPage({ path: loadPath }) {
     const classes = useStyles();
     const router = useRouter();
-    const [path, setPath] = useState('/');
+    const [path, setPath] = useState(loadPath);
+    const [isChangePath, setIsChangePath] = useState(false);
+    const [isFirstRender, setIsFirstRender] = useState(true);
 
     useEffect(() => {
+        setIsFirstRender(false);
         const handleRouteChange = (url, { shallow }) => {
             if (url === '/') {
                 document.documentElement.scrollTo({
@@ -45,6 +51,7 @@ function IndexPage() {
             }
 
             setPath(url);
+            setIsChangePath(true);
         };
 
         router.events.on('routeChangeStart', handleRouteChange);
@@ -56,10 +63,21 @@ function IndexPage() {
 
     return (
         <div className={classes.root}>
-            <div className={clsx(classes.contacts, path.includes('/contacts') && classes.shiftContactsBlock)}>
+            <div
+                className={clsx(
+                    classes.contacts,
+                    path.includes('/contacts') && classes.shiftContactsBlock,
+                )}
+            >
                 <ContactsScreen />
             </div>
-            <div className={clsx(classes.mainBlock, path.includes('/contacts') && classes.shiftMainBlock)}>
+            <div
+                className={clsx(
+                    classes.mainBlock,
+                    path.includes('/contacts') && classes.shiftMainBlock,
+                    isFirstRender && path.includes('/contacts') && classes.shiftMainBlockFirstFrame,
+                )}
+            >
                 <AboutMeScreen />
                 {/* <ProjectsScreen /> */}
             </div>
@@ -70,12 +88,6 @@ function IndexPage() {
                 {path !== '/contacts' && (
                     <NavigationItem title="/contact with me" to="/contacts" />
                 )}
-                {/* path !== '/projects' && (
-                    <NavigationItem title="/my projects" to="/projects" />
-                )}
-                {path === '/projects' && (
-                    <NavigationItem title="/about me" to="/" />
-                ) */}
             </Navigation>
         </div>
     );
