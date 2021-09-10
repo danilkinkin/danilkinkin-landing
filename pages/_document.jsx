@@ -5,8 +5,6 @@ import Document, {
     Main,
     NextScript,
 } from 'next/document';
-// import jss, { SheetsRegistry } from 'jss';
-// import theme from '@/theme';
 import { JssProvider, SheetsRegistry, createGenerateId } from 'react-jss';
 
 export default class MyDocument extends Document {
@@ -32,11 +30,13 @@ MyDocument.getInitialProps = async (ctx) => {
     const originalRenderPage = ctx.renderPage;
 
     ctx.renderPage = () => originalRenderPage({
-        enhanceApp: (App) => (props) => (
-            <JssProvider registry={registry} generateId={generateId}>
-                <App {...props} />
-            </JssProvider>
-        ),
+        enhanceApp: (App) => function EnhanceApp(props) {
+            return (
+                <JssProvider registry={registry} generateId={generateId}>
+                    <App {...props} />
+                </JssProvider>
+            );
+        },
     });
 
     const initialProps = await Document.getInitialProps(ctx);

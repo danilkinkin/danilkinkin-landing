@@ -3,8 +3,6 @@ import getMyAge from '@/utils/getMyAge';
 import { createUseStyles } from 'react-jss';
 import Container from '@/ui-components/Container';
 import theme from '@/theme';
-import Navigation from '@/ui/Navigation';
-import NavigationItem from '@/ui/NavigationItem';
 
 const useStyles = createUseStyles({
     root: {
@@ -16,9 +14,7 @@ const useStyles = createUseStyles({
     marker: {
         color: theme.palette.primary,
         textDecoration: 'unset',
-        '&::selection': {
-            background: theme.palette.text.primary
-        },
+        '&::selection': { background: theme.palette.text.primary },
     },
     headerWrapper: {
         display: 'inline-flex',
@@ -48,13 +44,9 @@ const useStyles = createUseStyles({
         color: '#00B956',
         textDecoration: 'unset',
         transition: theme.transitions.default,
-        '&:hover': {
-            color: theme.palette.text.primary,
-        },
-        '&::selection': {
-            background: '#731982',
-        },
-    }
+        '&:hover': { color: theme.palette.text.primary },
+        '&::selection': { background: '#731982' },
+    },
 });
 
 function AboutMeScreen() {

@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { createUseStyles } from 'react-jss';
 import LogoText from '@/images/logo_text.svg';
 import LogoIcon from '@/images/logo_icon.svg';
 import clsx from 'clsx';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = createUseStyles({
     fullIcon: {
         verticalAlign: 'middle',
         marginRight: 16,
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         width: 'auto',
         verticalAlign: 'middle',
     },
-}));
+});
 
 function Icon({ color = '#fff', className: externalClassName }) {
     const classes = useStyles();

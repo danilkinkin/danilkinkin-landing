@@ -9,9 +9,7 @@ const styles = {
             fontFamily: 'Manrope, sans-serif',
             overflow: 'hidden auto',
         },
-        '::selection': {
-            background: theme.palette.primary
-        },
+        '::selection': { background: theme.palette.primary },
     },
 };
 

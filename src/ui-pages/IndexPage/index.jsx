@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navigation from '@/ui/Navigation';
 import NavigationItem from '@/ui/NavigationItem';
 import { useRouter } from 'next/router';
@@ -31,12 +31,11 @@ function IndexPage({ path: loadPath }) {
     const classes = useStyles();
     const router = useRouter();
     const [path, setPath] = useState(loadPath);
-    const [isChangePath, setIsChangePath] = useState(false);
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     useEffect(() => {
         setIsFirstRender(false);
-        const handleRouteChange = (url, { shallow }) => {
+        const handleRouteChange = (url /* , { shallow } */) => {
             if (url === '/') {
                 document.documentElement.scrollTo({
                     top: 0,
@@ -44,14 +43,13 @@ function IndexPage({ path: loadPath }) {
                     behavior: 'smooth',
                 });
             } else if (url === '/contacts') {
-
+                // contacts block
             } else {
                 router.replace('/');
                 return;
             }
 
             setPath(url);
-            setIsChangePath(true);
         };
 
         router.events.on('routeChangeStart', handleRouteChange);
@@ -79,7 +77,6 @@ function IndexPage({ path: loadPath }) {
                 )}
             >
                 <AboutMeScreen />
-                {/* <ProjectsScreen /> */}
             </div>
             <Navigation>
                 {path === '/contacts' && (

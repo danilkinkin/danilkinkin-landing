@@ -12,12 +12,8 @@ const useStyles = createUseStyles({
         right: 0,
         display: 'flex',
     },
-    nav: {
-        maxWidth: 'inherit',
-    },
-    mail: {
-        marginLeft: 'auto',
-    },
+    nav: { maxWidth: 'inherit' },
+    mail: { marginLeft: 'auto' },
 });
 
 function Navigation({ children }) {

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import getMyAge from '@/utils/getMyAge';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
 import Container from '@/ui-components/Container';
 import theme from '@/theme';

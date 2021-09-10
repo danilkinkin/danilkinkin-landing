@@ -22,7 +22,7 @@ const useStyles = createUseStyles({
     },
 });
 
-const LinkItem = forwardRef(({ children, className, ...props }, ref) => {
+const LinkItem = forwardRef(function LinkItem({ children, className, ...props }, ref) {
     const classes = useStyles();
 
     return (<a ref={ref} className={clsx(classes.link, className)} {...props}>{children}</a>);
