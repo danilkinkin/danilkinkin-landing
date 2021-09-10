@@ -42,6 +42,7 @@ const useStyles = createUseStyles({
         fontSize: 36,
         maxWidth: 920,
         fontWeight: 600,
+        marginBottom: 0,
     },
     megafon: {
         color: '#00B956',
