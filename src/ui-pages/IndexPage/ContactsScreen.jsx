@@ -22,19 +22,9 @@ const useStyles = createUseStyles({
     link: {
         listStyle: 'none',
         padding: [2, 0],
-        '& a': {
-            fontSize: 18,
-            textDecoration: 'unset',
-            fontWeight: 550,
-            color: theme.palette.text.primary,
-        },
-        '& a:hover': {
-            color: theme.palette.primary,
-        },
+
     },
-    icon: {
-        marginLeft: theme.spacing
-    },
+    icon: { marginLeft: theme.spacing },
 });
 
 function LinkService({ name, href }) {
@@ -42,9 +32,12 @@ function LinkService({ name, href }) {
 
     return (
         <li className={classes.link}>
-            <NextLink to={href} target="_blank">
+            <NextLink
+                to={href}
+                target="_blank"
+                endIcon={(<ExternalOpenIcon />)}
+            >
                 {name}
-                <ExternalOpenIcon className={classes.icon} />
             </NextLink>
         </li>
     );
@@ -59,9 +52,11 @@ function ContactsScreen() {
                 <h2 className={classes.header}>/contact with me</h2>
                 <nav>
                     <li className={classes.link}>
-                        <NextLink to="mailto:hello@danilkinkin.com">
+                        <NextLink
+                            to="mailto:hello@danilkinkin.com"
+                            endIcon={(<MailIcon />)}
+                        >
                             hello@danilkinkin.com
-                            <MailIcon className={classes.icon} />
                         </NextLink>
                     </li>
                     <LinkService name="github" href="https://github.com/danilkinkin" />
