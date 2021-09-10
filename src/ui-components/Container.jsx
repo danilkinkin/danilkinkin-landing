@@ -1,6 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import theme from '@/theme';
+import clsx from 'clsx';
 
 const useStyles = createUseStyles({
     root: {
@@ -12,11 +13,11 @@ const useStyles = createUseStyles({
     },
 });
 
-function Container({ children }) {
+function Container({ children, className }) {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>{children}</div>
+        <div className={clsx(classes.root, className)}>{children}</div>
     );
 }
 
