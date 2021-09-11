@@ -6,6 +6,7 @@ import Document, {
     NextScript,
 } from 'next/document';
 import { JssProvider, SheetsRegistry, createGenerateId } from 'react-jss';
+import theme from '@/theme';
 
 export default class MyDocument extends Document {
     render() {
@@ -13,7 +14,7 @@ export default class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     {/* PWA primary color */}
-                    <meta name="theme-color" content="#f00" />
+                    <meta name="theme-color" content={theme.palette.primary} />
                 </Head>
                 <body>
                     <Main />

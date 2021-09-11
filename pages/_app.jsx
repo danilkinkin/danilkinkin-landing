@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import '@/fonts/inject.css';
 import Head from 'next/head';
 import CssBaseline from '@/ui/CssBaseline';
+import theme from '@/theme';
 // import useMainStateStore from '@/utils/mainStateStore';
 
 const title = 'Danil Zakhvatkin';
@@ -34,9 +35,9 @@ function MyApp({ Component, pageProps }) {
                     href="/favicon-16x16.png"
                 />
                 <link rel="manifest" href="/site.webmanifest" />
-                <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0000ff" />
-                <meta name="msapplication-TileColor" content="#0000ff" />
-                <meta name="theme-color" content="#ffffff" />
+                <link rel="mask-icon" href="/safari-pinned-tab.svg" color={theme.palette.primary} />
+                <meta name="msapplication-TileColor" content={theme.palette.primary} />
+                <meta name="theme-color" content={theme.palette.primary} />
                 <meta name="msapplication-config" content="/browserconfig.xml" />
                 {/* Meta */}
                 {/* Primary Meta Tags */}
