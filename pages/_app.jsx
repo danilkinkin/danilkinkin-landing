@@ -25,17 +25,21 @@ function MyApp({ Component, pageProps }) {
                 <title>{title}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
                 {/* Icons */}
-                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                <link rel="apple-touch-icon" sizes="180x180" href="https://danilkinkin.com/apple-touch-icon.png" />
                 <link
                     rel="icon" type="image/png" sizes="32x32"
-                    href="/favicon-32x32.png"
+                    href="https://danilkinkin.com/favicon-32x32.png"
                 />
                 <link
                     rel="icon" type="image/png" sizes="16x16"
-                    href="/favicon-16x16.png"
+                    href="https://danilkinkin.com/favicon-16x16.png"
                 />
-                <link rel="manifest" href="/site.webmanifest" />
-                <link rel="mask-icon" href="/safari-pinned-tab.svg" color={theme.palette.primary} />
+                <link rel="manifest" href="https://danilkinkin.com/site.webmanifest" />
+                <link
+                    rel="mask-icon"
+                    href="https://danilkinkin.com/safari-pinned-tab.svg"
+                    color={theme.palette.primary}
+                />
                 <meta name="msapplication-TileColor" content={theme.palette.primary} />
                 <meta name="theme-color" content={theme.palette.primary} />
                 <meta name="msapplication-config" content="/browserconfig.xml" />
@@ -49,14 +53,14 @@ function MyApp({ Component, pageProps }) {
                 <meta property="og:url" content="https://danilkinkin.com/" />
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
-                <meta property="og:image" content="/large-share-image.png" />
+                <meta property="og:image" content="https://danilkinkin.com/large-share-image.png" />
 
                 {/* Twitter */}
                 <meta property="twitter:card" content="summary_large_image" />
                 <meta property="twitter:url" content="https://danilkinkin.com/" />
                 <meta property="twitter:title" content={title} />
                 <meta property="twitter:description" content={description} />
-                <meta property="twitter:image" content="/large-share-image.png" />
+                <meta property="twitter:image" content="https://danilkinkin.com/large-share-image.png" />
             </Head>
             <CssBaseline />
             <Component {...pageProps} />
