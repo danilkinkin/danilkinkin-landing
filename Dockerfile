@@ -5,11 +5,7 @@ FROM node:latest
 COPY package.json yarn.lock ./
 
 # Install the dependencies and make the folder
-RUN yarn install && mkdir /app && mv ./node_modules ./app
-
-WORKDIR /app
-
-COPY . .
+RUN yarn install
 
 # Build the project and copy the files
 RUN yarn build
