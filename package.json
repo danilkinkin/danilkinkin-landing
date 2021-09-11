@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build-analize": "ANALYZE=true next build",
-    "build": "next build && next export",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint --fix --ext .jsx,.js,.json --ignore-path .gitignore ."
   },
