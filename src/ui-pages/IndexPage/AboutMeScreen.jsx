@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import getMyAge from '@/utils/getMyAge';
 import { createUseStyles } from 'react-jss';
 import Container from '@/ui-components/Container';
-import theme from '@/theme';
+import theme, { createTransition } from '@/theme';
+import MediaQuery from 'react-responsive';
 
 const useStyles = createUseStyles({
     root: {
@@ -19,12 +20,16 @@ const useStyles = createUseStyles({
     headerWrapper: {
         display: 'inline-flex',
         alignItems: 'center',
-        flexWrap: 'wrap',
+        // flexWrap: 'wrap',
+        maxWidth: '100%',
     },
     header: {
         margin: 0,
         fontSize: 48,
         fontWeight: 900,
+        marginRight: '0.3em',
+        whiteSpace: 'nowrap',
+        '& + $tag': { marginLeft: 0 },
     },
     tag: {
         margin: 0,
@@ -33,6 +38,7 @@ const useStyles = createUseStyles({
         color: theme.palette.text.secondary,
         marginLeft: '0.3em',
         fontWeight: 900,
+        whiteSpace: 'nowrap',
     },
     about: {
         fontSize: 36,
@@ -43,9 +49,29 @@ const useStyles = createUseStyles({
     megafon: {
         color: '#00B956',
         textDecoration: 'unset',
-        transition: theme.transitions.default,
+        transition: createTransition(['color'], theme.transitions.default),
         '&:hover': { color: theme.palette.text.primary },
         '&::selection': { background: '#731982' },
+    },
+    [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
+        headerWrapper: {
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+        },
+        header: {
+            fontSize: 36,
+            whiteSpace: 'normal',
+        },
+        tag: { fontSize: 24 },
+        about: {
+            fontSize: 24,
+            maxWidth: 620,
+        },
+    },
+    [`@media (max-width: ${theme.breakpoints.smallMobile}px)`]: {
+        header: { fontSize: 28 },
+        tag: { fontSize: 20 },
+        about: { fontSize: 18 },
     },
 });
 
@@ -66,7 +92,10 @@ function AboutMeScreen() {
                     <span className={classes.headerWrapper}>
                         <h1 className={classes.header}>Danil Zakhvatkin</h1>
                         <h3 className={classes.tag}>
-                            / web developer
+                            <MediaQuery minWidth={theme.breakpoints.mobile}>
+                                {'/ '}
+                            </MediaQuery>
+                            web developer
                             <span className={classes.tag}>/ designer</span>
                         </h3>
                     </span>

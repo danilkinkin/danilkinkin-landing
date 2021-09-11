@@ -3,7 +3,7 @@ import Navigation from '@/ui/Navigation';
 import NavigationItem from '@/ui/NavigationItem';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
-import theme from '@/theme';
+import theme, { createTransition, mergeTransitions } from '@/theme';
 import clsx from 'clsx';
 import AboutMeScreen from './AboutMeScreen';
 import ContactsScreen from './ContactsScreen';
@@ -11,16 +11,24 @@ import ContactsScreen from './ContactsScreen';
 const useStyles = createUseStyles({
     root: {},
     contacts: {
-        width: 680,
-        transition: theme.transitions.enter,
+        width: '100vw',
+        transition: createTransition(['transform'], theme.transitions.enter),
         position: 'fixed',
         left: 0,
         top: 0,
         transform: 'translateX(-680px)',
+        opacity: 0,
     },
-    shiftContactsBlock: { transform: 'translateX(0)' },
-    mainBlock: { transition: theme.transitions.enter },
-    shiftMainBlock: { transform: 'translateX(70vw)' },
+    shiftContactsBlock: {
+        transform: 'translateX(0)',
+        opacity: 1,
+        transition: mergeTransitions(
+            createTransition(['transform'], theme.transitions.enter),
+            createTransition(['opacity'], theme.transitions.default),
+        ),
+    },
+    mainBlock: { transition: createTransition(['transform'], theme.transitions.enter) },
+    shiftMainBlock: { transform: 'translateX(min(max(70vw, 800px), 1300px))' },
     shiftMainBlockFirstFrame: {
         transform: 'translateX(90vw)',
         opacity: 0,

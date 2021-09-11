@@ -1,6 +1,6 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import theme from '@/theme';
+import theme, { createTransition } from '@/theme';
 import clsx from 'clsx';
 
 const useStyles = createUseStyles({
@@ -10,7 +10,9 @@ const useStyles = createUseStyles({
         margin: 'auto',
         padding: [0, 14 * theme.spacing],
         boxSizing: 'border-box',
+        transition: createTransition(['padding'], theme.transitions.default),
     },
+    [`@media (max-width: ${theme.breakpoints.mobile}px)`]: { root: { padding: [0, 3 * theme.spacing] } },
 });
 
 function Container({ children, className }) {

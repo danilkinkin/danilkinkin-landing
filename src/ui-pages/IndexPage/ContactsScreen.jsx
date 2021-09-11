@@ -18,13 +18,14 @@ const useStyles = createUseStyles({
         color: theme.palette.text.secondary,
         margin: 0,
         marginBottom: theme.spacing,
+        whiteSpace: 'nowrap',
     },
     link: {
         listStyle: 'none',
         padding: [2, 0],
-
     },
     icon: { marginLeft: theme.spacing },
+    [`@media (max-width: ${theme.breakpoints.smallMobile}px)`]: { header: { fontSize: 34 } },
 });
 
 function LinkService({ name, href }) {
