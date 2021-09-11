@@ -2,4 +2,5 @@
     font-family: "Manrope";
     src: local("Manrope"), url("Manrope-VariableFont_wght.ttf") format("truetype");
     font-weight: 200 800;
+    font-display: swap;
 }

@@ -47,7 +47,7 @@ const useStyles = createUseStyles({
         marginBottom: 0,
     },
     megafon: {
-        color: '#00B956',
+        color: '#00a94e',
         textDecoration: 'unset',
         transition: createTransition(['color'], theme.transitions.default),
         '&:hover': { color: theme.palette.text.primary },
