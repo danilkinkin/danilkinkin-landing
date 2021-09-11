@@ -18,8 +18,10 @@ const useStyles = createUseStyles({
         top: 0,
         transform: 'translateX(-680px)',
         opacity: 0,
+        visibility: 'hidden',
     },
     shiftContactsBlock: {
+        visibility: 'visible',
         transform: 'translateX(0)',
         opacity: 1,
         transition: mergeTransitions(

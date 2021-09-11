@@ -20,6 +20,7 @@ const useStyles = createUseStyles({
         marginBottom: theme.spacing,
         whiteSpace: 'nowrap',
     },
+    linksWrapper: { width: 'max-content' },
     link: {
         listStyle: 'none',
         padding: [2, 0],
@@ -51,7 +52,7 @@ function ContactsScreen() {
         <aside className={classes.root}>
             <Container>
                 <h2 className={classes.header}>/contact with me</h2>
-                <nav>
+                <nav className={classes.linksWrapper}>
                     <li className={classes.link}>
                         <NextLink
                             to="mailto:hello@danilkinkin.com"
