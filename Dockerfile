@@ -1,10 +1,11 @@
 # stage 1 as builder
 FROM node:latest as builder
 
+WORKDIR /app
+
 # copy the package.json to install dependencies
 COPY package.json yarn.lock .yarn .yarnrc.yml ./
 
-WORKDIR /app
 
 # Install the dependencies and make the folder
 RUN yarn install
