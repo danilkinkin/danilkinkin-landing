@@ -26,6 +26,5 @@ export const createTransition = (applyItems, transition) => {
 };
 
 export const mergeTransitions = (...transitions) => {
-    console.log('transitions:', transitions)
     return transitions.join(', ');
 };

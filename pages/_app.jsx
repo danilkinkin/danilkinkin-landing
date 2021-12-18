@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import '@/fonts/inject.css';
+// import '@/fonts/inject.css';
+// import '../public/root-styles.css';
 import Head from 'next/head';
 import CssBaseline from '@/ui/CssBaseline';
 import theme from '@/theme';
@@ -40,6 +41,7 @@ function MyApp({ Component, pageProps }) {
                     href="https://danilkinkin.com/safari-pinned-tab.svg"
                     color={theme.palette.primary}
                 />
+                <link rel="stylesheet" href="./root-styles.css"/>
                 <meta name="msapplication-TileColor" content={theme.palette.primary} />
                 <meta name="theme-color" content={theme.palette.primary} />
                 <meta name="msapplication-config" content="/browserconfig.xml" />

@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    overflow: hidden auto;
+    font-family: Manrope, sans-serif;
+}
+@font-face {
+    font-family: "Manrope";
+    src: local("Manrope"), url("fonts/Manrope-VariableFont_wght.ttf") format("truetype");
+    font-weight: 200 800;
+    font-display: block;
+}
