@@ -2,12 +2,12 @@
 FROM node:latest as builder
 
 # copy the package.json to install dependencies
-COPY package.json yarn.lock ./
-
-# Install the dependencies and make the folder
-RUN yarn install && mkdir /app && mv ./node_modules ./app
+COPY package.json yarn.lock .yarn .yarnrc.yml ./
 
 WORKDIR /app
+
+# Install the dependencies and make the folder
+RUN yarn install
 
 COPY . .
 
