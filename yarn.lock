@@ -5257,8 +5257,8 @@ __metadata:
     clsx: ^1.1.1
     eslint: ^8.5.0
     eslint-config-react-app: ^7.0.0
-    eslint-config-react-tools: ^1.1.7
-    eslint-config-rigami: "https://github.com/rigami/eslint-config-rigami.git#commit=768c0a661e90c54090b06fc06a41bdcb4c567842"
+    eslint-config-react-tools: ^1.2.5
+    eslint-config-rigami: rigami/eslint-config-rigami
     eslint-import-resolver-alias: ^1.1.2
     eslint-import-resolver-webpack: ^0.13.2
     eslint-plugin-flowtype: ^8.0.3
@@ -5806,7 +5806,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-react-tools@npm:^1.1.7":
+"eslint-config-react-tools@npm:^1.2.5":
   version: 1.2.5
   resolution: "eslint-config-react-tools@npm:1.2.5"
   dependencies:
@@ -5821,7 +5821,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-rigami@https://github.com/rigami/eslint-config-rigami.git#commit=768c0a661e90c54090b06fc06a41bdcb4c567842":
+eslint-config-rigami@rigami/eslint-config-rigami:
   version: 1.0.1
   resolution: "eslint-config-rigami@https://github.com/rigami/eslint-config-rigami.git#commit=768c0a661e90c54090b06fc06a41bdcb4c567842"
   dependencies:
