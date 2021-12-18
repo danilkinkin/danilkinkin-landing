@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 // import '@/fonts/inject.css';
-import styles from '../public/root-styles.css';
 import Head from 'next/head';
 import CssBaseline from '@/ui/CssBaseline';
 import theme from '@/theme';
@@ -8,8 +7,6 @@ import theme from '@/theme';
 
 const title = 'Danil Zakhvatkin';
 const description = 'Hi, I’m Danil Zakhvatkin, I’m developing web applications, websites and other interesting things.';
-
-console.log('styles:', styles)
 
 function MyApp({ Component, pageProps }) {
     // const { eventBus } = useMainStateStore();
