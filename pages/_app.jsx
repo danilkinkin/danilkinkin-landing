@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 // import '@/fonts/inject.css';
-// import '../public/root-styles.css';
+import styles from '../public/root-styles.css';
 import Head from 'next/head';
 import CssBaseline from '@/ui/CssBaseline';
 import theme from '@/theme';
@@ -8,6 +8,8 @@ import theme from '@/theme';
 
 const title = 'Danil Zakhvatkin';
 const description = 'Hi, I’m Danil Zakhvatkin, I’m developing web applications, websites and other interesting things.';
+
+console.log('styles:', styles)
 
 function MyApp({ Component, pageProps }) {
     // const { eventBus } = useMainStateStore();
@@ -41,7 +43,21 @@ function MyApp({ Component, pageProps }) {
                     href="https://danilkinkin.com/safari-pinned-tab.svg"
                     color={theme.palette.primary}
                 />
-                <link rel="stylesheet" href="./root-styles.css"/>
+                <style>
+                    {`
+                        body {
+                            margin: 0;
+                            overflow: hidden auto;
+                            font-family: Manrope, sans-serif;
+                        }
+                        @font-face {
+                            font-family: "Manrope";
+                            src: local("Manrope"), url("fonts/Manrope-VariableFont_wght.ttf") format("truetype");
+                            font-weight: 200 800;
+                            font-display: block;
+                        }
+                    `}
+                </style>
                 <meta name="msapplication-TileColor" content={theme.palette.primary} />
                 <meta name="theme-color" content={theme.palette.primary} />
                 <meta name="msapplication-config" content="/browserconfig.xml" />
