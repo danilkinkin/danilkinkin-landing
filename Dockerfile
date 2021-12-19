@@ -3,9 +3,13 @@ FROM node:latest as builder
 
 WORKDIR /app
 
-# copy the package.json to install dependencies
-COPY package.json yarn.lock .yarn .yarnrc.yml ./
+# Copy in the package file as well as other yarn
+# dependencies in the local directory, assuming the
+# yarn berry release module is inside .yarn/releases
+# already
 
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn ./.yarn
 
 # Install the dependencies and make the folder
 RUN yarn install
