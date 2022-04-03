@@ -1,9 +1,7 @@
 import React, { Fragment } from 'react';
-// import '@/fonts/inject.css';
 import Head from 'next/head';
 import CssBaseline from '@/ui/CssBaseline';
 import theme from '@/theme';
-// import useMainStateStore from '@/utils/mainStateStore';
 
 const title = 'Danil Zakhvatkin';
 const description = 'Hi, I’m Danil Zakhvatkin, I’m developing web applications, websites and other interesting things.';
@@ -40,21 +38,6 @@ function MyApp({ Component, pageProps }) {
                     href="https://danilkinkin.com/safari-pinned-tab.svg"
                     color={theme.palette.primary}
                 />
-                <style>
-                    {`
-                        body {
-                            margin: 0;
-                            overflow: hidden auto;
-                            font-family: Manrope, sans-serif;
-                        }
-                        @font-face {
-                            font-family: "Manrope";
-                            src: local("Manrope"), url("fonts/Manrope-VariableFont_wght.ttf") format("truetype");
-                            font-weight: 200 800;
-                            font-display: block;
-                        }
-                    `}
-                </style>
                 <meta name="msapplication-TileColor" content={theme.palette.primary} />
                 <meta name="theme-color" content={theme.palette.primary} />
                 <meta name="msapplication-config" content="/browserconfig.xml" />
