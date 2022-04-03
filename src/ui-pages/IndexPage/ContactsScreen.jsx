@@ -65,6 +65,7 @@ function ContactsScreen() {
                     <LinkService name="telegram" href="https://t.me/danilkinkin" />
                     <LinkService name="instagram" href="https://www.instagram.com/danilkinkin/" />
                     <LinkService name="habr" href="https://habr.com/ru/users/danilkinkin/" />
+                    <LinkService name="linkedin" href="https://www.linkedin.com/in/danilkinkin/" />
                     <LinkService name="hh" href="https://samara.hh.ru/resume/06760663ff05853e470039ed1f414d56723455" />
                 </nav>
             </Container>
