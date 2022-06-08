@@ -53,6 +53,13 @@ const useStyles = createUseStyles({
         '&:hover': { color: theme.palette.text.primary },
         '&::selection': { background: '#731982' },
     },
+    ticketscloud: {
+        color: '#e9cf11',
+        textDecoration: 'unset',
+        transition: createTransition(['color'], theme.transitions.default),
+        '&:hover': { color: theme.palette.text.primary },
+        '&::selection': { background: '#12171b' },
+    },
     [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
         headerWrapper: {
             flexDirection: 'column',
@@ -111,7 +118,7 @@ function AboutMeScreen() {
                         {currAge}
                         {' '}
                         and now I am located in Samara, Russia.
-                        Now i’m working in a
+                        Before that I worked in 
                         {' '}
                         <a
                             href="https://megafon.ru"
@@ -120,6 +127,15 @@ function AboutMeScreen() {
                             className={classes.megafon}
                         >
                             MegaFon
+                        </a>, now I work in
+                        {' '}
+                        <a
+                            href="https://ticketscloud.com"
+                            target="_blank"
+                            rel="noreferrer"
+                            className={classes.ticketscloud}
+                        >
+                            Ticketscloud
                         </a>
                         .
                     </p>
