@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import getMyAge from '@/utils/getMyAge';
 import { createUseStyles } from 'react-jss';
+import MediaQuery from 'react-responsive';
+import getMyAge from '@/utils/getMyAge';
 import Container from '@/ui-components/Container';
 import theme, { createTransition } from '@/theme';
-import MediaQuery from 'react-responsive';
 
 const useStyles = createUseStyles({
     root: {
@@ -127,7 +127,8 @@ function AboutMeScreen() {
                             className={classes.megafon}
                         >
                             MegaFon
-                        </a>, now I work in
+                        </a>
+                        , now I work in
                         {' '}
                         <a
                             href="https://ticketscloud.com"
