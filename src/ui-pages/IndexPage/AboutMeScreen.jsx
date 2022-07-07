@@ -97,7 +97,7 @@ function AboutMeScreen() {
             <Container>
                 <div>
                     <span className={classes.headerWrapper}>
-                        <h1 className={classes.header}>Danil Zakhvatkin</h1>
+                        <h1 className={classes.header}>Danil Зakhvatkin</h1>
                         <h3 className={classes.tag}>
                             <MediaQuery minWidth={theme.breakpoints.mobile}>
                                 {'/ '}

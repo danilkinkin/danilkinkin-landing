@@ -3,8 +3,8 @@ import Head from 'next/head';
 import CssBaseline from '@/ui/CssBaseline';
 import theme from '@/theme';
 
-const title = 'Danil Zakhvatkin';
-const description = 'Hi, I’m Danil Zakhvatkin, I’m developing web applications, websites and other interesting things.';
+const title = 'Danil Зakhvatkin';
+const description = 'Hi, I’m Danil Зakhvatkin, I’m developing web applications, websites and other interesting things.';
 
 function MyApp({ Component, pageProps }) {
     // const { eventBus } = useMainStateStore();
