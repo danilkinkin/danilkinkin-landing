@@ -117,8 +117,8 @@ function AboutMeScreen() {
                         {' '}
                         {currAge}
                         {' '}
-                        and now I am located in Samara, Russia.
-                        Before that I worked in 
+                        and now I am located in Yerevan, Armenia.
+                        Before that I worked in
                         {' '}
                         <a
                             href="https://megafon.ru"
