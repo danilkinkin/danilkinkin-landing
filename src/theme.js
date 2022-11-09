@@ -21,10 +21,6 @@ const theme = {
 
 export default theme;
 
-export const createTransition = (applyItems, transition) => {
-    return `${applyItems.join(', ')} ${transition}`;
-};
+export const createTransition = (applyItems, transition) => `${applyItems.join(', ')} ${transition}`;
 
-export const mergeTransitions = (...transitions) => {
-    return transitions.join(', ');
-};
+export const mergeTransitions = (...transitions) => transitions.join(', ');

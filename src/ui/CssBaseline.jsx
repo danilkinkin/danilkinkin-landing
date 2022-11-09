@@ -1,8 +1,8 @@
 import { jss } from 'react-jss';
 import jssPluginGlobal from 'jss-plugin-global';
-import theme from '@/theme';
 import React from 'react';
 import Head from 'next/head';
+import theme from '@/theme';
 
 const styles = {
     '@global': {
@@ -13,11 +13,11 @@ const styles = {
         },
         '::selection': { background: theme.palette.primary },
         '@font-face': {
-            fontFamily: "Manrope",
+            fontFamily: 'Manrope',
             src: 'local("Manrope"), url("fonts/Manrope-VariableFont_wght.ttf") format("truetype")',
             fontWeight: '200 800',
             fontDisplay: 'block',
-        }
+        },
     },
 };
 

@@ -45,9 +45,7 @@ module.exports = {
         babelOptions: { configFile: './.babelrc.js' },
     },
     'rules': {
-        'indent': ['warn', 4, {
-            ignoredNodes: ["TemplateLiteral"]
-        }],
+        'indent': ['warn', 4, { ignoredNodes: ['TemplateLiteral'] }],
         'linebreak-style': ['error', 'unix'],
         'quotes': ['warn', 'single'],
         'semi': ['error', 'always'],

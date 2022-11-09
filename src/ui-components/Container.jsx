@@ -1,7 +1,7 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
-import theme, { createTransition } from '@/theme';
 import clsx from 'clsx';
+import theme, { createTransition } from '@/theme';
 
 const useStyles = createUseStyles({
     root: {

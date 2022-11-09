@@ -1,8 +1,8 @@
 import React from 'react';
 import { createUseStyles } from 'react-jss';
+import clsx from 'clsx';
 import LogoText from '@/images/logo_text.svg';
 import LogoIcon from '@/images/logo_icon.svg';
-import clsx from 'clsx';
 
 const useStyles = createUseStyles({
     fullIcon: {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import Navigation from '@/ui/Navigation';
-import NavigationItem from '@/ui/NavigationItem';
 import { useRouter } from 'next/router';
 import { createUseStyles } from 'react-jss';
-import theme, { createTransition, mergeTransitions } from '@/theme';
 import clsx from 'clsx';
+import Navigation from '@/ui/Navigation';
+import NavigationItem from '@/ui/NavigationItem';
+import theme, { createTransition, mergeTransitions } from '@/theme';
 import AboutMeScreen from './AboutMeScreen';
 import ContactsScreen from './ContactsScreen';
 

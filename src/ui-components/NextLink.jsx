@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import Link from 'next/link';
-import theme from '@/theme';
 import { createUseStyles } from 'react-jss';
 import clsx from 'clsx';
+import theme from '@/theme';
 
 const useStyles = createUseStyles({
     link: {

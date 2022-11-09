@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { createUseStyles } from 'react-jss';
+import MediaQuery from 'react-responsive';
+import clsx from 'clsx';
 import Container from '@/ui-components/Container';
 import NextLink from '@/ui-components/NextLink';
 import MailIcon from '@/icons/Mail';
-import MediaQuery from 'react-responsive'
-import clsx from 'clsx';
 import theme from '@/theme';
 
 const useStyles = createUseStyles({

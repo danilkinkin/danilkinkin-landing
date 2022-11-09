@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const withPlugins = require('next-compose-plugins');
 const withBundleAnalyzer = require('@next/bundle-analyzer');
+/* eslint-enable */
 
 module.exports = withPlugins([withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })], {
     webpack: (config, { dev, webpack }) => ({
