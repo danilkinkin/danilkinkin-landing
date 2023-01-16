@@ -1,10 +1,10 @@
 {
-  "name": "danilkinkin-site",
-  "version": "2.0.0",
-  "description": "This is a my main site.",
+  "name": "danilkinkin-landing",
+  "version": "3.0.0",
+  "description": "Danilkinkin portfolio website",
   "main": "index.js",
-  "repository": "https://github.com/danilkinkin/danilkinkin-site",
-  "author": "Danilkinkin",
+  "repository": "https://github.com/danilkinkin/danilkinkin-landing",
+  "author": "danilkinkin",
   "license": "ISC",
   "scripts": {
     "dev": "next dev",
