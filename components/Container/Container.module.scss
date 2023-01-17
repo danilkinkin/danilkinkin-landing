@@ -1,9 +1,9 @@
 .root {
-    max-width: 800px;
+    /* max-width: 800px; */
     width: 100%;
     margin: auto;
-    padding: 0 84px;
-    box-sizing: content-box;
+    padding: 0 164px;
+    box-sizing: border-box;
     transition: padding var(--transitions-default);
 }
 .align-left {

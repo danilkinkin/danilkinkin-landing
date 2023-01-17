@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import Header from '@/components/Header';
 import Container from '@/components/Container';
 import AboutMeBlock from './AboutMeBlock';
+import styles from './About.module.css';
 // import AboutMeScreen from './AboutMeScreen';
 // import ContactsScreen from './ContactsScreen';
 
@@ -70,26 +71,9 @@ function IndexPage() {
     return (
         <div className={'classes.root'}>
             <Header />
-            <Container align="left">
+            <Container align="left" className={styles.aboutMe}>
                 <AboutMeBlock />
             </Container>
-            {/* <div
-                className={clsx(
-                    classes.contacts,
-                    path.includes('/contacts') && classes.shiftContactsBlock,
-                )}
-            >
-                <ContactsScreen />
-            </div>
-            <div
-                className={clsx(
-                    classes.mainBlock,
-                    path.includes('/contacts') && classes.shiftMainBlock,
-                    isFirstRender && path.includes('/contacts') && classes.shiftMainBlockFirstFrame,
-                )}
-            >
-                <AboutMeScreen />
-            </div> */}
             
         </div>
     );

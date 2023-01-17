@@ -4,6 +4,7 @@ import getMyAge from '@/utils/getMyAge';
 import Container from '@/components/Container';
 import theme, { createTransition } from '@/constants/theme';
 import styles from './AboutMe.module.css'
+import clsx from 'clsx';
 
 /* const useStyles = createUseStyles({
     root: {
@@ -82,51 +83,103 @@ import styles from './AboutMe.module.css'
     },
 }); */
 
+const delayBeetwenChars = 10
+
+function AnimatedBlock({ delay = 0, noSpaceAfter = false, value, className }) {
+    return (
+        <span className={clsx(styles.textLine, !noSpaceAfter && styles.spaceAfter, className)}>
+            {value.split('').map((char, index) => (
+                <span 
+                    style={{ ['--delay']: `${index * delayBeetwenChars + delay + 10}ms` }}
+                    className={clsx(styles.textChar, char === ' ' && styles.textCharSpace)}
+                >
+                    {char}
+                </span>
+            ))}
+        </span>
+    )
+}
+
+function AnimateOrder({ delay = 0, children }) {
+    let comulutiveDelay = 0;
+
+    return children.map((children) => {
+        if (children.type !== AnimatedBlock) return children;
+
+        comulutiveDelay += children.props.value.length;
+
+        return React.createElement(
+            children.type,
+            {
+                ...children.props,
+                delay: (comulutiveDelay - children.props.value.length) * delayBeetwenChars + delay,
+            },
+        );
+    });
+}
+
 function AboutMeBlock() {
-    const [currAge, setCurrAge] = useState(getMyAge());
+    const [age, setAge] = useState(getMyAge());
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
-        const timer = setInterval(() => setCurrAge(getMyAge()), 1000);
+        const timer = setInterval(() => setAge(getMyAge()), 1000);
 
         return () => clearInterval(timer);
+    }, []);
+    
+    useEffect(() => {
+        setShow(true);
     }, []);
 
     return (
         <div>
-            <p className={styles.text}>
-                Hi, I am
-                {' '}
-                <span className={styles.marker}>
-                    developing web applications
-                </span>
-                , and other interesting little things.
-                My name is Danil Zakhvatkin, I am
-                {' '}
-                {currAge}
-                {' '}
-                and now I am located in Yerevan, Armenia.
-                Before that I worked in
-                {' '}
-                <a
-                    href="https://megafon.ru"
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.megafon}
-                >
-                    MegaFon
-                </a>
-                , now I work in
-                {' '}
-                <a
-                    href="https://ticketscloud.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.ticketscloud}
-                >
-                    Ticketscloud
-                </a>
-                .
-            </p>
+            <h2 className={clsx(styles.text, show && styles.show)}>
+                <AnimateOrder delay={3600}>
+                    <AnimatedBlock value="Hello," />
+                    <AnimatedBlock value="I am" />
+                    <AnimateOrder delay={1000}>
+                        <AnimatedBlock className={styles.developing} value="developing" />
+                        <AnimatedBlock className={styles.developing} value="web applications" />
+                    </AnimateOrder>
+                    <AnimatedBlock value="and other" />
+                    <AnimatedBlock value="interesting" />
+                    <AnimatedBlock value="little" />
+                    <AnimatedBlock value="things." />
+                    <AnimateOrder delay={0}>
+                        <AnimatedBlock value="My name" />
+                        <AnimatedBlock value="is" />
+                        <AnimatedBlock 
+                            className={styles.myName}
+                            value="Danil Зakhvatkin" 
+                            noSpaceAfter 
+                        />
+                    </AnimateOrder>
+                    <AnimateOrder delay={2400}>
+                        <AnimatedBlock value=","/>
+                        <AnimatedBlock value="I am" />
+                        <AnimatedBlock value={`${age} years old`} />
+                    </AnimateOrder>
+                    <AnimateOrder delay={5000}>
+                        <AnimatedBlock value="and" />
+                        <AnimatedBlock value="currently based" />
+                        <AnimatedBlock value="in" />
+                        <AnimatedBlock value="Yerevan, Armenia" noSpaceAfter />
+                        <AnimatedBlock value="." />
+                    </AnimateOrder>
+                    <AnimatedBlock value="I worked" />
+                    <AnimatedBlock value="for" />
+                    <AnimatedBlock className={styles.megafon} value="MegaFon" noSpaceAfter />
+                    <AnimatedBlock value="." />
+                    <AnimateOrder delay={2800}>
+                        <AnimatedBlock value="Now" />
+                        <AnimatedBlock value="I work" />
+                        <AnimatedBlock value="for" />
+                        <AnimatedBlock className={styles.ticketscloud} value="Ticketscloud" noSpaceAfter />
+                        <AnimatedBlock value="." noSpaceAfter/>
+                    </AnimateOrder>
+                </AnimateOrder>                
+            </h2>
         </div>
     );
 }
