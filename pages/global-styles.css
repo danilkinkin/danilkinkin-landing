@@ -1,0 +1,7 @@
+body {
+    margin: 0;
+    font-family: Manrope, sans-serif;
+    background: var(--palette-container);
+}
+
+::selection { background: var(--palette-primary) }

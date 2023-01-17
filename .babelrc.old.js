@@ -13,7 +13,6 @@ module.exports = {
         "@babel/preset-react",
     ],
     "plugins": [
-        "styled-components",
         ["@babel/plugin-proposal-export-default-from"],
         ["@babel/plugin-syntax-throw-expressions"],
         ["@babel/plugin-proposal-decorators", { "legacy": true }],
@@ -21,8 +20,8 @@ module.exports = {
         ["@babel/plugin-proposal-private-methods", { "loose": true }],
         ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
         ["module-resolver", {
-            "root": ["./src"],
-            "alias": { '@': __dirname+"/src/" },
+            "root": ["."],
+            "alias": { '@': __dirname+"/" },
         }],
         /* ['babel-plugin-transform-imports',{
             '@material-ui/core': {

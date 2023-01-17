@@ -1,24 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Head from 'next/head';
-import CssBaseline from '@/ui/CssBaseline';
-import theme from '@/theme';
+import theme, { computeVars } from '@/constants/theme';
+import localFont from '@next/font/local'
+import './global-styles.css';
 
+const manropeFont = localFont({ src: '../fonts/manrope.wght.ttf' })
 const title = 'Danil Зakhvatkin';
 const description = 'Hi, I’m Danil Зakhvatkin, I’m developing web applications, websites and other interesting things.';
 
 function MyApp({ Component, pageProps }) {
-    // const { eventBus } = useMainStateStore();
-
-    React.useEffect(() => {
-        // Remove the server-side injected CSS.
-        const jssStyles = document.querySelector('#jss-server-side');
-        if (jssStyles) {
-            jssStyles.parentElement.removeChild(jssStyles);
-        }
-    }, []);
-
     return (
-        <Fragment>
+        <main className={manropeFont.className}>
             <Head>
                 <title>{title}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -59,10 +51,10 @@ function MyApp({ Component, pageProps }) {
                 <meta property="twitter:title" content={title} />
                 <meta property="twitter:description" content={description} />
                 <meta property="twitter:image" content="https://danilkinkin.com/large-share-image.png" />
+                <style dangerouslySetInnerHTML={{ __html: computeVars() }} ></style>
             </Head>
-            <CssBaseline />
             <Component {...pageProps} />
-        </Fragment>
+        </main>
     );
 }
 

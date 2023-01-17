@@ -5,8 +5,7 @@ import Document, {
     Main,
     NextScript,
 } from 'next/document';
-import { JssProvider, SheetsRegistry, createGenerateId } from 'react-jss';
-import theme from '@/theme';
+import theme from '@/constants/theme';
 
 export default class MyDocument extends Document {
     render() {
@@ -26,16 +25,12 @@ export default class MyDocument extends Document {
 }
 
 MyDocument.getInitialProps = async (ctx) => {
-    const registry = new SheetsRegistry();
-    const generateId = createGenerateId();
     const originalRenderPage = ctx.renderPage;
 
     ctx.renderPage = () => originalRenderPage({
         enhanceApp: (App) => function EnhanceApp(props) {
             return (
-                <JssProvider registry={registry} generateId={generateId}>
-                    <App {...props} />
-                </JssProvider>
+                <App {...props} />
             );
         },
     });
@@ -46,7 +41,6 @@ MyDocument.getInitialProps = async (ctx) => {
         styles: (
             <React.Fragment>
                 {initialProps.styles}
-                <style id="server-side-styles">{registry.toString()}</style>
             </React.Fragment>
         ),
     };

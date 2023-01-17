@@ -3,8 +3,8 @@ import { createUseStyles } from 'react-jss';
 import Container from '@/ui-components/Container';
 import theme from '@/theme';
 import NextLink from '@/ui-components/NextLink';
-import ExternalOpenIcon from '@/icons/ExternalOpen';
-import MailIcon from '@/icons/Mail';
+import ExternalOpenIcon from '@/../icons/ExternalOpen';
+import MailIcon from '@/../icons/Mail';
 
 const useStyles = createUseStyles({
     root: {

@@ -7,9 +7,10 @@
 			"esnext.array"
 		],
 		"esModuleInterop": true,
-		"baseUrl": "./src",
+		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./*"],
+			"@/components/*": ["components/*"]
 		}
     },
     "exclude": [

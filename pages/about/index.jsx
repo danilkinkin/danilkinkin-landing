@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { createUseStyles } from 'react-jss';
 import clsx from 'clsx';
-import Navigation from '@/ui/Navigation';
-import NavigationItem from '@/ui/NavigationItem';
-import theme, { createTransition, mergeTransitions } from '@/theme';
-import AboutMeScreen from './AboutMeScreen';
-import ContactsScreen from './ContactsScreen';
+import Header from '@/components/Header';
+import Container from '@/components/Container';
+import AboutMeBlock from './AboutMeBlock';
+// import AboutMeScreen from './AboutMeScreen';
+// import ContactsScreen from './ContactsScreen';
 
-const useStyles = createUseStyles({
+/* const useStyles = createUseStyles({
     root: {},
     contacts: {
         width: '100vw',
@@ -35,12 +34,11 @@ const useStyles = createUseStyles({
         transform: 'translateX(90vw)',
         opacity: 0,
     },
-});
+}); */
 
-function IndexPage({ path: loadPath }) {
-    const classes = useStyles();
+function IndexPage() {
     const router = useRouter();
-    const [path, setPath] = useState(loadPath);
+    const [path, setPath] = useState([]);
     const [isFirstRender, setIsFirstRender] = useState(true);
 
     useEffect(() => {
@@ -70,8 +68,12 @@ function IndexPage({ path: loadPath }) {
     }, []);
 
     return (
-        <div className={classes.root}>
-            <div
+        <div className={'classes.root'}>
+            <Header />
+            <Container align="left">
+                <AboutMeBlock />
+            </Container>
+            {/* <div
                 className={clsx(
                     classes.contacts,
                     path.includes('/contacts') && classes.shiftContactsBlock,
@@ -87,15 +89,8 @@ function IndexPage({ path: loadPath }) {
                 )}
             >
                 <AboutMeScreen />
-            </div>
-            <Navigation>
-                {path === '/contacts' && (
-                    <NavigationItem title="/about me" to="/" />
-                )}
-                {path !== '/contacts' && (
-                    <NavigationItem title="/contact with me" to="/contacts" />
-                )}
-            </Navigation>
+            </div> */}
+            
         </div>
     );
 }

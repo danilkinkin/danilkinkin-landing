@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { createUseStyles } from 'react-jss';
 import MediaQuery from 'react-responsive';
 import getMyAge from '@/utils/getMyAge';
-import Container from '@/ui-components/Container';
-import theme, { createTransition } from '@/theme';
+import Container from '@/components/Container';
+import theme, { createTransition } from '@/constants/theme';
+import styles from './AboutMe.module.css'
 
-const useStyles = createUseStyles({
+/* const useStyles = createUseStyles({
     root: {
         minHeight: '100vh',
         display: 'flex',
@@ -80,10 +80,9 @@ const useStyles = createUseStyles({
         tag: { fontSize: 20 },
         about: { fontSize: 18 },
     },
-});
+}); */
 
-function AboutMeScreen() {
-    const classes = useStyles();
+function AboutMeBlock() {
     const [currAge, setCurrAge] = useState(getMyAge());
 
     useEffect(() => {
@@ -93,57 +92,43 @@ function AboutMeScreen() {
     }, []);
 
     return (
-        <main className={classes.root}>
-            <Container>
-                <div>
-                    <span className={classes.headerWrapper}>
-                        <h1 className={classes.header}>Danil Зakhvatkin</h1>
-                        <h3 className={classes.tag}>
-                            <MediaQuery minWidth={theme.breakpoints.mobile}>
-                                {'/ '}
-                            </MediaQuery>
-                            web developer
-                            <span className={classes.tag}>/ designer</span>
-                        </h3>
-                    </span>
-                    <p className={classes.about}>
-                        Hi, I am
-                        {' '}
-                        <span className={classes.marker}>
-                            developing web applications
-                        </span>
-                        , and other interesting little things.
-                        My name is Danil Zakhvatkin, I am
-                        {' '}
-                        {currAge}
-                        {' '}
-                        and now I am located in Yerevan, Armenia.
-                        Before that I worked in
-                        {' '}
-                        <a
-                            href="https://megafon.ru"
-                            target="_blank"
-                            rel="noreferrer"
-                            className={classes.megafon}
-                        >
-                            MegaFon
-                        </a>
-                        , now I work in
-                        {' '}
-                        <a
-                            href="https://ticketscloud.com"
-                            target="_blank"
-                            rel="noreferrer"
-                            className={classes.ticketscloud}
-                        >
-                            Ticketscloud
-                        </a>
-                        .
-                    </p>
-                </div>
-            </Container>
-        </main>
+        <div>
+            <p className={styles.text}>
+                Hi, I am
+                {' '}
+                <span className={styles.marker}>
+                    developing web applications
+                </span>
+                , and other interesting little things.
+                My name is Danil Zakhvatkin, I am
+                {' '}
+                {currAge}
+                {' '}
+                and now I am located in Yerevan, Armenia.
+                Before that I worked in
+                {' '}
+                <a
+                    href="https://megafon.ru"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.megafon}
+                >
+                    MegaFon
+                </a>
+                , now I work in
+                {' '}
+                <a
+                    href="https://ticketscloud.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.ticketscloud}
+                >
+                    Ticketscloud
+                </a>
+                .
+            </p>
+        </div>
     );
 }
 
-export default AboutMeScreen;
+export default AboutMeBlock;
