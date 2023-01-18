@@ -2,7 +2,7 @@
     /* max-width: 800px; */
     width: 100%;
     margin: auto;
-    padding: 0 164px;
+    padding: 0 var(--gap-desktop);
     box-sizing: border-box;
     transition: padding var(--transitions-default);
 }
@@ -12,6 +12,6 @@
 
 @media (max-width: 800px) { 
     .root {
-        padding: 0 18px;
+        padding: 0 var(--gap-mobile);
     } 
 }

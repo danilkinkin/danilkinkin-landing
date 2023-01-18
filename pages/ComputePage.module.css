@@ -1,0 +1,26 @@
+.guide {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.aside {
+    border-right: 1px solid #d0d0d0;
+    width: 60vw;
+    flex-shrink: 0;
+    transform: translateX(-60vw);
+    transition: transform 0.6s cubic-bezier(0, 1, 0.18, 1);
+}
+
+.main {
+    width: 100vw;
+    min-height: 100vh;
+    flex-shrink: 0;
+    transform: translateX(-60vw);
+    transition: transform 0.6s cubic-bezier(0, 1, 0.18, 1);
+}
+
+.guide.showContacts .aside, .guide.showContacts .main {
+    transform: translateX(0);
+}

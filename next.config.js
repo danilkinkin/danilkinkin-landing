@@ -16,7 +16,17 @@ const config = plugins.reduce((acc, next) => next(acc), {
         {
           test: /\.svg$/i,
           issuer: /\.[jt]sx?$/,
-          use: ['@svgr/webpack'],
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  name: 'removeViewBox',
+                  active: false
+                }
+              ]
+            }
+          }
         },
         {
           test: /\.(png|gif|jpg|ico)$/,

@@ -2,9 +2,14 @@ import React from 'react';
 import clsx from 'clsx';
 import styles from './Container.module.scss'
 
-function Container({ children, className, align }) {
+function Container({ gap = '160px', gapMobile = '18px', children, className, align }) {
     return (
-        <main className={clsx(styles.root, styles[`align-${align}`], className)}>{children}</main>
+        <section 
+            className={clsx(styles.root, styles[`align-${align}`], className)} 
+            style={{ ['--gap-desktop']: gap, ['--gap-mobile']: gapMobile }}
+        >
+            {children}
+        </section>
     );
 }
 

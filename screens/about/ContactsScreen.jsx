@@ -49,7 +49,7 @@ function ContactsScreen() {
     const classes = useStyles();
 
     return (
-        <aside className={classes.root}>
+        <aside className={styles.root}>
             <Container>
                 <h2 className={classes.header}>/contact with me</h2>
                 <nav className={classes.linksWrapper}>

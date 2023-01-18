@@ -5,37 +5,6 @@ import Header from '@/components/Header';
 import Container from '@/components/Container';
 import AboutMeBlock from './AboutMeBlock';
 import styles from './About.module.css';
-// import AboutMeScreen from './AboutMeScreen';
-// import ContactsScreen from './ContactsScreen';
-
-/* const useStyles = createUseStyles({
-    root: {},
-    contacts: {
-        width: '100vw',
-        transition: createTransition(['transform'], theme.transitions.enter),
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        transform: 'translateX(-680px)',
-        opacity: 0,
-        visibility: 'hidden',
-    },
-    shiftContactsBlock: {
-        visibility: 'visible',
-        transform: 'translateX(0)',
-        opacity: 1,
-        transition: mergeTransitions(
-            createTransition(['transform'], theme.transitions.enter),
-            createTransition(['opacity'], theme.transitions.default),
-        ),
-    },
-    mainBlock: { transition: createTransition(['transform'], theme.transitions.enter) },
-    shiftMainBlock: { transform: 'translateX(min(max(70vw, 800px), 1300px))' },
-    shiftMainBlockFirstFrame: {
-        transform: 'translateX(90vw)',
-        opacity: 0,
-    },
-}); */
 
 function IndexPage() {
     const router = useRouter();
