@@ -9,10 +9,11 @@ function PageCompute(props) {
     const router = useRouter();
     const [path, setPath] = useState(props.path);
     const [isFirstRender, setIsFirstRender] = useState(true);
+    const [animating, setAnimating] = useState(false);
 
     useEffect(() => {
         setIsFirstRender(false);
-        const handleRouteChange = (url /* , { shallow } */) => {
+        const handleRouteChange = (url) => {
             if (url === '/') {
                 document.documentElement.scrollTo({
                     top: 0,
@@ -26,7 +27,9 @@ function PageCompute(props) {
                 return;
             }
 
+            setAnimating(true);
             setPath(url);
+            setTimeout(() => setAnimating(false), 600);
         };
 
         router.events.on('routeChangeStart', handleRouteChange);
@@ -36,10 +39,8 @@ function PageCompute(props) {
         };
     }, []);
 
-    console.log('PageCompute:', props);
-
     return (
-        <div className={clsx(styles.guide, path === '/contacts' && styles.showContacts)}>
+        <div className={clsx(styles.guide, path === '/contacts' && styles.showContacts, animating && styles.animating)}>
             <aside className={styles.aside}>
                 <ContactsScreen />
             </aside>

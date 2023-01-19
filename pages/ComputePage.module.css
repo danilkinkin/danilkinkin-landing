@@ -7,20 +7,28 @@
 
 .aside {
     border-right: 1px solid #d0d0d0;
-    width: 60vw;
+    width: min(70vw, 1500px);
     flex-shrink: 0;
-    transform: translateX(-60vw);
-    transition: transform 0.6s cubic-bezier(0, 1, 0.18, 1);
+    transform: translateX(max(-70vw, -1500px));
 }
 
 .main {
     width: 100vw;
     min-height: 100vh;
     flex-shrink: 0;
-    transform: translateX(-60vw);
+    transform: translateX(max(-70vw, -1500px));
+}
+
+.animating .aside, .animating .main {
     transition: transform 0.6s cubic-bezier(0, 1, 0.18, 1);
 }
 
 .guide.showContacts .aside, .guide.showContacts .main {
     transform: translateX(0);
+}
+
+@media (max-width: 500px) {
+    .aside {
+        width: 100vw;
+    }
 }

@@ -27,6 +27,7 @@
 .divider {
     margin-top: 120px;
     display: inline-flex;
+    max-width: 900px;
 
     hr {
         height: 1px;
@@ -46,6 +47,7 @@
     flex-wrap: wrap;
     align-items: baseline;
     justify-content: space-between;
+    max-width: 900px;
 
     ul {
         list-style-type: none;
