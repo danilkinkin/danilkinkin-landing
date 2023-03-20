@@ -17,6 +17,7 @@
     min-height: 100vh;
     flex-shrink: 0;
     transform: translateX(max(-70vw, -1500px));
+    overflow: auto;
 }
 
 .animating .aside, .animating .main {

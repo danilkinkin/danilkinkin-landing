@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import AboutScreen from '@/screens/about';
 import ContactsScreen from '@/screens/contacts';
+import ProjectsPage from '@/screens/projects/index';
 import styles from './ComputePage.module.css';
 import clsx from 'clsx';
 
@@ -46,6 +47,7 @@ function PageCompute(props) {
             </aside>
             <main className={styles.main}>
                 <AboutScreen />
+                <ProjectsPage />
             </main>
         </div>
     );

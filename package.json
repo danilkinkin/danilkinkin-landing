@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@next/font": "^13.1.2",
+    "@react-spring/web": "^9.6.1",
     "clsx": "^1.2.1",
     "mobx": "^6.7.0",
     "mobx-react-lite": "^3.4.0",

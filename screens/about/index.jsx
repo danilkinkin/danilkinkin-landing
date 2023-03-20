@@ -38,7 +38,7 @@ function IndexPage() {
     }, []);
 
     return (
-        <div className={'classes.root'}>
+        <div className={styles.root}>
             <Header />
             <Container align="left" className={styles.aboutMe}>
                 <AboutMeBlock />
