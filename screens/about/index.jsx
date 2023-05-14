@@ -38,13 +38,10 @@ function IndexPage() {
     }, []);
 
     return (
-        <div className={styles.root}>
-            <Header />
-            <Container align="left" className={styles.aboutMe}>
-                <AboutMeBlock />
-            </Container>
-            
-        </div>
+        <Container align="left" className={styles.aboutMe}>
+            <AboutMeBlock />
+            <Header />  
+        </Container>     
     );
 }
 

@@ -7,8 +7,6 @@ export default function Header() {
     return (
         <header className={styles.header}>
             <nav className={styles.navigation}>
-                <Link className={styles.logo} href="/">Danil Зakhvatkin</Link>
-                <Link className={styles.link} href="/projects">my projects</Link>
                 <Link className={styles.link} href="/contacts">contact with me</Link>
                 <Link className={styles.link} href="mailto:hello@danilkinkin.com">
                     <MailIcon className={styles.linkIcon} />

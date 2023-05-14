@@ -47,7 +47,6 @@ function PageCompute(props) {
             </aside>
             <main className={styles.main}>
                 <AboutScreen />
-                <ProjectsPage />
             </main>
         </div>
     );

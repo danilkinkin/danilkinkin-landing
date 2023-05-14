@@ -3,85 +3,8 @@ import MediaQuery from 'react-responsive';
 import getMyAge from '@/utils/getMyAge';
 import Container from '@/components/Container';
 import theme, { createTransition } from '@/constants/theme';
-import styles from './AboutMe.module.css'
+import styles from './AboutMe.module.scss'
 import clsx from 'clsx';
-
-/* const useStyles = createUseStyles({
-    root: {
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        color: theme.palette.text.primary,
-    },
-    marker: {
-        color: theme.palette.primary,
-        textDecoration: 'unset',
-        '&::selection': { background: theme.palette.text.primary },
-    },
-    headerWrapper: {
-        display: 'inline-flex',
-        alignItems: 'center',
-        // flexWrap: 'wrap',
-        maxWidth: '100%',
-    },
-    header: {
-        margin: 0,
-        fontSize: 48,
-        fontWeight: 900,
-        marginRight: '0.3em',
-        whiteSpace: 'nowrap',
-        '& + $tag': { marginLeft: 0 },
-    },
-    tag: {
-        margin: 0,
-        fontSize: 48,
-        opacity: 0.4,
-        color: theme.palette.text.secondary,
-        marginLeft: '0.3em',
-        fontWeight: 900,
-        whiteSpace: 'nowrap',
-    },
-    about: {
-        fontSize: 36,
-        maxWidth: 920,
-        fontWeight: 600,
-        marginBottom: 0,
-    },
-    megafon: {
-        color: '#00a94e',
-        textDecoration: 'unset',
-        transition: createTransition(['color'], theme.transitions.default),
-        '&:hover': { color: theme.palette.text.primary },
-        '&::selection': { background: '#731982' },
-    },
-    ticketscloud: {
-        color: '#e9cf11',
-        textDecoration: 'unset',
-        transition: createTransition(['color'], theme.transitions.default),
-        '&:hover': { color: theme.palette.text.primary },
-        '&::selection': { background: '#12171b' },
-    },
-    [`@media (max-width: ${theme.breakpoints.mobile}px)`]: {
-        headerWrapper: {
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-        },
-        header: {
-            fontSize: 36,
-            whiteSpace: 'normal',
-        },
-        tag: { fontSize: 24 },
-        about: {
-            fontSize: 24,
-            maxWidth: 620,
-        },
-    },
-    [`@media (max-width: ${theme.breakpoints.smallMobile}px)`]: {
-        header: { fontSize: 28 },
-        tag: { fontSize: 20 },
-        about: { fontSize: 18 },
-    },
-}); */
 
 const delayBeetwenChars = 10
 
@@ -136,7 +59,7 @@ function AboutMeBlock() {
         <div>
             <h2 className={clsx(styles.text, show && styles.show)}>
                 <AnimateOrder delay={3600}>
-                    <AnimatedBlock value="Hello," />
+                    <AnimatedBlock value="Hi," />
                     <AnimatedBlock value="I am" />
                     <AnimateOrder delay={1000}>
                         <AnimatedBlock className={styles.developing} value="developing" />
@@ -154,9 +77,11 @@ function AboutMeBlock() {
                             value="Danil Зakhvatkin" 
                             noSpaceAfter 
                         />
+                        <AnimatedBlock value=", or simple" />
+                        <AnimatedBlock value="@danilkinkin" noSpaceAfter />
                     </AnimateOrder>
                     <AnimateOrder delay={2400}>
-                        <AnimatedBlock value=","/>
+                        <AnimatedBlock value="." />
                         <AnimatedBlock value="I am" />
                         <AnimatedBlock value={`${age} years old`} />
                     </AnimateOrder>
@@ -167,17 +92,19 @@ function AboutMeBlock() {
                         <AnimatedBlock value="Yerevan, Armenia" noSpaceAfter />
                         <AnimatedBlock value="." />
                     </AnimateOrder>
-                    <AnimatedBlock value="I worked" />
-                    <AnimatedBlock value="for" />
-                    <AnimatedBlock className={styles.megafon} value="MegaFon" noSpaceAfter />
-                    <AnimatedBlock value="." />
                     <AnimateOrder delay={2800}>
                         <AnimatedBlock value="Now" />
-                        <AnimatedBlock value="I work" />
+                        <AnimatedBlock value="work" />
                         <AnimatedBlock value="for" />
-                        <AnimatedBlock className={styles.ticketscloud} value="Ticketscloud" noSpaceAfter />
-                        <AnimatedBlock value="." noSpaceAfter/>
+                        <AnimatedBlock className={styles.ticketscloud} value="Ticketscloud" />
                     </AnimateOrder>
+                    <AnimatedBlock value="and before" />
+                    <AnimatedBlock value="worked for" />
+                    <AnimatedBlock className={styles.megafon} value="MegaFon" noSpaceAfter />
+                    <AnimatedBlock value=","/>
+                    <AnimatedBlock value="WebTelco" noSpaceAfter />
+                    <AnimatedBlock value="." noSpaceAfter/>
+                    
                 </AnimateOrder>                
             </h2>
         </div>
