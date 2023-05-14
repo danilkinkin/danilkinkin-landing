@@ -5,10 +5,11 @@ import Container from '@/components/Container';
 import theme, { createTransition } from '@/constants/theme';
 import styles from './AboutMe.module.scss'
 import clsx from 'clsx';
+import DevelopingBlock from './DevelopingBlock';
 
 const delayBeetwenChars = 10
 
-function AnimatedBlock({ delay = 0, noSpaceAfter = false, value, className }) {
+export function AnimatedBlock({ delay = 0, noSpaceAfter = false, value, className }) {
     return (
         <span className={clsx(styles.textLine, !noSpaceAfter && styles.spaceAfter, className)}>
             {value.split('').map((char, index) => (
@@ -23,7 +24,7 @@ function AnimatedBlock({ delay = 0, noSpaceAfter = false, value, className }) {
     )
 }
 
-function AnimateOrder({ delay = 0, children }) {
+export function AnimateOrder({ delay = 0, children }) {
     let comulutiveDelay = 0;
 
     return children.map((children) => {
@@ -61,10 +62,7 @@ function AboutMeBlock() {
                 <AnimateOrder delay={3600}>
                     <AnimatedBlock value="Hi," />
                     <AnimatedBlock value="I am" />
-                    <AnimateOrder delay={1000}>
-                        <AnimatedBlock className={styles.developing} value="developing" />
-                        <AnimatedBlock className={styles.developing} value="web applications" />
-                    </AnimateOrder>
+                    <DevelopingBlock />
                     <AnimatedBlock value="and other" />
                     <AnimatedBlock value="interesting" />
                     <AnimatedBlock value="little" />
@@ -103,7 +101,6 @@ function AboutMeBlock() {
                     <AnimatedBlock className={styles.megafon} value="MegaFon" noSpaceAfter />
                     <AnimatedBlock value=","/>
                     <AnimatedBlock value="WebTelco" noSpaceAfter />
-                    <AnimatedBlock value="." noSpaceAfter/>
                     
                 </AnimateOrder>                
             </h2>
