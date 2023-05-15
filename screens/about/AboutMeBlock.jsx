@@ -6,6 +6,7 @@ import theme, { createTransition } from '@/constants/theme';
 import styles from './AboutMe.module.scss'
 import clsx from 'clsx';
 import DevelopingBlock from './DevelopingBlock';
+import Nickname from './Nickname';
 import Wave from './Wave';
 
 const delayBeetwenChars = 10
@@ -29,7 +30,7 @@ export function AnimateOrder({ delay = 0, children }) {
     let comulutiveDelay = 0;
 
     return children.map((children) => {
-        if (children.type !== AnimatedBlock) return children;
+        if (children.type !== AnimatedBlock && !('animatedBlock' in children.props)) return children;
 
         comulutiveDelay += children.props.value.length;
 
@@ -77,7 +78,7 @@ function AboutMeBlock() {
                             noSpaceAfter 
                         />
                         <AnimatedBlock value=", or simple" />
-                        <AnimatedBlock value="@danilkinkin" noSpaceAfter />
+                        <Nickname animatedBlock value="@danilkinkin" />
                     </AnimateOrder>
                     <AnimateOrder delay={2400}>
                         <AnimatedBlock value="." />

@@ -1,0 +1,17 @@
+.root {
+  margin: -4px 0px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.pen {
+  position: absolute;
+  width: 340px;
+  height: 140px;
+  left: -59px;
+  top: -45px;
+}
+
+.text {
+  margin: 0;
+}

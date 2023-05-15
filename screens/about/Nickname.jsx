@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import lottieStartJson from "@/assets/wave-start.lottie.json";
-import lottieJson from "@/assets/wave.lottie.json";
-import styles from "./Wave.module.css";
+import lottieStartJson from "@/assets/pen-circle-start.lottie.json";
+import lottieJson from "@/assets/pen-circle.lottie.json";
+import styles from "./Nickname.module.css";
 import lottie from "lottie-web";
+import { AnimatedBlock } from "./AboutMeBlock";
 
-function Wave() {
+function Nickname({ delay = 0 }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -17,9 +18,11 @@ function Wave() {
     });
     let loopAnimation = null;
 
+    startAnimation.setSubframe(false);
+
     setTimeout(() => {
       startAnimation.play();
-    }, 5000);
+    }, delay + 300);
 
     startAnimation.addEventListener("complete", () => {
       startAnimation.destroy();
@@ -30,6 +33,8 @@ function Wave() {
         autoplay: true,
         animationData: lottieJson,
       });
+
+      loopAnimation.setSubframe(false);
     });
 
     return () => {
@@ -38,7 +43,12 @@ function Wave() {
     };
   }, []);
 
-  return <span ref={ref} className={styles.root}></span>;
+  return (
+    <span className={styles.root}>
+      <AnimatedBlock delay={delay} className={styles.text} value="@danilkinkin" noSpaceAfter />
+      <span ref={ref} className={styles.pen} />
+    </span>
+  );
 }
 
-export default Wave;
+export default Nickname;
