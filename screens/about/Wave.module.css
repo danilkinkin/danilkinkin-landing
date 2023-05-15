@@ -1,0 +1,8 @@
+.root {
+  margin-bottom: -4px;
+  margin-right: 22px;
+  width: 200px;
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+}

@@ -6,6 +6,7 @@ import theme, { createTransition } from '@/constants/theme';
 import styles from './AboutMe.module.scss'
 import clsx from 'clsx';
 import DevelopingBlock from './DevelopingBlock';
+import Wave from './Wave';
 
 const delayBeetwenChars = 10
 
@@ -90,6 +91,7 @@ function AboutMeBlock() {
                         <AnimatedBlock value="Yerevan, Armenia" noSpaceAfter />
                         <AnimatedBlock value="." />
                     </AnimateOrder>
+                    <Wave />
                     <AnimateOrder delay={2800}>
                         <AnimatedBlock value="Now" />
                         <AnimatedBlock value="work" />
