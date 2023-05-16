@@ -48,3 +48,9 @@
 .ticketscloud {
   color: #ffbf04;
 }
+
+@media (max-width: 800px) {
+  .text {
+    font-size: 24px;
+  }
+}

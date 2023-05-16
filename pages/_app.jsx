@@ -1,10 +1,10 @@
 import React from 'react';
 import Head from 'next/head';
 import theme, { computeVars } from '@/constants/theme';
-import localFont from '@next/font/local'
+import localFont from '@next/font/local';
 import './global-styles.css';
 
-const manropeFont = localFont({ src: '../fonts/manrope.wght.ttf' })
+const manropeFont = localFont({ src: '../fonts/manrope.wght.ttf' });
 const title = 'Danil Зakhvatkin';
 const description = 'Hi, I’m Danil Зakhvatkin, I’m developing web applications, websites and other interesting things.';
 
