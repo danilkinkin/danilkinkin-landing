@@ -8,6 +8,7 @@ import clsx from 'clsx';
 import DevelopingBlock from './DevelopingBlock';
 import Nickname from './Nickname';
 import Wave from './Wave';
+import Planet from './Planet';
 
 const delayBeetwenChars = 10
 
@@ -77,7 +78,8 @@ function AboutMeBlock() {
                             value="Danil Зakhvatkin" 
                             noSpaceAfter 
                         />
-                        <AnimatedBlock value=", or simple" />
+                        <AnimatedBlock value="," />
+                        <AnimatedBlock value="or simple" />
                         <Nickname animatedBlock value="@danilkinkin" />
                     </AnimateOrder>
                     <AnimateOrder delay={2400}>
@@ -88,9 +90,9 @@ function AboutMeBlock() {
                     <AnimateOrder delay={5000}>
                         <AnimatedBlock value="and" />
                         <AnimatedBlock value="currently based" />
+                        <Planet />
                         <AnimatedBlock value="in" />
-                        <AnimatedBlock value="Yerevan, Armenia" noSpaceAfter />
-                        <AnimatedBlock value="." />
+                        <AnimatedBlock value="Yerevan, Armenia." />
                     </AnimateOrder>
                     <Wave />
                     <AnimateOrder delay={2800}>

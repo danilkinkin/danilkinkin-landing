@@ -1,0 +1,15 @@
+.root {
+  width: 74px;
+  position: relative;
+  margin-bottom: 24px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvasContainer {
+  position: absolute;
+  width: 74px;
+  height: 74px;
+}

@@ -29,7 +29,7 @@ const config = plugins.reduce((acc, next) => next(acc), {
           }
         },
         {
-          test: /\.(png|gif|jpg|ico)$/,
+          test: /\.(png|gif|jpg|ico|glb)$/,
           loader: 'file-loader',
           options: {
             name: '[name]_[hash].[ext]',

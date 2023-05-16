@@ -18,7 +18,11 @@
   },
   "dependencies": {
     "@next/font": "^13.1.2",
+    "@react-spring/three": "^9.7.2",
     "@react-spring/web": "^9.6.1",
+    "@react-three/drei": "^9.68.3",
+    "@react-three/fiber": "^8.13.0",
+    "@types/three": "^0.152.0",
     "clsx": "^1.2.1",
     "lottie-web": "^5.11.0",
     "mobx": "^6.7.0",
@@ -28,7 +32,8 @@
     "react-dom": "^18.2.0",
     "react-resize-detector": "^7.1.2",
     "react-responsive": "^9.0.2",
-    "smooth-scrollbar": "^8.8.1"
+    "smooth-scrollbar": "^8.8.1",
+    "three": "^0.152.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
