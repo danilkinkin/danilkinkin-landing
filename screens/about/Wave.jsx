@@ -19,7 +19,7 @@ function Wave() {
 
     setTimeout(() => {
       startAnimation.play();
-    }, 5000);
+    }, 9000);
 
     startAnimation.addEventListener("complete", () => {
       startAnimation.destroy();

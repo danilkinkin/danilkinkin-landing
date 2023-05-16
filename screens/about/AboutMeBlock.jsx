@@ -30,7 +30,7 @@ export function AnimatedBlock({ delay = 0, noSpaceAfter = false, value, classNam
 export function AnimateOrder({ delay = 0, children }) {
     let comulutiveDelay = 0;
 
-    return children.map((children) => {
+    return React.Children.toArray(children).map((children) => {
         if (children.type !== AnimatedBlock && !('animatedBlock' in children.props)) return children;
 
         comulutiveDelay += children.props.value.length;
@@ -62,9 +62,11 @@ function AboutMeBlock() {
     return (
         <div>
             <h2 className={clsx(styles.text, show && styles.show)}>
-                <AnimateOrder delay={3600}>
+                <AnimateOrder delay={6000}>
                     <AnimatedBlock value="Hi," />
-                    <AnimatedBlock value="I am" />
+                    <AnimateOrder delay={2000}>
+                        <AnimatedBlock value="I am" />
+                    </AnimateOrder>
                     <DevelopingBlock />
                     <AnimatedBlock value="and other" />
                     <AnimatedBlock value="interesting" />
@@ -82,12 +84,12 @@ function AboutMeBlock() {
                         <AnimatedBlock value="or simple" />
                         <Nickname animatedBlock value="@danilkinkin" />
                     </AnimateOrder>
-                    <AnimateOrder delay={2400}>
+                    <AnimateOrder delay={3400}>
                         <AnimatedBlock value="." />
                         <AnimatedBlock value="I am" />
                         <AnimatedBlock value={`${age} years old`} />
                     </AnimateOrder>
-                    <AnimateOrder delay={5000}>
+                    <AnimateOrder delay={8000}>
                         <AnimatedBlock value="and" />
                         <AnimatedBlock value="currently based" />
                         <Planet />
@@ -95,7 +97,7 @@ function AboutMeBlock() {
                         <AnimatedBlock value="Yerevan, Armenia." />
                     </AnimateOrder>
                     <Wave />
-                    <AnimateOrder delay={2800}>
+                    <AnimateOrder delay={3800}>
                         <AnimatedBlock value="Now" />
                         <AnimatedBlock value="work" />
                         <AnimatedBlock value="for" />

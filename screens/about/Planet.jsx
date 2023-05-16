@@ -36,7 +36,7 @@ function Earth() {
     setTimeout(() => {
       rotationSpeedApi.start({ value: 0.4 });
       scaleApi.start({ value: 1.4 });
-    }, 5700);
+    }, 8200);
   }, []);
 
   useFrame((_, delta) => {
