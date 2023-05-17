@@ -10,9 +10,11 @@
     height: 100vh;
     width: 100vw;
     flex-shrink: 0;
-    transform: translateY(100vh);
+    transform: translateY(40vh);
     position: absolute;
     z-index: 100;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .main {
@@ -22,12 +24,18 @@
     height: 100vh;
 }
 
-.animating .aside, .animating .main {
-    transition: transform 0.6s cubic-bezier(0, 1, 0.18, 1), filter 0.6s cubic-bezier(0, 1, 0.18, 1) ;
+.animating .aside {
+    transition: transform 0.6s cubic-bezier(0, 1, 0, 1), opacity 0.6s cubic-bezier(0, 1, 0, 1);
 }
 
-.guide.showContacts .aside, .guide.showContacts .main {
+.animating .main {
+    transition: transform 0.6s cubic-bezier(0, 1.08, 0.49, 1), filter 0.6s cubic-bezier(0, 1, 0.18, 1);
+}
+
+.guide.showContacts .aside {
     transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
 }
 
 .guide.showContacts .main {
