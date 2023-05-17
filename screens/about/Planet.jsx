@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useGLTF, useHelper } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import styles from "./Planet.module.css";
 import { Fragment } from "react";
 import { useSpring } from '@react-spring/three'
-import { Color, HemisphereLightHelper, SpotLightHelper } from "three";
-import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper';
 import { RectAreaLightUniformsLib } from "three/addons/lights/RectAreaLightUniformsLib";
 import useIsDarkMode from "@/utils/useIsDarkMode";
 
@@ -92,7 +90,6 @@ function Planet() {
 // useGLTF.preload("earth-transformed.glb");
 
 function Waiter() {
-  console.log("process:", process.browser);
   const [show, setShow] = useState(false);
 
   useEffect(() => {

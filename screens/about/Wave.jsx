@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import lottieStartJson from "@/assets/wave-start.lottie.json";
 import lottieJson from "@/assets/wave.lottie.json";
-import styles from "./Wave.module.css";
+import styles from "./Wave.module.scss";
 import lottie from "lottie-web";
 
 function Wave() {

@@ -1,6 +1,6 @@
 .root {
   margin: -4px 0px;
-  margin-bottom: 24px;
+  margin-bottom: var(--line-spacing);
   position: relative;
 }
 
@@ -10,6 +10,14 @@
   height: 140px;
   left: -59px;
   top: -45px;
+  z-index: 1;
+
+  @media (max-width: 800px) {
+    width: 240px;
+    height: 100px;
+    top: -32px;
+    left: -42px;
+  }
 }
 
 .text {

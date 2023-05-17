@@ -11,7 +11,7 @@
   &Right {
     position: relative;
     margin: -4px 0px;
-    margin-bottom: 24px;
+    margin-bottom: var(--line-spacing);
     margin-right: 12px;
     transform: scale(0.95);
     transition: transform 1200ms cubic-bezier(0.03, 1.07, 0.53, 0.99);
@@ -24,6 +24,14 @@
 
   &Right {
     transform-origin: center left;
+  }
+
+  --left-y-offset: 6.2px;
+  --right-y-offset: -3px;
+
+  @media (max-width: 800px) {
+    --left-y-offset: 4.2px;
+    --right-y-offset: -2px;
   }
 }
 .backdrop {
@@ -40,12 +48,12 @@
 
   &Left {
     transform-origin: center left;
-    transform: rotate(-1deg) translateY(6.2px);
+    transform: rotate(-1deg) translateY(var(--left-y-offset));
   }
 
   &Right {
     transform-origin: center right;
-    transform: rotate(-1deg) translateY(-3px);
+    transform: rotate(-1deg) translateY(var(--right-y-offset));
   }
 }
 .stub {
@@ -65,12 +73,12 @@
 
   &Left {
     transform-origin: center left;
-    transform: rotate(-1deg) translateY(6.2px);
+    transform: rotate(-1deg) translateY(var(--left-y-offset));
   }
 
   &Right {
     transform-origin: center right;
-    transform: rotate(-1deg) translateY(-3px);
+    transform: rotate(-1deg) translateY(var(--right-y-offset));
     margin-left: auto;
   }
 }

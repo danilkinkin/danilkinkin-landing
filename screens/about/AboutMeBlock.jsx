@@ -88,10 +88,12 @@ function AboutMeBlock() {
                     </AnimateOrder>
                     <AnimateOrder delay={8000}>
                         <AnimatedBlock value="and" />
-                        <AnimatedBlock value="currently based" />
+                        <AnimatedBlock value="currently" />
+                        <AnimatedBlock value="based" />
                         <Planet />
                         <AnimatedBlock value="in" />
-                        <AnimatedBlock value="Yerevan, Armenia." />
+                        <AnimatedBlock value="Yerevan," />
+                        <AnimatedBlock value="Armenia." />
                     </AnimateOrder>
                     <Wave />
                     <AnimateOrder delay={3800}>

@@ -7,6 +7,13 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: auto;
+
+  --line-spacing: 24px;
+
+  @media (max-width: 800px) {
+    font-size: 24px;
+    --line-spacing: 18px;
+  }
 }
 
 .textLine {
@@ -15,7 +22,7 @@
   white-space: nowrap;
   margin: -4px 0px;
   display: inline-flex;
-  margin-bottom: 24px;
+  margin-bottom: var(--line-spacing);
 }
 
 .spaceAfter {
@@ -47,10 +54,4 @@
 }
 .ticketscloud {
   color: #ffbf04;
-}
-
-@media (max-width: 800px) {
-  .text {
-    font-size: 24px;
-  }
 }

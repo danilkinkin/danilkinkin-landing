@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import lottieStartJson from "@/assets/pen-circle-start.lottie.json";
 import lottieJson from "@/assets/pen-circle.lottie.json";
-import styles from "./Nickname.module.css";
+import styles from "./Nickname.module.scss";
 import lottie from "lottie-web";
 import { AnimatedBlock } from "./AboutMeBlock";
 

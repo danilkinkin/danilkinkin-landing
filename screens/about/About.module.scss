@@ -9,5 +9,9 @@
   align-items: center;
   justify-content: center;
   height: max-content;
-  padding: var(--gap-desktop) var(--gap-mobile);
+  padding: var(--gap-desktop) calc(var(--gap-desktop) / 2);
+
+  @media (max-width: 600px) {
+    padding: calc(var(--gap-desktop) / 2) calc(var(--gap-mobile) * 2);
+  }
 }

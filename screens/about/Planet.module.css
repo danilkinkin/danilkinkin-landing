@@ -1,7 +1,7 @@
 .root {
   width: 74px;
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: var(--line-spacing);
   margin-right: 12px;
   display: flex;
   align-items: center;

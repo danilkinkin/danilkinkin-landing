@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { AnimatedBlock, AnimateOrder } from "./AboutMeBlock";
 import styles from "./DevelopingBlock.module.scss";
 import clsx from "clsx";
-
-console.log(styles);
 
 function DevelopingBlock() {
   const [show, setShow] = useState(false);

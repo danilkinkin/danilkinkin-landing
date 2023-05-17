@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import clsx from 'clsx';
 import Header from '@/components/Header';
 import Container from '@/components/Container';
 import AboutMeBlock from './AboutMeBlock';
-import styles from './About.module.css';
+import styles from './About.module.scss';
 
 function IndexPage() {
     const router = useRouter();
