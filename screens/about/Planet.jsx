@@ -7,9 +7,11 @@ import { useSpring } from '@react-spring/three'
 import { Color, HemisphereLightHelper, SpotLightHelper } from "three";
 import { RectAreaLightHelper } from 'three/addons/helpers/RectAreaLightHelper';
 import { RectAreaLightUniformsLib } from "three/addons/lights/RectAreaLightUniformsLib";
+import useIsDarkMode from "@/utils/useIsDarkMode";
 
 function Earth() {
   const { nodes, materials } = useGLTF("/earth-transformed.glb");
+  const isDarkMode = useIsDarkMode();
   const ref = useRef(null);
   const [rotationSpeedSpring, rotationSpeedApi] = useSpring(() => ({
       value: 10,
@@ -47,13 +49,16 @@ function Earth() {
     ref.current.scale.setScalar(scale);
   });
 
+  const ambientColor = isDarkMode ? "#8299ba" : "#FFF6F3";
+  const lightColor = isDarkMode ? "#8c8c8c" : "#FFFFFF";
+
   return (
     <Fragment>
-      <ambientLight color="#FFF6F3" intensity={0.5} />
-      <spotLight color="#FFFFFF" position={[0, 20, 0]} lookAt={[0, 0, 0]} intensity={1.3} decay={2} distance={40} penumbra={1} angle={Math.PI/2} />
-      <spotLight color="#FFFFFF" position={[10, 16, 0]} lookAt={[0, 0, 0]} intensity={1.3} decay={2} distance={40} penumbra={1} angle={Math.PI/2} />
-      <spotLight color="#FFFFFF" position={[-10, 16, 0]} lookAt={[0, 0, 0]} intensity={1.3} decay={2} distance={40} penumbra={1} angle={Math.PI/2} />
-      <spotLight color="#FFFFFF" position={[0, 16, 10]} lookAt={[0, 0, 0]} intensity={1.3} decay={2} distance={40} penumbra={1} angle={Math.PI/2} />
+      <ambientLight color={ambientColor} intensity={0.5} />
+      <spotLight color={lightColor} position={[0, 20, 0]} lookAt={[0, 0, 0]} intensity={1.3} decay={2} distance={40} penumbra={1} angle={Math.PI/2} />
+      <spotLight color={lightColor} position={[10, 16, 0]} lookAt={[0, 0, 0]} intensity={1.3} decay={2} distance={40} penumbra={1} angle={Math.PI/2} />
+      <spotLight color={lightColor} position={[-10, 16, 0]} lookAt={[0, 0, 0]} intensity={1.3} decay={2} distance={40} penumbra={1} angle={Math.PI/2} />
+      <spotLight color={lightColor} position={[0, 16, 10]} lookAt={[0, 0, 0]} intensity={1.3} decay={2} distance={40} penumbra={1} angle={Math.PI/2} />
       <group ref={ref} dispose={null}>
         <mesh
           geometry={nodes.Icosphere.geometry}

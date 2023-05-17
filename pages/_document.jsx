@@ -5,16 +5,12 @@ import Document, {
     Main,
     NextScript,
 } from 'next/document';
-import theme from '@/constants/theme';
 
 export default class MyDocument extends Document {
     render() {
         return (
             <Html lang="en">
-                <Head>
-                    {/* PWA primary color */}
-                    <meta name="theme-color" content={theme.palette.primary} />
-                </Head>
+                <Head></Head>
                 <body>
                     <Main />
                     <NextScript />

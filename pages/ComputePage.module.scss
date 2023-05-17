@@ -22,6 +22,10 @@
     overflow: auto;
     width: 100vw;
     height: 100vh;
+    perspective: inherit;
+    &Scale {
+        transition: inherit;
+    }
 }
 
 .animating .aside {
@@ -40,7 +44,10 @@
 
 .guide.showContacts .main {
     filter: blur(60px);
-    transform: translate3d(0px, 0px, -200px);
+
+    &Scale {
+        transform: translate3d(0px, 0px, -200px);
+    }
 }
 
 @media (max-width: 500px) {

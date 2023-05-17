@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MediaQuery from 'react-responsive';
 import getMyAge from '@/utils/getMyAge';
-import Container from '@/components/Container';
-import theme, { createTransition } from '@/constants/theme';
 import styles from './AboutMe.module.scss'
 import clsx from 'clsx';
 import DevelopingBlock from './DevelopingBlock';

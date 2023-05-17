@@ -1,0 +1,21 @@
+:root {
+  --palette-container: #FFFDFE;
+  --palette-onContainer: #3F0015;
+  --palette-onContainerVariant: #3F001540;
+  --palette-primary: #FF006B;
+  --palette-secondary: #0066ff;
+  --palette-text-primary: #1E1E1E;
+  --palette-text-secondary: #bbbbbb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --palette-container: #151113;
+    --palette-onContainer: #faf1f4;
+    --palette-onContainerVariant: #fff1f68c;
+    --palette-primary: #FF006B;
+    --palette-secondary: #0066ff;
+    --palette-text-primary: #1E1E1E;
+    --palette-text-secondary: #bbbbbb;
+  }
+}
