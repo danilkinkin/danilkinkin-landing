@@ -74,39 +74,6 @@
   }
 }
 
-.email {
-  font-weight: 600;
-  font-size: 40px;
-  color: var(--palette-primary);
-  text-decoration: none;
-  white-space: nowrap;
-  width: fit-content;
-  margin-top: 12px;
-
-  svg {
-    width: auto;
-    height: 26px;
-    display: inline-block;
-    margin-right: 8px;
-  }
-
-  @media (max-width: 1070px) {
-    font-size: 32px;
-
-    svg {
-      height: 22px;
-    }
-  }
-
-  @media (max-width: 870px) {
-    font-size: 24px;
-
-    svg {
-      height: 18px;
-    }
-  }
-}
-
 .linksWrapper {
   display: flex;
   flex-wrap: wrap;

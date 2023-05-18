@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import Header from "@/components/Header";
 import Container from "@/components/Container";
 import styles from "./Contacts.module.scss";
 import Link from "next/link";
-import MailIcon from "@/icons/Mail";
 import LogoIcon from "@/icons/Logo";
 import ExternalOpenIcon from "@/icons/ExternalOpen";
+import Email from "./Email";
 
 function LinkService({ href, name }) {
   return (
@@ -65,10 +64,7 @@ function ContactsPage() {
             If you would like to contact me about a job, or have any suggestion
             for my project, please select an email
           </span>
-          <Link className={styles.email} href="mailto:hello@danilkinkin.com">
-            <MailIcon />
-            hello@danilkinkin.com
-          </Link>
+          <Email />
         </div>
         <div className={styles.column}>
           <span className={clsx(styles.caption, styles.divider)}>

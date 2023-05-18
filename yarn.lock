@@ -3814,18 +3814,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-spring/web@npm:^9.6.1":
-  version: 9.6.1
-  resolution: "@react-spring/web@npm:9.6.1"
+"@react-spring/web@npm:^9.7.2":
+  version: 9.7.2
+  resolution: "@react-spring/web@npm:9.7.2"
   dependencies:
-    "@react-spring/animated": ~9.6.1
-    "@react-spring/core": ~9.6.1
-    "@react-spring/shared": ~9.6.1
-    "@react-spring/types": ~9.6.1
+    "@react-spring/animated": ~9.7.2
+    "@react-spring/core": ~9.7.2
+    "@react-spring/shared": ~9.7.2
+    "@react-spring/types": ~9.7.2
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
     react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 3c336a9d162136c0d1ec8adad31d8534d4309de46eea9fa50f735aa9ea0cd3350320654160ea1fc731ba06a3b4342c508d7b5b9035b7816ab0285f5e952dd118
+  checksum: f872dfd9bbbfc27f32e4406076729a36169e2da3785709fbf981b7d3a77a1a430d7f295b300a9acc8cb4805d0965e6d9a54914a4263abfd96806b7ae53ba69cd
   languageName: node
   linkType: hard
 
@@ -5915,7 +5915,7 @@ __metadata:
     "@next/bundle-analyzer": ^13.1.2
     "@next/font": ^13.1.2
     "@react-spring/three": ^9.7.2
-    "@react-spring/web": ^9.6.1
+    "@react-spring/web": ^9.7.2
     "@react-three/drei": ^9.68.3
     "@react-three/fiber": ^8.13.0
     "@svgr/webpack": ^6.5.1
