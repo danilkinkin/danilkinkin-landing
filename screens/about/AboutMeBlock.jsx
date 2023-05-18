@@ -6,6 +6,7 @@ import DevelopingBlock from './DevelopingBlock';
 import Nickname from './Nickname';
 import Wave from './Wave';
 import Planet from './Planet';
+import WorkBlock from './WorkBlock';
 
 const delayBeetwenChars = 10
 
@@ -100,13 +101,13 @@ function AboutMeBlock() {
                         <AnimatedBlock value="Now" />
                         <AnimatedBlock value="work" />
                         <AnimatedBlock value="for" />
-                        <AnimatedBlock className={styles.ticketscloud} value="Ticketscloud" />
+                        <WorkBlock animatedBlock value="ticketscloud" />
                     </AnimateOrder>
                     <AnimatedBlock value="and before" />
                     <AnimatedBlock value="worked for" />
-                    <AnimatedBlock className={styles.megafon} value="MegaFon" noSpaceAfter />
+                    <WorkBlock animatedBlock value="megafon" noSpaceAfter />
                     <AnimatedBlock value=","/>
-                    <AnimatedBlock value="WebTelco" noSpaceAfter />
+                    <WorkBlock animatedBlock value="webtelco" noSpaceAfter />
                     
                 </AnimateOrder>                
             </h2>

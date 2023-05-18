@@ -1,0 +1,44 @@
+.root {
+  
+}
+.link {
+  color: inherit;
+  margin-bottom: var(--line-spacing);
+  position: relative;
+}
+.spaceAfter {
+  margin-right: 12px;
+}
+.animatedBlock {
+  margin-bottom: 0px;
+  margin-right: 0px;
+}
+.hoverAnimatedBlock {
+  
+}
+.arrow {
+  position: fixed;
+  z-index: 1;
+  left: -18px;
+  top: -18px;
+  width: 36px;
+  height: 36px;
+  backdrop-filter: invert(1) blur(6px);
+  mask: var(--mask-link) no-repeat;
+  mask-size: contain;
+  cursor: none;
+
+  transition: scale 0.2s ease-in-out;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.megafon {
+  color: #00bb5e;
+}
+.ticketscloud {
+  color: #ffbf04;
+}

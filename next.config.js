@@ -16,6 +16,14 @@ const config = plugins.reduce((acc, next) => next(acc), {
         {
           test: /\.svg$/i,
           issuer: /\.[jt]sx?$/,
+          resourceQuery: /url/, // *.svg?url
+          loader: 'next-image-loader',
+          options: { assetPrefix: '' },
+        },
+        {
+          test: /\.svg$/i,
+          issuer: /\.[jt]sx?$/,
+          resourceQuery: { not: [/url/] },
           loader: '@svgr/webpack',
           options: {
             svgoConfig: {
