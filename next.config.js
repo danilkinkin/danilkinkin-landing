@@ -28,10 +28,6 @@ const config = plugins.reduce((acc, next) => next(acc), {
           options: {
             svgoConfig: {
               plugins: [
-                {
-                  name: 'removeViewBox',
-                  active: false
-                }
               ]
             }
           }

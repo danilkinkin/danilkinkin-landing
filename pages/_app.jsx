@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 import "./global-styles.css";
 import "../constants/theme.css";
 
