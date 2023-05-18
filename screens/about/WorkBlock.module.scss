@@ -1,10 +1,8 @@
-.root {
-  
-}
 .link {
   color: inherit;
   margin-bottom: var(--line-spacing);
   position: relative;
+  text-decoration: none;
 }
 .spaceAfter {
   margin-right: 12px;
@@ -12,9 +10,6 @@
 .animatedBlock {
   margin-bottom: 0px;
   margin-right: 0px;
-}
-.hoverAnimatedBlock {
-  
 }
 .arrow {
   position: fixed;
@@ -28,7 +23,7 @@
   mask-size: contain;
   cursor: none;
 
-  transition: scale 0.2s ease-in-out;
+  transition: scale 0.4s cubic-bezier(0, 1, 0.29, 1);
 
   svg {
     width: 100%;
