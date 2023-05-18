@@ -1,0 +1,13 @@
+<svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>
+   #logo {
+      stroke: #000;
+    }
+    @media (prefers-color-scheme: dark) {
+      #logo {
+        stroke: #fff;
+      }
+    }
+  </style>
+<path id="logo" d="M49.8014 16.5387C56.0649 20.2297 59.9649 26.2576 61.0461 32.7684L45.0424 58.498C38.6143 60.5837 31.319 60.0145 25.0555 56.3235C13.7151 49.6407 10.1428 35.3201 16.9557 24.3668C23.7686 13.4135 38.461 9.85593 49.8014 16.5387Z" stroke-width="6.5953"/>
+</svg>
