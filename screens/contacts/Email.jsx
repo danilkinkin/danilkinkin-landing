@@ -7,23 +7,56 @@ import MailImage from "@/icons/resources/mail.svg?url";
 import { animated, useSpring } from "@react-spring/web";
 import { useMediaQuery } from "react-responsive";
 
+const calculateSizes = (isSmallScreen, isMediumScreen) => {
+  switch (true) {
+    case isSmallScreen:
+      return {
+        iconWidth: 27,
+        iconHeight: 18,
+        containerPaddingLeft: 36,
+      };
+    case isMediumScreen:
+      return {
+        iconWidth: 32,
+        iconHeight: 22,
+        containerPaddingLeft: 42,
+      };
+    default:
+      return {
+        iconWidth: 40,
+        iconHeight: 26,
+        containerPaddingLeft: 54,
+      };
+  }
+};
+
+const getIdleIconPosition = (container, sizes) => {
+  const rect = container.getBoundingClientRect();
+  const x = sizes.iconWidth / 2;
+  const y = rect.height / 2;
+
+  return {
+    x,
+    y: y + sizes.iconHeight * 0.1,
+  }
+};
+
 function Email() {
   const rootRef = React.useRef(null);
   const arrowRef = React.useRef(null);
-  const [hover, setHover] = React.useState(false);
-  const [sizes, setSizes] = React.useState({
-    iconWidth: 40,
-    iconHeight: 26,
-    containerPaddingLeft: 54,
-  });
   const isSmallScreen = useMediaQuery({ query: "(max-width: 870px)" });
   const isMediumScreen = useMediaQuery({ query: "(max-width: 1070px)" });
+  const [hover, setHover] = React.useState(false);
+  const [sizes, setSizes] = React.useState(() =>
+    calculateSizes(isSmallScreen, isMediumScreen)
+  );
   const [cursorPositionSpring, cursorPositionApi] = useSpring(
     () => ({
       x: 0,
       y: 0,
+      scale: 0,
       config: {
-        mass: 0.3,
+        mass: 0,
         friction: 10,
         tension: 200,
       },
@@ -33,6 +66,7 @@ function Email() {
   const [textShiftSpring, textShiftApi] = useSpring(
     () => ({
       x: 0,
+      y: 0,
       config: {
         mass: 0.4,
         friction: 10,
@@ -43,44 +77,27 @@ function Email() {
   );
 
   useEffect(() => {
-    let sizes = {};
-    switch (true) {
-      case isSmallScreen:
-        sizes = {
-          iconWidth: 27,
-          iconHeight: 18,
-          containerPaddingLeft: 36,
-        };
-        break;
-      case isMediumScreen:
-        sizes = {
-          iconWidth: 32,
-          iconHeight: 22,
-          containerPaddingLeft: 42,
-        };
-        break;
-      default:
-        sizes = {
-          iconWidth: 40,
-          iconHeight: 26,
-          containerPaddingLeft: 54,
-        };
-        break;
-    }
+    let sizes = calculateSizes(isSmallScreen, isMediumScreen);
 
     setSizes(sizes);
 
     if (!hover) {
-      const rect = rootRef.current.getBoundingClientRect();
-      const x = sizes.iconWidth / 2;
-      const y = rect.height / 2;
-      cursorPositionApi.start({
-        x,
-        y: y + sizes.iconHeight * 0.1,
-      });
+      cursorPositionApi.start(getIdleIconPosition(rootRef.current, sizes));
       textShiftApi.start({
         x: 0,
       });
+
+      setTimeout(() => {
+        cursorPositionApi.start({
+          ...getIdleIconPosition(rootRef.current, sizes),
+          scale: 1,
+          config: {
+            mass: 0.3,
+            friction: 10,
+            tension: 200,
+          },
+        });
+      }, 400);
     }
   }, [isSmallScreen, isMediumScreen, hover]);
 
@@ -99,15 +116,12 @@ function Email() {
         e.clientY < rect.top ||
         e.clientY > rect.bottom
       ) {
-        x = sizes.iconWidth / 2;
-        y = rect.height / 2;
         setHover(false);
         textShiftApi.start({
           x: 0,
         });
         cursorPositionApi.start({
-          x,
-          y: y + sizes.iconHeight * 0.1,
+          ...getIdleIconPosition(rootRef.current, sizes),
           config: {
             mass: 0.3,
             friction: 10,
