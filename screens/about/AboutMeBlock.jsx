@@ -10,11 +10,13 @@ import WorkBlock from './WorkBlock';
 
 const delayBeetwenChars = 10
 
-export function AnimatedBlock({ delay = 0, noSpaceAfter = false, value, className }) {
+export function AnimatedBlock({ delay = 0, noSpaceAfter = false, value, className, keyIndex }) {
     return (
-        <span className={clsx(styles.textLine, !noSpaceAfter && styles.spaceAfter, className)}>
+        <span key={keyIndex} data-key={keyIndex} className={clsx(styles.textLine, !noSpaceAfter && styles.spaceAfter, className)}>
             {value.split('').map((char, index) => (
                 <span 
+                    key={`${keyIndex}-${index}`}
+                    data-key={`${keyIndex}-${index}`}
                     style={{ ['--delay']: `${index * delayBeetwenChars + delay + 10}ms` }}
                     className={clsx(styles.textChar, char === ' ' && styles.textCharSpace)}
                 >
@@ -28,7 +30,7 @@ export function AnimatedBlock({ delay = 0, noSpaceAfter = false, value, classNam
 export function AnimateOrder({ delay = 0, children }) {
     let comulutiveDelay = 0;
 
-    return React.Children.toArray(children).map((children) => {
+    return React.Children.toArray(children).map((children, index) => {
         if (children.type !== AnimatedBlock && !('animatedBlock' in children.props)) return children;
 
         comulutiveDelay += children.props.value.length;
@@ -37,6 +39,8 @@ export function AnimateOrder({ delay = 0, children }) {
             children.type,
             {
                 ...children.props,
+                key: children.props.value,
+                keyIndex: children.props.value,
                 delay: (comulutiveDelay - children.props.value.length) * delayBeetwenChars + delay,
             },
         );
