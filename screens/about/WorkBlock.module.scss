@@ -8,8 +8,8 @@
   margin-right: 12px;
 }
 .animatedBlock {
-  margin-bottom: 0px;
-  margin-right: 0px;
+  margin-bottom: 0px !important;
+  margin-right: 0px !important;
 }
 .arrow {
   position: fixed;
@@ -22,6 +22,7 @@
   mask: var(--mask-link) no-repeat;
   mask-size: contain;
   cursor: none;
+  scale: 0;
 
   transition: scale 0.4s cubic-bezier(0, 1, 0.29, 1);
 
