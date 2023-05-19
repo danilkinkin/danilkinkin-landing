@@ -26,6 +26,7 @@ function WorkBlock({ value, noSpaceAfter, ...props }) {
 
   useEffect(() => {
     const onMouseMove = (e) => {
+      if (e.sourceCapabilities.firesTouchEvents) return;
       const rect = rootRef.current.getBoundingClientRect();
       arrowRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       arrowRef.current.style.transformOrigin = `${e.clientX + 18}px ${

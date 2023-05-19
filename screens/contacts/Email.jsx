@@ -104,6 +104,8 @@ function Email() {
   useEffect(() => {
     let timer = null;
     const onMouseMove = (e) => {
+      if (e.sourceCapabilities.firesTouchEvents) return;
+      
       const rect = rootRef.current.getBoundingClientRect();
       let x = e.clientX - rect.left;
       let y = e.clientY - rect.top;
