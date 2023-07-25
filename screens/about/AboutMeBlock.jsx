@@ -97,8 +97,8 @@ function AboutMeBlock() {
                         <AnimatedBlock value="based" />
                         <Planet />
                         <AnimatedBlock value="in" />
-                        <AnimatedBlock value="Yerevan," />
-                        <AnimatedBlock value="Armenia." />
+                        <AnimatedBlock value="Belgrade," />
+                        <AnimatedBlock value="Serbia." />
                     </AnimateOrder>
                     <Wave />
                     <AnimateOrder delay={3800}>
