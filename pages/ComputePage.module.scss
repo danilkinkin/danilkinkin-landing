@@ -1,13 +1,13 @@
 .guide {
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: 100svh;
     overflow: hidden;
     perspective: 1000px;
 }
 
 .aside {
-    height: 100vh;
+    height: 100svh;
     width: 100vw;
     flex-shrink: 0;
     transform: translateY(40vh);
@@ -21,7 +21,7 @@
     flex-shrink: 0;
     overflow: auto;
     width: 100vw;
-    height: 100vh;
+    height: 100svh;
     perspective: inherit;
     &Scale {
         transition: inherit;
@@ -52,6 +52,6 @@
 
 @media (max-width: 500px) {
     .aside {
-        
+
     }
 }
