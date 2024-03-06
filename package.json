@@ -31,7 +31,6 @@
     "react-dom": "^18.2.0",
     "react-resize-detector": "^10.0.1",
     "react-responsive": "^9.0.2",
-    "smooth-scrollbar": "^8.8.4",
     "three": "^0.162.0"
   },
   "devDependencies": {

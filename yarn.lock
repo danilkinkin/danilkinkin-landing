@@ -7057,13 +7057,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^3.6.4":
-  version: 3.17.2
-  resolution: "core-js@npm:3.17.2"
-  checksum: 10/996c538dff42bd94475aa57baadfaa6001e16cb916c5e3d42a4754193e52f3b6d61fa9652cf6195f1db4eb0bd076b79f5f2b1c571029137a8fbffe4a1b4559c0
-  languageName: node
-  linkType: hard
-
 "cosmiconfig@npm:^7.0.0":
   version: 7.0.1
   resolution: "cosmiconfig@npm:7.0.1"
@@ -7266,7 +7259,6 @@ __metadata:
     react-resize-detector: "npm:^10.0.1"
     react-responsive: "npm:^9.0.2"
     sass: "npm:^1.71.1"
-    smooth-scrollbar: "npm:^8.8.4"
     three: "npm:^0.162.0"
     webpack-bundle-analyzer: "npm:^4.10.1"
   languageName: unknown
@@ -12754,16 +12746,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"smooth-scrollbar@npm:^8.8.4":
-  version: 8.8.4
-  resolution: "smooth-scrollbar@npm:8.8.4"
-  dependencies:
-    core-js: "npm:^3.6.4"
-    tslib: "npm:^1.10.0"
-  checksum: 10/001ea33aacb58273f6206ff23d201afae26981011d83fa66d7dd950e832f1b7041004549270da31dde44d5a79ea3472c0055c7780483087564f636e3cb522772
-  languageName: node
-  linkType: hard
-
 "snake-case@npm:^3.0.4":
   version: 3.0.4
   resolution: "snake-case@npm:3.0.4"
@@ -13391,7 +13373,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.10.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0":
+"tslib@npm:^1.8.1, tslib@npm:^1.9.0":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: 10/7dbf34e6f55c6492637adb81b555af5e3b4f9cc6b998fb440dac82d3b42bdc91560a35a5fb75e20e24a076c651438234da6743d139e4feabf0783f3cdfe1dddb
