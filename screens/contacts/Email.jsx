@@ -38,7 +38,7 @@ const getIdleIconPosition = (container, sizes) => {
   return {
     x,
     y: y + sizes.iconHeight * 0.1,
-  }
+  };
 };
 
 function Email() {
@@ -48,7 +48,7 @@ function Email() {
   const isMediumScreen = useMediaQuery({ query: "(max-width: 1070px)" });
   const [hover, setHover] = React.useState(false);
   const [sizes, setSizes] = React.useState(() =>
-    calculateSizes(isSmallScreen, isMediumScreen)
+    calculateSizes(isSmallScreen, isMediumScreen),
   );
   const [cursorPositionSpring, cursorPositionApi] = useSpring(
     () => ({
@@ -61,7 +61,7 @@ function Email() {
         tension: 200,
       },
     }),
-    []
+    [],
   );
   const [textShiftSpring, textShiftApi] = useSpring(
     () => ({
@@ -73,7 +73,7 @@ function Email() {
         tension: 200,
       },
     }),
-    []
+    [],
   );
 
   useEffect(() => {
@@ -105,7 +105,7 @@ function Email() {
     let timer = null;
     const onMouseMove = (e) => {
       if (e.sourceCapabilities.firesTouchEvents) return;
-      
+
       const rect = rootRef.current.getBoundingClientRect();
       let x = e.clientX - rect.left;
       let y = e.clientY - rect.top;
