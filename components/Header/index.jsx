@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <nav className={styles.navigation}>
-        <Link className={styles.link} href="/contacts">
+        <Link id="contacts_link" className={styles.link} href="/contacts">
           contact with me
         </Link>
         {!isSmallScreen && (

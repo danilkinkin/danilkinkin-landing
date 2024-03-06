@@ -1,6 +1,7 @@
-.root {
+.link {
   margin-bottom: var(--line-spacing);
   position: relative;
+  color: var(--text-color);
 }
 
 .pen {
@@ -16,6 +17,27 @@
     height: 100px;
     top: -32px;
     left: -42px;
+  }
+}
+
+.arrow {
+  position: fixed;
+  z-index: 2;
+  left: -18px;
+  top: -18px;
+  width: 36px;
+  height: 36px;
+  backdrop-filter: invert(1) blur(6px);
+  mask: var(--mask-link) no-repeat;
+  mask-size: contain;
+  cursor: none !important;
+  scale: 0;
+
+  transition: scale 0.4s cubic-bezier(0, 1, 0.29, 1);
+
+  svg {
+    width: 100%;
+    height: 100%;
   }
 }
 
