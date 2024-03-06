@@ -45,7 +45,7 @@ function PageCompute(props) {
       className={clsx(
         styles.guide,
         path === "/contacts" && styles.showContacts,
-        styles.animating
+        styles.animating,
       )}
     >
       <aside className={styles.aside}>
