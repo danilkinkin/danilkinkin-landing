@@ -103,8 +103,10 @@ function Email() {
 
   useEffect(() => {
     let timer = null;
+    let isTouch = false;
+
     const onMouseMove = (e) => {
-      if (e.sourceCapabilities.firesTouchEvents) return;
+      if (isTouch) return;
 
       const rect = rootRef.current.getBoundingClientRect();
       let x = e.clientX - rect.left;
@@ -152,9 +154,15 @@ function Email() {
       }
     };
 
+    const handlePointerDown = (e) => {
+      isTouch = event.pointerType === "touch";
+    };
+
+    addEventListener("pointerdown", handlePointerDown);
     addEventListener("mousemove", onMouseMove);
 
     return () => {
+      removeEventListener("pointerdown", handlePointerDown);
       removeEventListener("mousemove", onMouseMove);
     };
   }, [sizes]);

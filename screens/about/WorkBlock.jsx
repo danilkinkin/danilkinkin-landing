@@ -25,8 +25,10 @@ function WorkBlock({ value, noSpaceAfter, ...props }) {
   const arrowRef = useRef(null);
 
   useEffect(() => {
+    let isTouch = false;
+
     const onMouseMove = (e) => {
-      if (e.sourceCapabilities.firesTouchEvents) return;
+      if (isTouch) return;
       const rect = rootRef.current.getBoundingClientRect();
       arrowRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
       arrowRef.current.style.transformOrigin = `${e.clientX + 18}px ${
@@ -45,9 +47,15 @@ function WorkBlock({ value, noSpaceAfter, ...props }) {
       }
     };
 
+    const handlePointerDown = (e) => {
+      isTouch = event.pointerType === "touch";
+    };
+
+    addEventListener("pointerdown", handlePointerDown);
     addEventListener("mousemove", onMouseMove);
 
     return () => {
+      removeEventListener("pointerdown", handlePointerDown);
       removeEventListener("mousemove", onMouseMove);
     };
   }, []);
@@ -65,10 +73,7 @@ function WorkBlock({ value, noSpaceAfter, ...props }) {
         style={{ "--mask-link": `url(${ExternalOpenIcon.src})` }}
       />
       <AnimatedBlock
-        className={clsx(
-          styles.animatedBlock,
-          styles[value]
-        )}
+        className={clsx(styles.animatedBlock, styles[value])}
         value={works[value].title}
         {...props}
       />
