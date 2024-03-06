@@ -54,8 +54,11 @@ function ContactsPage() {
     <Container gap="100px" align="left" className={styles.page}>
       <div className={styles.homeLinkWrapper}>
         <Link className={styles.homeLink} href="/">
-          <LogoIcon />
-          danilkinkin
+          <div className={styles.logo}>
+            <LogoIcon />
+            danilkinkin
+          </div>
+          <span className={styles.homeLinkCaption}>(tap to read about me)</span>
         </Link>
       </div>
       <div className={styles.contacts}>
