@@ -8,13 +8,10 @@ WORKDIR /app
 # yarn berry release module is inside .yarn/releases
 # already
 
-COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn ./.yarn
+COPY . .
 
 # Install the dependencies and make the folder
 RUN yarn install
-
-COPY . .
 
 # Build the project and copy the files
 RUN yarn build
