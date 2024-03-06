@@ -8,6 +8,10 @@
   --palette-text-secondary: #bbbbbb;
 }
 
+body {
+  font-synthesis-weight: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --palette-container: #151113;
