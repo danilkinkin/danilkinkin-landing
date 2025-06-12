@@ -9,13 +9,31 @@ const config = plugins.reduce((acc, next) => next(acc), {
   async redirects() {
     return [
       {
+        source: "/cv",
+        destination:
+          "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
+        permanent: true,
+      },
+      {
         source: "/resume",
         destination:
           "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
         permanent: true,
       },
       {
-        source: "/resume-styled",
+        source: "/resume-ats",
+        destination:
+          "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
+        permanent: true,
+      },
+      {
+        source: "/cv-shiny",
+        destination:
+          "https://drive.google.com/file/d/1J0q54KJWDlUY_41dx0yKkp9_cOkSXaEE/view?usp=sharing",
+        permanent: true,
+      },
+      {
+        source: "/resume-shiny",
         destination:
           "https://drive.google.com/file/d/1J0q54KJWDlUY_41dx0yKkp9_cOkSXaEE/view?usp=sharing",
         permanent: true,
