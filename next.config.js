@@ -45,7 +45,7 @@ const config = plugins.reduce((acc, next) => next(acc), {
 
     config.redirects = async () => [
       {
-        source: "/resume-ats",
+        source: "/resume",
         destination:
           "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
         permanent: true,
