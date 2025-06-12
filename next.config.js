@@ -43,6 +43,21 @@ const config = plugins.reduce((acc, next) => next(acc), {
       },
     });
 
+    config.redirects = async () => [
+      {
+        source: "/resume-ats",
+        destination:
+          "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
+        permanent: true,
+      },
+      {
+        source: "/resume-styled",
+        destination:
+          "https://drive.google.com/file/d/1J0q54KJWDlUY_41dx0yKkp9_cOkSXaEE/view?usp=sharing",
+        permanent: true,
+      },
+    ];
+
     return config;
   },
 });
