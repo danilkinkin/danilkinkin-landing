@@ -6,6 +6,22 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 const plugins = [withBundleAnalyzer];
 const config = plugins.reduce((acc, next) => next(acc), {
+  async redirects() {
+    return [
+      {
+        source: "/resume",
+        destination:
+          "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
+        permanent: true,
+      },
+      {
+        source: "/resume-styled",
+        destination:
+          "https://drive.google.com/file/d/1J0q54KJWDlUY_41dx0yKkp9_cOkSXaEE/view?usp=sharing",
+        permanent: true,
+      },
+    ];
+  },
   webpack: (config, { dev, webpack }) => {
     config.plugins.push(
       new webpack.DefinePlugin({ PRODUCTION_MODE: JSON.stringify(!dev) }),
@@ -42,21 +58,6 @@ const config = plugins.reduce((acc, next) => next(acc), {
         outputPath: "static/files",
       },
     });
-
-    config.redirects = async () => [
-      {
-        source: "/resume",
-        destination:
-          "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
-        permanent: true,
-      },
-      {
-        source: "/resume-styled",
-        destination:
-          "https://drive.google.com/file/d/1J0q54KJWDlUY_41dx0yKkp9_cOkSXaEE/view?usp=sharing",
-        permanent: true,
-      },
-    ];
 
     return config;
   },
