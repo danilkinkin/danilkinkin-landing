@@ -4,38 +4,48 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 /* eslint-enable */
 
+const RESUME_ATS_FRIENDLY_URL =
+  "https://drive.google.com/file/d/1bSUXIEXNVMDOMGiFiOMbo29fdUSg8C29/view?usp=sharing";
+const RESUME_ATS_FRIENDLY_SHORT_URL =
+  "https://drive.google.com/file/d/1gAgs74QH030RaLRurZwlUQEC7G8l3G42/view?usp=sharing";
+const RESUME_SHINY_URL =
+  "https://drive.google.com/file/d/1u6WDikDRXPdRHu8KsuvwcXqs6C3EDTR7/view?usp=sharing";
+
 const plugins = [withBundleAnalyzer];
 const config = plugins.reduce((acc, next) => next(acc), {
   async redirects() {
     return [
+      // Default
       {
         source: "/cv",
-        destination:
-          "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
+        destination: RESUME_ATS_FRIENDLY_URL,
         permanent: true,
       },
       {
         source: "/resume",
-        destination:
-          "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
+        destination: RESUME_ATS_FRIENDLY_URL,
+        permanent: true,
+      },
+      // Shortened
+      {
+        source: "/cv-short",
+        destination: RESUME_ATS_FRIENDLY_SHORT_URL,
         permanent: true,
       },
       {
-        source: "/resume-ats",
-        destination:
-          "https://drive.google.com/file/d/17JYH-FtwQMoYezTYl9PK151DP64ucYsQ/view?usp=sharing",
+        source: "/resume-short",
+        destination: RESUME_ATS_FRIENDLY_SHORT_URL,
         permanent: true,
       },
+      // Shiny version
       {
         source: "/cv-shiny",
-        destination:
-          "https://drive.google.com/file/d/1J0q54KJWDlUY_41dx0yKkp9_cOkSXaEE/view?usp=sharing",
+        destination: RESUME_SHINY_URL,
         permanent: true,
       },
       {
         source: "/resume-shiny",
-        destination:
-          "https://drive.google.com/file/d/1J0q54KJWDlUY_41dx0yKkp9_cOkSXaEE/view?usp=sharing",
+        destination: RESUME_SHINY_URL,
         permanent: true,
       },
     ];
