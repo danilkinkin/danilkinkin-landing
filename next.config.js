@@ -5,7 +5,7 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 /* eslint-enable */
 
 const RESUME_ATS_FRIENDLY_URL =
-  "https://drive.google.com/file/d/1bSUXIEXNVMDOMGiFiOMbo29fdUSg8C29/view?usp=sharing";
+  "https://drive.google.com/file/d/15z4qHgQ41hwYfljUCQxCiuG1dSL779MH/view?usp=sharing";
 const RESUME_ATS_FRIENDLY_SHORT_URL =
   "https://drive.google.com/file/d/1gAgs74QH030RaLRurZwlUQEC7G8l3G42/view?usp=sharing";
 const RESUME_SHINY_URL =
