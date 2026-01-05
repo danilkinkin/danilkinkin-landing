@@ -1,8 +1,9 @@
 {
 	"scripts": {
 		"dev": "deno run --env-file -A server.ts",
-		"build": "deno run --env-file build:client",
+		"build": "deno run --env-file build:client && deno run --env-file build:server",
 		"build:client": "vite build --mode client",
+		"build:server": "vite build --mode server",
 		"lint": "deno run -A npm:@biomejs/biome check --write --staged",
 		"start": "deno run --unstable-node-globals -A dist/server/index.js",
 		"prepare": "git config core.hooksPath deploy/git-hooks || echo 'Not in a git repo'",

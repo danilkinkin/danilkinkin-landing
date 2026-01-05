@@ -1,0 +1,28 @@
+.host {
+	position: relative;
+	min-height: 100vh;
+	min-height: 100dvh;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: #0f0;
+
+	scroll-snap-align: start; /* чаще всего start; для центрирования — center */
+	padding: 24px;
+	box-sizing: border-box;
+}
+
+p {
+	max-width: 600px;
+	line-height: 1.6;
+	font-size: 20px;
+}
+
+.endMarker {
+	scroll-snap-align: end; /* создает точку прилипания на нижнем конце секции */
+	scroll-snap-stop: always; /* предотвращает проскальзывание через элементы */
+	display: block;
+	min-height: 1px;
+}

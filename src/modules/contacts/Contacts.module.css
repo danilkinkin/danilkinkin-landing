@@ -1,0 +1,16 @@
+.host {
+	position: relative;
+	height: 100vh;
+	height: 100dvh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #00f;
+
+	scroll-snap-align: start; /* чаще всего start; для центрирования — center */
+	scroll-snap-stop: always; /* предотвращает проскальзывание через элементы */
+
+	padding: 24px;
+	box-sizing: border-box;
+}

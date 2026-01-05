@@ -1,5 +1,8 @@
 html {
-	overscroll-behavior: none;
+	scroll-snap-type: y mandatory;
+	scroll-snap-stop: always;
+	-webkit-overflow-scrolling: touch;
+	touch-action: pan-y;
 }
 
 body {
@@ -8,129 +11,7 @@ body {
 	hyphens: auto; /* Enable '-' hyphenation a word */
 	font-synthesis-weight: none;
 	font-optical-sizing: auto;
-	overscroll-behavior: none;
-	min-height: 100vh; /* Fallback for older browsers */
-	min-height: 100lvh;
-
-	--main-min-width: 630px;
-	--main-comfort-width: 718px;
-	--aside-min-width: 470px;
-	--aside-max-width: 580px;
-
-	--container-width: 100vw;
-
-	--comfort-width-aside: clamp(
-		var(--aside-min-width),
-		calc(
-			(
-				var(--container-width) -
-				var(--main-comfort-width) +
-				var(--aside-min-width)
-			) /
-			2
-		),
-		var(--aside-max-width)
-	);
-
-	--comfort-width-main: calc(
-		var(--container-width) -
-		var(--comfort-width-aside)
-	);
 }
 
 #root {
-	width: 100vw;
-	height: 100%;
-	position: relative;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	background-color: var(--color-surface);
-}
-
-#storybook-root #root {
-	display: unset;
-}
-
-html[data-dialog-open="true"] {
-	overflow: hidden;
-}
-
-html[data-size="large"] {
-	#root {
-		height: 100vh;
-	}
-}
-
-html:not([data-framed]) {
-	body {
-		background: var(--color-surface);
-	}
-}
-
-html[data-framed] {
-	body {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	&[data-size="small"] {
-		body {
-			background: var(--color-surface);
-		}
-
-		#root {
-			--base-radius: 0px;
-
-			overflow: hidden;
-			max-width: 100vw;
-
-			box-shadow: none;
-		}
-	}
-
-	&[data-size="middle"] {
-		body {
-			background: var(--color-surface);
-		}
-
-		#root {
-			--base-radius: 0px;
-
-			overflow: hidden;
-			max-width: 100vw;
-
-			box-shadow: none;
-		}
-	}
-
-	&[data-size="large"] {
-		body {
-			--max-root-width: min(calc(100vw - 72px), 1500px);
-			--container-width: clamp(0px, 100vw, var(--max-root-width));
-		}
-
-		#root {
-			--base-radius: var(--shape-radius-small);
-
-			overflow: hidden;
-			max-width: var(--max-root-width);
-			max-height: min(calc(100vh - 72px), 900px);
-			border-radius: var(--base-radius);
-
-			box-shadow:
-				0px 2px 5px rgba(0, 0, 0, 0.06),
-				0px 4px 25px rgba(0, 0, 0, 0.13);
-		}
-	}
-}
-
-html:not([data-size="large"]) {
-	body {
-		--comfort-width-aside: 0px;
-		--comfort-width-main: var(--container-width);
-	}
 }
