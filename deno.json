@@ -1,0 +1,28 @@
+{
+	"imports": {
+		"@components/primitives": "./src/components/primitives/mod.ts",
+		"@components/containers": "./src/components/containers/mod.ts",
+		"@components/systems": "./src/components/systems/mod.ts",
+		"@components/": "./src/components/",
+		"@hooks/": "./src/hooks/",
+		"@modules/core": "./src/modules/core/mod.ts",
+		"@modules/": "./src/modules/",
+		"@utils/": "./src/utils/",
+		"@services/theme": "./src/services/theme/mod.ts",
+		"@services/": "./src/services/",
+		"@assets/icons": "./src/assets/icons/mod.ts",
+		"@assets/": "./src/assets/",
+		"@types/": "./src/types/",
+		"@stores/": "./src/stores/"
+	},
+	"compilerOptions": {
+		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true
+	},
+	"unstable": ["sloppy-imports", "broadcast-channel"]
+}

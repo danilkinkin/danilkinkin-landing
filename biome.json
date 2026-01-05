@@ -1,0 +1,93 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": true
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"includes": ["**", "!**/dist", "!**/public/mockServiceWorker.js"]
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab"
+	},
+	"assist": {
+		"actions": {
+			"source": {
+				"useSortedAttributes": "on",
+				"organizeImports": {
+					"level": "on",
+					"options": {
+						"groups": [
+							":URL:",
+							":PACKAGE_WITH_PROTOCOL:",
+							":NODE:",
+							":PACKAGE:",
+							[":PATH:", "!**/*.css", "!**/*.css\\?*"],
+							[":ALIAS:", "!**/*.css", "!**/*.css\\?*"],
+							":BLANK_LINE:",
+							["**/*.css", "**/*.css\\?*"]
+						]
+					}
+				}
+			}
+		}
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"correctness": {
+				"useImportExtensions": "error",
+				"noUnusedImports": {
+					"level": "warn",
+					"fix": "none"
+				},
+				"noConstantMathMinMaxClamp": "error",
+				"useHookAtTopLevel": "error"
+			},
+			"style": {
+				"noDefaultExport": "error",
+				"noParameterAssign": "error",
+				"useAsConstAssertion": "error",
+				"useDefaultParameterLast": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useSingleVarDeclarator": "error",
+				"noUnusedTemplateLiteral": "error",
+				"useNumberNamespace": "error",
+				"noInferrableTypes": "error",
+				"noUselessElse": "error"
+			},
+			"complexity": {
+				"noExcessiveCognitiveComplexity": "warn",
+				"noUselessStringConcat": "warn",
+				"noUselessUndefinedInitialization": "error",
+				"useDateNow": "error",
+				"useSimplifiedLogicExpression": "error"
+			},
+			"performance": {
+				"noNamespaceImport": "error"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.stories.tsx", "**/*.stories.ts"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		}
+	],
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double"
+		}
+	}
+}

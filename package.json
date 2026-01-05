@@ -1,0 +1,40 @@
+{
+	"scripts": {
+		"dev": "deno run --env-file -A server.ts",
+		"build": "deno run --env-file build:client",
+		"build:client": "vite build --mode client",
+		"lint": "deno run -A npm:@biomejs/biome check --write --staged",
+		"start": "deno run --unstable-node-globals -A dist/server/index.js",
+		"prepare": "git config core.hooksPath deploy/git-hooks || echo 'Not in a git repo'",
+		"analyze:client": "vite build --mode client-analyze"
+	},
+	"dependencies": {
+		"@biomejs/biome": "^2.3.11",
+		"@deno/vite-plugin": "^1.0.6",
+		"@react-three/drei": "^10.7.7",
+		"@react-three/fiber": "^9.5.0",
+		"@svgr/plugin-svgo": "^8.1.0",
+		"@types/animejs": "^3.1.13",
+		"@types/node": "^25.0.3",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
+		"@types/three": "^0.182.0",
+		"@use-gesture/react": "^10.3.1",
+		"@vitejs/plugin-react-swc": "^4.2.2",
+		"animejs": "^4.2.2",
+		"clsx": "^2.1.1",
+		"esbuild": "^0.27.2",
+		"hono": "^4.11.3",
+		"postcss": "^8.5.6",
+		"postcss-preset-env": "^10.6.0",
+		"react": "^19.2.3",
+		"react-dom": "^19.2.3",
+		"rollup-plugin-visualizer": "^6.0.5",
+		"three": "^0.182.0",
+		"vite": "^7.3.0",
+		"vite-plugin-svgr": "^4.5.0",
+		"wouter": "^3.9.0",
+		"zustand": "^5.0.9"
+	},
+	"type": "module"
+}
