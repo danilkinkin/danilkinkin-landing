@@ -22,4 +22,8 @@
 		color: #ff4d00;
 		font-weight: 600;
 	}
+
+	ol {
+		padding-inline-start: 26px;
+	}
 }
