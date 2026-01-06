@@ -7,7 +7,6 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #0f0;
 
 	scroll-snap-align: start; /* чаще всего start; для центрирования — center */
 	padding: 24px;

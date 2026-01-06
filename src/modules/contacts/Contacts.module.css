@@ -6,7 +6,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: #00f;
 
 	scroll-snap-align: start; /* чаще всего start; для центрирования — center */
 	scroll-snap-stop: always; /* предотвращает проскальзывание через элементы */

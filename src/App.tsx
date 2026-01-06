@@ -1,32 +1,12 @@
 import { About } from "@modules/about/About.tsx";
 import { Contacts } from "@modules/contacts/Contacts.tsx";
 import { Home } from "@modules/home/Home.tsx";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { useLocation, useRoute } from "wouter";
+import { useAppRoutingSync } from "@services/navigation/useAppRoutingSync.tsx";
+import { useEffect, useState } from "react";
 
 // Routing for normal app state, without errors and after SSR hydration
 function AppMainRounting() {
-	const [location, setLocation] = useLocation();
-	const [isContacts] = useRoute("/contacts");
-	const [isAbout] = useRoute("/about");
-
-	useLayoutEffect(() => {
-		const section = location.slice(1) || "home";
-
-		if ("scrollRestoration" in history) {
-			history.scrollRestoration = "manual";
-		}
-
-		const target = document.getElementById(section);
-		if (target) {
-			// Важно: без smooth, чтобы не конфликтовать со snap и iOS
-			target.scrollIntoView({
-				block: "start",
-				inline: "nearest",
-				behavior: "auto",
-			});
-		}
-	}, [location]);
+	useAppRoutingSync();
 
 	return (
 		<>

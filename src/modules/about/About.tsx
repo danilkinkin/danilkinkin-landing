@@ -1,3 +1,5 @@
+import { Navigation } from "@components/navigation/Navigation.tsx";
+
 import styles from "./About.module.css";
 
 export function About() {
@@ -193,6 +195,9 @@ export function About() {
 				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
 				qui officia deserunt mollit anim id est laborum.
 			</p>
+			<div>
+				<Navigation current="about" />
+			</div>
 			<div aria-hidden="true" className={styles.endMarker} />
 		</section>
 	);
