@@ -14,3 +14,6 @@ deno install --env-file npm:@some-dependency
 # Run dev server on http://localhost:3000
 deno run dev
 ```
+
+
+Generate jsx from glb: https://github.com/pmndrs/gltfjsx

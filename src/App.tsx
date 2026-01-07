@@ -1,8 +1,10 @@
 import { About } from "@modules/about/About.tsx";
 import { Contacts } from "@modules/contacts/Contacts.tsx";
 import { Home } from "@modules/home/Home.tsx";
+import { Sandbox } from "@modules/sandbox/Sandbox.tsx";
 import { useAppRoutingSync } from "@services/navigation/useAppRoutingSync.tsx";
 import { useEffect, useState } from "react";
+import { useRoute } from "wouter";
 
 // Routing for normal app state, without errors and after SSR hydration
 function AppMainRounting() {
@@ -18,6 +20,7 @@ function AppMainRounting() {
 }
 
 export function App() {
+	const [isSandbox] = useRoute("/sandbox");
 	const [hydrationRender, setHydrationRender] = useState(false);
 
 	// Needed this to prevent mismatch between SSR and first CSR renders.
@@ -28,6 +31,10 @@ export function App() {
 
 	if (hydrationRender) {
 		return "loading...";
+	}
+
+	if (isSandbox) {
+		return <Sandbox />;
 	}
 
 	return <AppMainRounting />;
