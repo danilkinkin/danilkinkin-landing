@@ -17,11 +17,13 @@ export function SkewWindWrapper(props: SkewWindWrapperProps) {
 		wind_local: -2.0,
 		current_calm: 0,
 		current_strong: 0,
+		shift_phase: 0,
 	});
 
 	const wind_global = useWind((s) => s.strength);
 
 	useEffect(() => {
+		stateRef.current.shift_phase = Math.random() * Math.PI;
 		const id = setInterval(() => {
 			stateRef.current.wind_local = Math.random() * 4.0 - 2.0;
 		}, 1500);
@@ -38,7 +40,8 @@ export function SkewWindWrapper(props: SkewWindWrapperProps) {
 		const amplitude = 0.02 + wind_global * 0.03;
 
 		const calm_amplitude =
-			Math.sin(state.clock.elapsedTime * speed) * amplitude +
+			Math.sin(state.clock.elapsedTime * speed + stateRef.current.shift_phase) *
+				amplitude +
 			stateRef.current.wind_local * 0.008;
 
 		stateRef.current.current_calm +=
