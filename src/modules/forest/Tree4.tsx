@@ -4,11 +4,11 @@ import { SkewWindWrapper } from "@utils/fiber/SkewWindWrapper.tsx";
 export function Model(props) {
 	const { nodes, materials } = useGLTF("/objects/tree_4.glb");
 	return (
-		<SkewWindWrapper wind_sensitivity={1}>
-			<group {...props} dispose={null}>
+		<group {...props} dispose={null}>
+			<SkewWindWrapper wind_sensitivity={1}>
 				<mesh geometry={nodes.tree_4.geometry} material={materials.tree_4} />
-			</group>
-		</SkewWindWrapper>
+			</SkewWindWrapper>
+		</group>
 	);
 }
 

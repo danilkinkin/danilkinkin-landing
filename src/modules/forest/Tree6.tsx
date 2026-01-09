@@ -6,8 +6,8 @@ export function Model(props) {
 	const { nodes, materials } = useGLTF("/objects/tree_6.glb");
 
 	return (
-		<SkewWindWrapper wind_sensitivity={1}>
-			<group {...props} dispose={null}>
+		<group {...props} dispose={null}>
+			<SkewWindWrapper wind_sensitivity={1}>
 				<mesh
 					geometry={nodes.Tree_6.geometry}
 					material={materials.tree_6_stem}
@@ -98,8 +98,8 @@ export function Model(props) {
 					material={materials.tree_6_green_9}
 					position={[0.143, 2.669, 0.038]}
 				/>
-			</group>
-		</SkewWindWrapper>
+			</SkewWindWrapper>
+		</group>
 	);
 }
 
