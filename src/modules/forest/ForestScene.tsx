@@ -16,6 +16,7 @@ import { Model as Tree4 } from "./Tree4.tsx";
 import { Model as Tree5 } from "./Tree5.tsx";
 import { Model as Tree6 } from "./Tree6.tsx";
 import { Model as Vegetation } from "./Vegetation.tsx";
+import { WindStreamEffect } from "./WindStreamEffect.tsx";
 import { Model as World } from "./World.tsx";
 
 export function ForestScene() {
@@ -59,16 +60,16 @@ export function ForestScene() {
 			<Tree6 position={[10, 3, 0.6]} />
 			<Tree2 position={[9.97, -1.73, 4]} />
 			<Tree3 position={[11.34, 0.35, 0.8]} />
-			<Tree2 position={[8.07, 4.25, 0.55]} />
+			<Tree2 position={[8.07, 4.25, 0.35]} />
 			<Tree6 position={[10.98, -1.19, 3.5]} />
 			<Tree1 position={[7.97, -3.23, 4.5]} />
 			<Rock position={[9.63, 3.14, 0.5]} variant="2" />
 			<Rock position={[9.1, 2.28, 0.5]} variant="3" />
-			<Rock position={[8.43, 4.06, 0.5]} variant="5" />
+			<Rock position={[8.43, 4.06, 0.3]} variant="5" />
 			<Vegetation kind="mushroom" position={[9.65, 2.94, 0.7]} variant="3" />
 			<Vegetation kind="grass" position={[9.43, 3.24, 0.45]} variant="3" />
 			<Vegetation kind="grass" position={[9.8, 2.98, 0.65]} variant="2" />
-			<Vegetation kind="bush" position={[8.43, 4.14, 0.45]} variant="5" />
+			<Vegetation kind="bush" position={[8.43, 4.14, 0.25]} variant="5" />
 
 			{/* House zone */}
 			<FlipbookAnimation
@@ -112,6 +113,8 @@ export function ForestScene() {
 			<Tree4 position={[17.61, -5.88, 3.4]} />
 			<Tree6 position={[12.83, 1.05, 0.6]} />
 			<Tree5 position={[13.36, 3.1, 0.4]} />
+
+			<WindStreamEffect />
 		</>
 	);
 }
@@ -123,10 +126,39 @@ export function ForestSceneMultiView() {
 	const houseViewport = useMainView((s) => s.houseView);
 	const chemneyViewport = useMainView((s) => s.chemneyView);
 
+	const camPos = useRef({ x: 9.6, y: 3.4, zoom: 0.4 });
+
 	// Создаём три камеры (ортографические), каждая со своей позицией/зумом
 	const cam1 = useMemo(() => new OrthographicCamera(), []);
 	const cam2 = useMemo(() => new OrthographicCamera(), []);
 	const cam3 = useMemo(() => new OrthographicCamera(), []);
+	const cam4 = useMemo(() => new OrthographicCamera(), []);
+
+	useControls({
+		WindCam: folder(
+			{
+				x: {
+					value: camPos.current.x,
+					onChange: (v: number) => {
+						camPos.current.x = v;
+					},
+				},
+				y: {
+					value: camPos.current.y,
+					onChange: (v: number) => {
+						camPos.current.y = v;
+					},
+				},
+				zoom: {
+					value: camPos.current.zoom,
+					onChange: (v: number) => {
+						camPos.current.zoom = v;
+					},
+				},
+			},
+			{ collapsed: false },
+		),
+	});
 
 	// Универсальная настройка ортокамеры под конкретный viewport
 	const setupOrthoForViewport = (
@@ -136,29 +168,53 @@ export function ForestSceneMultiView() {
 		vpWidth: number,
 		vpHeight: number,
 		lock: "height" | "width" = "height",
+		center?: { x: number; y: number },
 	) => {
 		const aspect = vpWidth / vpHeight;
 
-		let worldHalfWidth: number;
-		let worldHalfHeight: number;
+		let halfW: number;
+		let halfH: number;
 
 		if (lock === "height") {
-			// Фиксируем высоту: вертикальные границы стабильны, ширина зависит от аспекта
-			worldHalfHeight = 1 / zoom;
-			worldHalfWidth = worldHalfHeight * aspect;
+			halfH = 1 / zoom;
+			halfW = halfH * aspect;
 		} else {
-			// Фиксируем ширину: боковые границы стабильны, высота зависит от аспекта
-			worldHalfWidth = 1 / zoom;
-			worldHalfHeight = worldHalfWidth / aspect;
+			halfW = 1 / zoom;
+			halfH = halfW / aspect;
 		}
 
-		cam.left = -worldHalfWidth;
-		cam.right = worldHalfWidth;
-		cam.top = worldHalfHeight;
-		cam.bottom = -worldHalfHeight;
+		// Базовые границы окна ортопроекции вокруг центра
+		let left = -halfW;
+		let right = halfW;
+		let top = halfH;
+		let bottom = -halfH;
+
+		// Переводим пиксельный сдвиг центра окна в мировые единицы
+		if (center) {
+			const worldPerPixelX = (2 * halfW) / vpWidth;
+			const worldPerPixelY = (2 * halfH) / vpHeight;
+
+			const dx = center.x * worldPerPixelX * -1;
+			const dy = center.y * worldPerPixelY * -1;
+
+			// Сдвигаем фрустум, НЕ трогая позицию камеры
+			left += dx;
+			right += dx;
+			top += dy;
+			bottom += dy;
+		}
+
+		cam.left = left;
+		cam.right = right;
+		cam.top = top;
+		cam.bottom = bottom;
+
 		cam.near = 0.1;
 		cam.far = 1000;
-		cam.position.copy(pos);
+
+		// Камера остаётся в мировой "центральной" точке (или заданной pos)
+		cam.position.set(pos.x, pos.y, pos.z);
+
 		cam.updateProjectionMatrix();
 	};
 
@@ -170,6 +226,7 @@ export function ForestSceneMultiView() {
 			y: number;
 			zoom: number;
 			lock?: "height" | "width";
+			center?: { x: number; y: number };
 		},
 		scene: Scene,
 	) => {
@@ -181,6 +238,7 @@ export function ForestSceneMultiView() {
 			vp2.w,
 			vp2.h,
 			worldPlace.lock,
+			worldPlace.center,
 		);
 		gl.setViewport(vp2.x, vp2.y, vp2.w, vp2.h);
 		gl.setScissor(vp2.x, vp2.y, vp2.w, vp2.h);
@@ -193,9 +251,73 @@ export function ForestSceneMultiView() {
 		gl.clear(true, true, true); // color, depth, stencil
 		gl.setScissorTest(true);
 
-		// Left forest view
-		renderToCamera(cam1, forestViewport, { x: 9.6, y: 3.4, zoom: 0.4 }, scene);
+		// Viewports
+		const vp1 = forestViewport; // cam1 viewport
+		const vp4 = { x: 0, y: 0, w: forestViewport.x, h: size.height }; // cam4 viewport
+
+		// Камера 1 (дано)
+		const x1 = 9.6;
+		const y1 = 3.4;
+		const zoom1 = 0.4;
+		const aspect1 = vp1.w / vp1.h;
+
+		// Выравниваем world-per-pixel по Y
+		const zoom4 = zoom1 * (vp1.h / vp4.h);
+
+		// Параметры фрустумов
+		const halfH1 = 1 / zoom1;
+		const halfW1 = halfH1 * aspect1;
+
+		const aspect4 = vp4.w / vp4.h;
+		const halfH4 = 1 / zoom4;
+		const halfW4 = halfH4 * aspect4;
+
+		// Горизонтальный шов (правая граница cam4 = левая граница cam1)
+		const x4 = x1 - halfW1 - halfW4;
+
+		// Вертикальный шов: разница экранных центров -> мировой оффсет
+		const centerY1_pixels = vp1.y + vp1.h / 2;
+		const centerY4_pixels = vp4.y + vp4.h / 2;
+		const dCyPixels = centerY1_pixels - centerY4_pixels;
+
+		// world-per-pixel по Y одинаков для обеих камер после выравнивания zoom4
+		const wppY = 2 / zoom1 / vp1.h;
+
+		// Если vp.y от верхнего края (top-left), инвертируйте знак:
+		const dyWorld = -dCyPixels * wppY;
+
+		const y4 = y1 + dyWorld;
+
+		cam4.layers.disableAll();
+		cam4.layers.enable(1); // Ветер
+		renderToCamera(
+			cam4,
+			vp4,
+			{
+				x: x4,
+				y: y4,
+				zoom: zoom4,
+				lock: "height",
+			},
+			scene,
+		);
+
+		// Left forest view (cam1) — как было
+		cam1.layers.enable(1);
+		renderToCamera(
+			cam1,
+			vp1,
+			{
+				x: x1,
+				y: y1,
+				zoom: zoom1,
+				lock: "height",
+			},
+			scene,
+		);
+
 		// Middle house view
+		cam2.layers.enable(1);
 		renderToCamera(
 			cam2,
 			houseViewport,
@@ -203,6 +325,7 @@ export function ForestSceneMultiView() {
 			scene,
 		);
 		// Right chemney view
+		cam3.layers.enable(1);
 		renderToCamera(
 			cam3,
 			chemneyViewport,
