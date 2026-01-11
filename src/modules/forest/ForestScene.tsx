@@ -133,6 +133,7 @@ export function ForestSceneMultiView() {
 	const cam2 = useMemo(() => new OrthographicCamera(), []);
 	const cam3 = useMemo(() => new OrthographicCamera(), []);
 	const cam4 = useMemo(() => new OrthographicCamera(), []);
+	const cam5 = useMemo(() => new OrthographicCamera(), []);
 
 	useControls({
 		WindCam: folder(
@@ -245,79 +246,110 @@ export function ForestSceneMultiView() {
 		gl.render(scene, camera);
 	};
 
+	// Рендер "липкой" камеры, которая прилипает к базовой слева/справа с идеальным швом при lock="height"
+	const renderToStickyCamera = (
+		stickyCam: OrthographicCamera,
+		stickyViewport: { x: number; y: number; w: number; h: number },
+		baseViewport: { x: number; y: number; w: number; h: number },
+		baseWorld: {
+			x: number;
+			y: number;
+			zoom: number;
+			lock?: "height" | "width";
+		},
+		scene: Scene,
+		options: {
+			side: "left" | "right"; // куда прилипать относительно базовой камеры
+			pixelYUpwards?: boolean; // true если viewport.y считает снизу вверх (WebGL), false если сверху вниз (DOM)
+		},
+	) => {
+		// 1) Выравниваем world-per-pixel по Y: (2/zoom)/vp.h должно совпадать
+		const zoom1 = baseWorld.zoom;
+		const vp1 = baseViewport;
+		const vpS = stickyViewport;
+
+		const zoomS = zoom1 * (vp1.h / vpS.h);
+
+		// 2) Половинные размеры фрустумов (lock="height")
+		const aspect1 = vp1.w / vp1.h;
+		const aspectS = vpS.w / vpS.h;
+
+		const halfH1 = 1 / zoom1;
+		const halfW1 = halfH1 * aspect1;
+
+		const halfHS = 1 / zoomS;
+		const halfWS = halfHS * aspectS;
+
+		// 3) Центры базовой камеры в мире
+		const x1 = baseWorld.x;
+		const y1 = baseWorld.y;
+
+		// 4) Горизонтальный шов: выбираем формулу по стороне
+		let xS: number;
+		if (options.side === "left") {
+			// липкая слева от базовой: правый край sticky == левый край base
+			xS = x1 - halfW1 - halfWS;
+		} else {
+			// липкая справа от базовой: левый край sticky == правый край base
+			xS = x1 + halfW1 + halfWS;
+		}
+
+		// 5) Вертикальный шов: учесть разницу экранных центров
+		const centerY1_px = vp1.y + vp1.h / 2;
+		const centerYS_px = vpS.y + vpS.h / 2;
+		const dCyPixels = centerY1_px - centerYS_px;
+
+		// world-per-pixel Y (общий после шага 1)
+		const wppY = 2 / zoom1 / vp1.h;
+
+		const pixelYUpwards = options.pixelYUpwards ?? false; // DOM: false; WebGL: true
+		const dyWorld = (pixelYUpwards ? 1 : -1) * dCyPixels * wppY;
+		const yS = y1 + dyWorld;
+
+		// 6) Рендер липкой камеры
+		setupOrthoForViewport(
+			stickyCam,
+			zoomS,
+			new Vector3(xS, yS, 10),
+			vpS.w,
+			vpS.h,
+			"height",
+		);
+		gl.setViewport(vpS.x, vpS.y, vpS.w, vpS.h);
+		gl.setScissor(vpS.x, vpS.y, vpS.w, vpS.h);
+		gl.render(scene, stickyCam);
+	};
+
 	useFrame(() => {
 		// Очистка кадра и управление скиссором
 		gl.autoClear = false;
 		gl.clear(true, true, true); // color, depth, stencil
 		gl.setScissorTest(true);
 
-		// Viewports
-		const vp1 = forestViewport; // cam1 viewport
-		const vp4 = { x: 0, y: 0, w: forestViewport.x, h: size.height }; // cam4 viewport
-
-		// Камера 1 (дано)
-		const x1 = 9.6;
-		const y1 = 3.4;
-		const zoom1 = 0.4;
-		const aspect1 = vp1.w / vp1.h;
-
-		// Выравниваем world-per-pixel по Y
-		const zoom4 = zoom1 * (vp1.h / vp4.h);
-
-		// Параметры фрустумов
-		const halfH1 = 1 / zoom1;
-		const halfW1 = halfH1 * aspect1;
-
-		const aspect4 = vp4.w / vp4.h;
-		const halfH4 = 1 / zoom4;
-		const halfW4 = halfH4 * aspect4;
-
-		// Горизонтальный шов (правая граница cam4 = левая граница cam1)
-		const x4 = x1 - halfW1 - halfW4;
-
-		// Вертикальный шов: разница экранных центров -> мировой оффсет
-		const centerY1_pixels = vp1.y + vp1.h / 2;
-		const centerY4_pixels = vp4.y + vp4.h / 2;
-		const dCyPixels = centerY1_pixels - centerY4_pixels;
-
-		// world-per-pixel по Y одинаков для обеих камер после выравнивания zoom4
-		const wppY = 2 / zoom1 / vp1.h;
-
-		// Если vp.y от верхнего края (top-left), инвертируйте знак:
-		const dyWorld = -dCyPixels * wppY;
-
-		const y4 = y1 + dyWorld;
+		const baseForestWorld = { x: 9.6, y: 3.4, zoom: 0.4, lock: "height" };
 
 		cam4.layers.disableAll();
-		cam4.layers.enable(1); // Ветер
-		renderToCamera(
+		cam4.layers.enable(2);
+		cam4.layers.enable(3);
+		cam4.layers.enable(4);
+		renderToStickyCamera(
 			cam4,
-			vp4,
-			{
-				x: x4,
-				y: y4,
-				zoom: zoom4,
-				lock: "height",
-			},
+			{ x: 0, y: 0, w: forestViewport.x, h: size.height },
+			forestViewport,
+			baseForestWorld,
 			scene,
+			{
+				side: "left",
+				pixelYUpwards: false,
+			},
 		);
 
 		// Left forest view (cam1) — как было
-		cam1.layers.enable(1);
-		renderToCamera(
-			cam1,
-			vp1,
-			{
-				x: x1,
-				y: y1,
-				zoom: zoom1,
-				lock: "height",
-			},
-			scene,
-		);
+		cam1.layers.enableAll();
+		renderToCamera(cam1, forestViewport, baseForestWorld, scene);
 
 		// Middle house view
-		cam2.layers.enable(1);
+		cam2.layers.enableAll();
 		renderToCamera(
 			cam2,
 			houseViewport,
@@ -325,13 +357,35 @@ export function ForestSceneMultiView() {
 			scene,
 		);
 		// Right chemney view
-		cam3.layers.enable(1);
-		renderToCamera(
-			cam3,
+
+		const baseChemneyWorld = { x: 15.55, y: 3.2, zoom: 0.5 };
+
+		cam5.layers.disableAll();
+		cam5.layers.enable(1);
+		cam5.layers.enable(2);
+		cam5.layers.enable(3);
+		cam5.layers.enable(4);
+		cam5.layers.enable(5);
+		renderToStickyCamera(
+			cam5,
+			{
+				x: chemneyViewport.x + chemneyViewport.w,
+				y: 0,
+				w: size.width - (chemneyViewport.x + chemneyViewport.w),
+				h: size.height,
+			},
 			chemneyViewport,
-			{ x: 15.55, y: 3.2, zoom: 0.5 },
+			baseChemneyWorld,
 			scene,
+			{
+				side: "right",
+				pixelYUpwards: false,
+			},
 		);
+
+		cam3.layers.enableAll();
+		renderToCamera(cam3, chemneyViewport, baseChemneyWorld, scene);
+
 		gl.setScissorTest(false);
 	});
 

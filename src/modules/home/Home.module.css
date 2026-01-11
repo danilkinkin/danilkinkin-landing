@@ -65,4 +65,9 @@
 .canvas {
 	position: absolute;
 	inset: 0;
+	pointer-events: none;
+
+	& * {
+		pointer-events: none !important;
+	}
 }

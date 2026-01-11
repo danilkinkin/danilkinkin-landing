@@ -1,3 +1,4 @@
+import { win32 } from "node:path";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useWind } from "@stores/windStore.ts";
 import { anglToRad } from "@utils/helpers/angles.ts";
@@ -40,25 +41,15 @@ export function WindStreamEffect() {
 
 	const createFlow = (
 		corePoints: Array<[number, number, number]>,
-		offset: [number, number, number] = [0, 0, 0],
+		layer: number,
 	) => {
 		const start = corePoints[0];
 		const end = corePoints[corePoints.length - 1];
 
 		const points = [
-			new Vector3(
-				start[0] - 5 + offset[0],
-				start[1] + offset[1],
-				start[2] + offset[2],
-			), // buffer before start
-			...corePoints.map(
-				([x, y, z]) => new Vector3(x + offset[0], y + offset[1], z + offset[2]),
-			),
-			new Vector3(
-				end[0] + 5 + offset[0],
-				end[1] + offset[1],
-				end[2] + offset[2],
-			), // buffer after end
+			new Vector3(start[0] - 5, start[1], start[2]), // buffer before start
+			...corePoints.map(([x, y, z]) => new Vector3(x, y, z)),
+			new Vector3(end[0] + 5, end[1], end[2]), // buffer after end
 		];
 		const curve = new CatmullRomCurve3(points, false, "centripetal");
 
@@ -74,13 +65,13 @@ export function WindStreamEffect() {
 
 		geometry.rotateX(anglToRad(70));
 		const material = new MeshBasicMaterial({
-			color: new Color(0, 0.79, 1),
+			color: new Color(0xe4f7ff),
 			side: DoubleSide,
 			toneMapped: false,
 		});
 		const mesh = new Mesh(geometry, material);
 		mesh.frustumCulled = false;
-		mesh.layers.set(1);
+		mesh.layers.set(layer);
 
 		const flow = new Flow(mesh);
 		flow.updateCurve(0, curve);
@@ -95,14 +86,14 @@ export function WindStreamEffect() {
 
 		const debug = new Group();
 
-		const tube = new TubeGeometry(curve, 100, 0.02, 8, false); // radius=0.03 — толщина
+		const tube = new TubeGeometry(curve, 200, 0.02, 8, false); // radius=0.03 — толщина
 		const tubeMat = new MeshBasicMaterial({
 			color: new Color(0, 0.79, 1),
 			toneMapped: false,
 		});
 		const tubeMesh = new Mesh(tube, tubeMat);
 		debug.add(tubeMesh);
-		tubeMesh.layers.set(1);
+		tubeMesh.layers.set(layer);
 
 		const materialDebugPoint = new MeshBasicMaterial({
 			color: new Color(0, 0.12, 0.8),
@@ -114,7 +105,7 @@ export function WindStreamEffect() {
 			pointMesh.position.set(point.x, point.y, point.z);
 
 			debug.add(pointMesh);
-			pointMesh.layers.set(1);
+			pointMesh.layers.set(layer);
 		});
 
 		return {
@@ -128,39 +119,130 @@ export function WindStreamEffect() {
 
 	useEffect(() => {
 		const rawFlows = [
-			createFlow([
-				[-2, 2.5, 1],
-				[7, 3, 0.9],
-				[9.5, 3.8, 0.9],
-				[12.5, 3.1, 0.9],
-				[15, 3.5, 1],
-				[18, 2.8, 1],
-			]),
-			createFlow([
-				[-1.8, 0.5, 0.3],
-				[2, 1.8, 1],
-				[5, 1.3, 0.5],
-				[8, 4.8, 0.5],
-				[9, 5.2, 0.5],
-				[11, 5.4, 0.5],
-				[12.7, 2.8, 3],
-				[15.4, 2.4, 3.7],
-				[18.4, 3.4, 3],
-			]),
-			createFlow([
-				[-2, 1.5, 3.8],
-				[8, 1.5, 3.8],
-				[10 - 0.6, 2.5, 3.8],
-				[9, 3.5, 3.8],
-				[8 + 0.6, 2.5, 3.8],
-				[10, 1.8, 3.8],
-				[18, 1.8, 3.8],
-			]),
+			createFlow(
+				[
+					[-2, 2.5, 1],
+					[7, 3, 0.9],
+					[9.5, 3.8, 0.9],
+					[12.5, 3.1, 0.9],
+					[15, 3.5, 1],
+					[18, 2.8, 1],
+				],
+				1,
+			),
+			createFlow(
+				[
+					[-1.8, 0.5, 0.3],
+					[2, 1.8, 1],
+					[5, 1.3, 0.5],
+					[8, 4.8, 0.5],
+					[9, 5.2, 0.5],
+					[11, 5.4, 0.5],
+					[12.7, 2.8, 3],
+					[15.4, 2.4, 3.7],
+					[18.4, 3.4, 3],
+				],
+				2,
+			),
+			createFlow(
+				[
+					[-2, 1, 2.8],
+					[2.5, -2.5, 2.8],
+					[6, 0.5, 3.2],
+					[8, 1, 4.2],
+					[10 - 0.6, 1.9, 4.2],
+					[10 - 0.5, 3, 4.1],
+					[9, 3.3, 4],
+					[8 + 0.5, 3, 3.9],
+					[8 + 0.6, 2.3, 3.8],
+					[10, 1.9, 3.8],
+					[13, 3, 3.4],
+					[18, 4.9, 3.1],
+				],
+				3,
+			),
+			createFlow(
+				[
+					[-2, 4.5, 0.7],
+					[9, 4.5, 0.7],
+					[11.5, 3.8, 0.7],
+					[14, 4.5, 0.7],
+					[18, 4.7, 1],
+				],
+				4,
+			),
+			createFlow(
+				[
+					[-2, 4, 0.7],
+					[4, 1.7, 0.7],
+					[8.8, 3.2, 0.7],
+					[12, 2.1, 3],
+					[18, 1.5, 4],
+				],
+				5,
+			),
+			createFlow(
+				[
+					[-2, 0.6, 2],
+					[4, 2.8, 1],
+					[8.4, 3.6, 0.6],
+					[10, 1.6, 5.3],
+					[12, 0.8, 5.3],
+					[14, 2.5, 3.6],
+					[15.4, 3.5, 3.1],
+					[18, 0, 3.1],
+				],
+				6,
+			),
+			createFlow(
+				[
+					[-2, -1, 0.6],
+					[2.4, 3, 0.6],
+					[2.85, 2.5, 0.6],
+					[2.9, 1.8, 0.6],
+					[4.2, 2, 0.6],
+					[7, 5, 3.1],
+					[8, 4, 3.1],
+					[11.3, 5.5, 3.1],
+					[12, 7, 3.1],
+					[13, 7, 3.1],
+					[14.4, 5.1, 3.1],
+					[15.7, 4.4, 3.1],
+					[18, 4, 3.1],
+				],
+				7,
+			),
+			createFlow(
+				[
+					[-2, 0, 0.4],
+					[-1, 0.7, 0.4],
+					[0.7, -1.7, 2.9],
+					[3.8, -3.5, 2.1],
+					[4.3, -1.5, 2.1],
+					[3.2, -0.96, 2.1],
+					[4.7, 0.2, 2.1],
+					[6.8, 0.9, 2.4],
+					[9.6, 1.2, 4.8],
+					[18, 4.5, 3.1],
+				],
+				8,
+			),
+			createFlow(
+				[
+					[-2, -1.2, 0.7],
+					[7, 8, 0.7],
+					[9.4, 5, 0.7],
+					[11.5, 3.5, 0.7],
+					[14, 3.8, 0.7],
+					[18, 3.7, 1],
+				],
+				9,
+			),
 		];
 
 		rawFlows.forEach(({ flow, debug }) => {
 			scene.add(flow.object3D);
-			scene.add(debug);
+			//scene.add(debug);
 		});
 
 		setFlows(
@@ -175,7 +257,7 @@ export function WindStreamEffect() {
 		return () => {
 			rawFlows.forEach(({ flow, debug }) => {
 				scene.remove(flow.object3D);
-				scene.remove(debug);
+				//scene.remove(debug);
 			});
 		};
 	}, []);
