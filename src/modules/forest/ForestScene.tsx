@@ -1,4 +1,3 @@
-import { CameraControls, View } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useMainView } from "@stores/mainView.ts";
 import { FlipbookAnimation } from "@utils/fiber/FlipbookAnimation.tsx";
@@ -6,9 +5,9 @@ import { folder, useControls } from "leva";
 import { useMemo, useRef } from "react";
 import { OrthographicCamera, type Scene, Vector3 } from "three";
 import { CandleFireFlipbook } from "./CandleFire.tsx";
-import { FireFlipbook } from "./Fire.tsx";
 import { NoteParticleEmitter2D } from "./NoteParticleEmitter2D.tsx";
 import { Model as Rock } from "./Rock.tsx";
+import { SmokeEmitter2D } from "./SmokeEmitter2D.tsx";
 import { Model as Tree1 } from "./Tree1.tsx";
 import { Model as Tree2 } from "./Tree2.tsx";
 import { Model as Tree3 } from "./Tree3.tsx";
@@ -113,6 +112,7 @@ export function ForestScene() {
 			<Tree4 position={[17.61, -5.88, 3.4]} />
 			<Tree6 position={[12.83, 1.05, 0.6]} />
 			<Tree5 position={[13.36, 3.1, 0.4]} />
+			<SmokeEmitter2D position={[15.4, 3.2, 3.1]} />
 
 			<WindStreamEffect />
 		</>
