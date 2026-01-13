@@ -4,12 +4,91 @@
 	height: 100dvh;
 	width: 100vw;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	flex-direction: row;
+	gap: 24px;
 
 	scroll-snap-align: start; /* чаще всего start; для центрирования — center */
 	scroll-snap-stop: always; /* предотвращает проскальзывание через элементы */
 
 	padding: 24px;
 	box-sizing: border-box;
+}
+
+.aside {
+	flex-basis: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.navigation {
+	margin-right: auto;
+	margin-top: auto;
+}
+
+.canvas {
+	position: absolute;
+	width: 240px;
+	height: 300px;
+	background-color: #f0f0f0;
+	margin: auto;
+}
+
+.content {
+	flex-basis: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.emailBlock {
+	margin-top: 200px;
+	margin-bottom: 100px;
+
+	p {
+		margin: 0;
+		font-size: 20px;
+		font-weight: 500;
+		color: #000000;
+		margin-bottom: 16px;
+	}
+
+	a {
+		font-size: 48px;
+		font-weight: 600;
+		text-decoration: none;
+		color: #000000;
+	}
+}
+
+.linksSection {
+	display: flex;
+	flex-direction: row;
+	gap: 80px;
+}
+
+.linksBlock {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+
+	h3 {
+		opacity: 0.19;
+		text-transform: uppercase;
+		margin: 0;
+		font-size: 21px;
+		font-weight: 600;
+	}
+}
+
+.externalLink {
+	font-size: 29px;
+	font-weight: 600;
+	text-decoration: none;
+	color: #000000;
+}
+
+.arrowIcon {
+	width: 17px;
+	margin-left: 4px;
 }
