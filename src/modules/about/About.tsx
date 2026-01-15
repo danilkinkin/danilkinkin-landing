@@ -7,7 +7,22 @@ import TicketscloudLogo from "./ticketscloud-logo.svg?react";
 
 import styles from "./About.module.css";
 
+type LogoLinkProps = {
+	logo: React.ReactNode;
+	href: string;
+};
+
+function LogoLink(props: LogoLinkProps) {
+	const { logo: Logo, href } = props;
+	return (
+		<a href={href} target="_blank">
+			<Logo className={styles.logo} />
+		</a>
+	);
+}
+
 function ArtistSlider() {
+	// Monetochka,Ed Sheeran,Zemfira,Hurts,Imagine Dragons
 	return <span className={styles.artistSlider}>Monetochka</span>;
 }
 
@@ -19,22 +34,27 @@ export function About() {
 				<ol>
 					<li>
 						Currently leading frontend at{" "}
-						<TicketscloudLogo className={styles.logo} /> (SaaS ticketing).
-						Managed high-load launches, including <ArtistSlider /> sales.
+						<LogoLink
+							href="https://ticketscloud.com/"
+							logo={TicketscloudLogo}
+						/>{" "}
+						(SaaS ticketing). Managed high-load launches, including{" "}
+						<ArtistSlider /> sales.
 					</li>
 					<li>
-						Previously at <MegaFonLogo className={styles.logo} /> (Tier-1
-						telecom) — built a high-load support platform from scratch.
+						Previously at{" "}
+						<LogoLink href="https://www.megafon.ru/" logo={MegaFonLogo} />{" "}
+						(Tier-1 telecom) — built a high-load support platform from scratch.
 					</li>
 					<li>
 						Full journey in my{" "}
 						<InlineLink
-							href="https://github.com/danilkinkin/buckwheat"
+							href="https://danilkinkin.com/cv"
 							rel="noopener"
 							target="_blank"
 						>
 							cv
-						</InlineLink>
+						</InlineLink>{" "}
 					</li>
 				</ol>
 			</div>
@@ -42,7 +62,7 @@ export function About() {
 				<h3>PROJECTS</h3>
 				<ol>
 					<li>
-						<BuckwheatLogo className={styles.logo} /> —{" "}
+						<LogoLink href="https://buckwheat.app/" logo={BuckwheatLogo} /> —{" "}
 						<InlineLink
 							href="https://github.com/danilkinkin/buckwheat"
 							rel="noopener"
@@ -53,7 +73,7 @@ export function About() {
 						Android app, built solo. 700+ GitHub stars, ethical & ad-free
 					</li>
 					<li>
-						<RigamiLogo className={styles.logo} /> — Cross-browser extension for
+						<LogoLink href="" logo={RigamiLogo} /> — Cross-browser extension for
 						notes & bookmarks
 					</li>
 				</ol>

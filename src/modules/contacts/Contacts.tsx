@@ -45,15 +45,27 @@ export function Contacts() {
 				<div className={styles.linksSection}>
 					<div className={styles.linksBlock}>
 						<h3>contacts</h3>
-						<ExternalLink href="">telegram</ExternalLink>
-						<ExternalLink href="">github</ExternalLink>
-						<ExternalLink href="">linkedin</ExternalLink>
-						<ExternalLink href="">unsplash</ExternalLink>
+						<ExternalLink href="https://t.me/danilkinkin">
+							telegram
+						</ExternalLink>
+						<ExternalLink href="https://github.com/danilkinkin">
+							github
+						</ExternalLink>
+						<ExternalLink href="https://www.linkedin.com/in/danilkinkin">
+							linkedin
+						</ExternalLink>
+						<ExternalLink href="https://unsplash.com/@danilkinkin">
+							unsplash
+						</ExternalLink>
 					</div>
 					<div className={styles.linksBlock}>
 						<h3>resume</h3>
-						<ExternalLink href="">ATS Friendly</ExternalLink>
-						<ExternalLink href="">✨Styled✨</ExternalLink>
+						<ExternalLink href="https://danilkinkin.com/cv">
+							ATS Friendly
+						</ExternalLink>
+						<ExternalLink href="https://danilkinkin.com/cv-shiny">
+							✨Styled✨
+						</ExternalLink>
 					</div>
 				</div>
 			</div>
