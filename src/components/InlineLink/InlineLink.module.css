@@ -1,0 +1,24 @@
+.host {
+	position: relative;
+	text-decoration: none;
+	color: inherit;
+	margin-right: 12px;
+
+	&::after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		left: 0;
+		bottom: 0;
+		height: 1px;
+		background-color: #f43500;
+		transform: rotate(-1deg);
+	}
+
+	svg {
+		width: 8px;
+		position: absolute;
+		right: -10px;
+		top: 0;
+	}
+}

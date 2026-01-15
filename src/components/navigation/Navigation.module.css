@@ -11,21 +11,21 @@
 		}
 	}
 
-	/* стили маркеров списка */
-	li::marker {
-		color: #000000;
-		font-weight: 500;
-	}
-
-	/* активный пункт: маркер как у активной ссылки */
-	li:has(a.active)::marker {
-		color: #ff4d00;
-		font-weight: 600;
-	}
-
 	ol {
 		padding-inline-start: 26px;
 		margin-block-start: 0px;
 		margin-block-end: 0px;
+
+		/* стили маркеров списка */
+		li::marker {
+			color: #000000;
+			font-weight: 500;
+		}
+
+		/* активный пункт: маркер как у активной ссылки */
+		li:has(a.active)::marker {
+			color: #ff4d00;
+			font-weight: 600;
+		}
 	}
 }

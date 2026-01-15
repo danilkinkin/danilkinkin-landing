@@ -5,18 +5,79 @@
 	width: 100vw;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: center;
 
 	scroll-snap-align: start; /* чаще всего start; для центрирования — center */
-	padding: 24px;
 	box-sizing: border-box;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 1px;
+		height: 100%;
+		background-color: #000000;
+		left: 120px;
+		opacity: 0.05;
+	}
 }
 
-p {
-	max-width: 600px;
-	line-height: 1.6;
-	font-size: 20px;
+.block {
+	margin-left: calc(120px + 4px);
+	margin-bottom: 96px;
+
+	&:first-child {
+		margin-top: 100px;
+	}
+
+	h3 {
+		opacity: 0.19;
+		text-transform: uppercase;
+		font-size: 21px;
+		font-weight: 600;
+		letter-spacing: 30%;
+		margin: 0;
+		margin-bottom: 12px;
+	}
+
+	ol {
+		padding-inline-start: 0px;
+		margin-block-start: 0px;
+		margin-block-end: 0px;
+
+		li {
+			max-width: 600px;
+			line-height: 1.6;
+			font-size: 20px;
+			margin-bottom: 46px;
+		}
+
+		/* стили маркеров списка */
+		li::marker {
+			color: #0000001a;
+			font-weight: 500;
+		}
+
+		/* активный пункт: маркер как у активной ссылки */
+		li:has(a.active)::marker {
+			color: #ff4d00;
+			font-weight: 600;
+		}
+	}
+}
+
+.logo {
+	height: 30px;
+	vertical-align: middle;
+	transform: translateY(-2px);
+}
+
+.navigation {
+	flex-grow: 1;
+	display: flex;
+	align-items: flex-end;
+	padding: 46px;
 }
 
 .endMarker {
@@ -24,4 +85,9 @@ p {
 	scroll-snap-stop: always; /* предотвращает проскальзывание через элементы */
 	display: block;
 	min-height: 1px;
+}
+
+.artistSlider {
+	font-weight: 600;
+	color: #f00;
 }
