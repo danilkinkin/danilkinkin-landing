@@ -1,0 +1,13 @@
+.host {
+	position: absolute;
+	top: 0;
+
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	svg {
+		height: 57px;
+		transform: translateY(4px);
+	}
+}

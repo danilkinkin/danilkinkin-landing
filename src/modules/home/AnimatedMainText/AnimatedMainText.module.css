@@ -1,0 +1,22 @@
+.host {
+	display: flex;
+	flex-direction: column;
+}
+
+.capsule {
+	position: absolute;
+	top: 0;
+	display: inline-block;
+	height: 28px;
+	background-color: #ddd;
+	border-radius: 20px;
+}
+
+.spring {
+	position: absolute;
+	top: 0;
+	width: 50px;
+	display: inline-block;
+	height: 28px;
+	background-color: #5628e7;
+}
