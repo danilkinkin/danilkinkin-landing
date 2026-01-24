@@ -1,20 +1,15 @@
-import { win32 } from "node:path";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useWind } from "@stores/windStore.ts";
 import { anglToRad } from "@utils/helpers/angles.ts";
 import { randomize } from "@utils/helpers/randomize.ts";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
-	BufferGeometry,
 	CatmullRomCurve3,
 	Color,
 	DoubleSide,
 	Group,
-	Line,
-	LineBasicMaterial,
 	Mesh,
 	MeshBasicMaterial,
-	MeshStandardMaterial,
 	PlaneGeometry,
 	SphereGeometry,
 	TubeGeometry,
@@ -24,10 +19,17 @@ import { Flow } from "three/examples/jsm/modifiers/CurveModifier";
 
 export function WindStreamEffect() {
 	const { scene, camera } = useThree();
-	const [flows, setFlows] =
-		useState<{ flow: Flow; speedShift: number; windMesh: Mesh }[]>(null);
-	const [cloneFlows, setCloneFlows] =
-		useState<{ flow: Flow; speedShift: number; windMesh: Mesh }[]>(null);
+	const flows =
+		useRef<
+			{
+				flow: Flow;
+				speedShift: number;
+				windMesh: Mesh;
+				active: boolean;
+				delay: number;
+			}[]
+		>(null);
+	const windStrengthSmooth = useRef(0);
 	const windEffect = {
 		flowSize: 0.15,
 		flowLength: 1,
@@ -35,7 +37,7 @@ export function WindStreamEffect() {
 		randomizePath: 1,
 		randomizeSize: 0.04,
 		randomizeLength: 0.5,
-		randomizeSpeed: 2,
+		randomizeSpeed: 0.7,
 	};
 	const windStrength = useWind((s) => s.strength);
 
@@ -82,7 +84,7 @@ export function WindStreamEffect() {
 		flow.uniforms.pathSegment.value = 1;
 
 		const centerComp = 0.5 * (L / C);
-		flow.uniforms.pathOffset.value = 0.95 - centerComp;
+		flow.uniforms.pathOffset.value = 0.9 - centerComp;
 
 		const debug = new Group();
 
@@ -245,13 +247,15 @@ export function WindStreamEffect() {
 			//scene.add(debug);
 		});
 
-		setFlows(
-			rawFlows.map(({ flow, speedShift, windMesh, centerComp }) => ({
+		flows.current = rawFlows.map(
+			({ flow, speedShift, windMesh, centerComp }, index) => ({
 				flow,
 				speedShift,
 				windMesh,
 				centerComp,
-			})),
+				active: false,
+				delay: Math.random() * 2500 * (index % 3),
+			}),
 		);
 
 		return () => {
@@ -263,17 +267,42 @@ export function WindStreamEffect() {
 	}, []);
 
 	useFrame((state, delta) => {
-		flows?.forEach((flow) => {
-			if (flow.flow.uniforms.pathOffset.value < 0.95 || windStrength > 1) {
+		if (windStrength !== 0) {
+			windStrengthSmooth.current +=
+				(windStrength - windStrengthSmooth.current) * 0.06;
+		}
+
+		let stopped = 0;
+
+		flows?.current?.forEach((flow, index) => {
+			if (windStrength === 0 && !flow.active) return;
+			if (windStrength !== 0) flow.active = true;
+
+			if (windStrengthSmooth.current > 1) {
+				flow.delay -= delta * 1000;
+
+				if (flow.delay > 0) return;
+
 				flow.flow.uniforms.pathOffset.value +=
-					-0.02 * delta * windStrength * flow.speedShift;
+					-0.035 * delta * windStrengthSmooth.current * flow.speedShift;
 
 				if (flow.flow.uniforms.pathOffset.value <= 0.05) {
 					flow.flow.uniforms.pathOffset.value = 0.95 - flow.centerComp;
 					flow.speedShift = (Math.random() + 0.5) * windEffect.randomizeSpeed;
+					flow.delay = Math.random() * 500;
+
+					if (windStrength === 0) {
+						flow.active = false;
+						flow.delay = Math.random() * 2500 * (index % 3);
+						stopped += 1;
+					}
 				}
 			}
 		});
+
+		if (stopped === flows?.current?.length) {
+			windStrengthSmooth.current = 0;
+		}
 	});
 
 	return null;
