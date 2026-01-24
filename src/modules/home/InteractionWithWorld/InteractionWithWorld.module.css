@@ -1,0 +1,36 @@
+.host {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	background: none;
+	border: none;
+	outline: none;
+	padding: 0;
+	gap: 3px;
+	cursor: pointer;
+}
+
+.key {
+	padding: 2px 4px;
+	font: inherit;
+	font-size: 12px;
+	border-radius: 2px;
+	background-color: #e9e9e9;
+}
+
+.description {
+	padding: 2px 4px;
+	font: inherit;
+	font-size: 12px;
+	border-radius: 2px;
+	background-color: #f4f4f4;
+}
+
+.host:hover {
+	.key {
+		background-color: #d9d9d9;
+	}
+	.description {
+		background-color: #ececec;
+	}
+}

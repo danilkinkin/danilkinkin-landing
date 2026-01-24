@@ -1,15 +1,13 @@
-import { Navigation } from "@components/navigation/Navigation.tsx";
 import { Canvas } from "@react-three/fiber";
 import { useMainView } from "@stores/mainView.ts";
-import { useWind } from "@stores/windStore.ts";
-import {
-	useEffect, // @ts-types="react"
-	useRef,
-} from "react";
+import { useEffect, useRef } from "react";
 import { NoToneMapping } from "three";
 import { ForestSceneMultiView } from "../forest/ForestScene.tsx";
+import { Footer } from "./Footer/Footer.tsx";
 
 import styles from "./Home.module.css";
+
+export const VIEWPORT_GAP = 40;
 
 export function Home() {
 	const hostRef = useRef<HTMLElement>(null);
@@ -17,7 +15,6 @@ export function Home() {
 	const textBlockRef = useRef<HTMLDivElement>(null);
 
 	const setViewports = useMainView((store) => store.setViewports);
-	const setWindForce = useWind((s) => s.setStrength);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -32,7 +29,7 @@ export function Home() {
 			const textBlockRect = textBlock.getBoundingClientRect();
 
 			let shift = viewBlockRect.width - textBlockRect.width;
-			const y = hostRect.height - viewBlockRect.height - viewBlockRect.top;
+			const y = hostRect.height - viewBlockRect.bottom;
 
 			console.log("viewBlockRect:", viewBlockRect);
 
@@ -43,9 +40,10 @@ export function Home() {
 				h: viewBlockRect.height,
 			};
 
-			shift += viewBlockRect.left + 40;
+			shift += viewBlockRect.left + VIEWPORT_GAP;
 
-			const middleWidth = (textBlockRect.width - 40 - 40) * 0.77;
+			const middleWidth =
+				(textBlockRect.width - VIEWPORT_GAP - VIEWPORT_GAP) * 0.77;
 
 			const houseViewport = {
 				x: shift,
@@ -54,12 +52,12 @@ export function Home() {
 				h: viewBlockRect.height - textBlockRect.height,
 			};
 
-			shift += middleWidth + 40;
+			shift += middleWidth + VIEWPORT_GAP;
 
 			const chemneyViewport = {
 				x: shift,
 				y,
-				w: textBlockRect.width - middleWidth - 40 - 40,
+				w: textBlockRect.width - middleWidth - VIEWPORT_GAP - VIEWPORT_GAP,
 				h: viewBlockRect.height - textBlockRect.height,
 			};
 
@@ -82,35 +80,17 @@ export function Home() {
 		};
 	}, [setViewports]);
 
-	useEffect(() => {
-		const keydownHandler = (e: KeyboardEvent) => {
-			if (e.key === " ") {
-				e.preventDefault();
-				e.stopPropagation();
-
-				setWindForce(10);
-			}
-		};
-		const keyupHandler = (e: KeyboardEvent) => {
-			if (e.key === " ") {
-				e.preventDefault();
-				e.stopPropagation();
-
-				setWindForce(0);
-			}
-		};
-
-		addEventListener("keydown", keydownHandler);
-		addEventListener("keyup", keyupHandler);
-
-		return () => {
-			removeEventListener("keydown", keydownHandler);
-			removeEventListener("keyup", keyupHandler);
-		};
-	}, [setWindForce]);
-
 	return (
-		<section className={styles.host} id="home" ref={hostRef}>
+		<section
+			className={styles.host}
+			id="home"
+			ref={hostRef}
+			style={
+				{
+					"--viewport-gap": `${VIEWPORT_GAP}px`,
+				} as React.CSSProperties
+			}
+		>
 			<div className={styles.bentoSection} ref={viewBlockRef}>
 				<div className={styles.textBlock} ref={textBlockRef}>
 					<caption>@danilkinkin</caption>
@@ -121,9 +101,7 @@ export function Home() {
 					</p>
 				</div>
 			</div>
-			<div className={styles.footerSection}>
-				<Navigation current="home" />
-			</div>
+			<Footer />
 			<div className={styles.canvas}>
 				<Canvas
 					dpr={[1, 2]}

@@ -1,0 +1,13 @@
+.host {
+	width: 1000px;
+	display: flex;
+	flex-direction: row;
+	gap: var(--viewport-gap);
+	margin-top: 16px;
+}
+
+.houseViewport {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-start;
+}

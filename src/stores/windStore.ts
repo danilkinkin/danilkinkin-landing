@@ -6,6 +6,6 @@ type WindState = {
 };
 
 export const useWind = create<WindState>((set) => ({
-	strength: 5,
+	strength: 0,
 	setStrength: (strength) => set({ strength }),
 }));
