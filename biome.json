@@ -23,8 +23,8 @@
 						"groups": [
 							":URL:",
 							":PACKAGE_WITH_PROTOCOL:",
-							":NODE:",
-							":PACKAGE:",
+							[":NODE:", "!**/*.css", "!**/*.css\\?*"],
+							[":PACKAGE:", "!**/*.css", "!**/*.css\\?*"],
 							[":PATH:", "!**/*.css", "!**/*.css\\?*"],
 							[":ALIAS:", "!**/*.css", "!**/*.css\\?*"],
 							":BLANK_LINE:",
