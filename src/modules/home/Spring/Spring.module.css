@@ -1,0 +1,8 @@
+.host {
+	position: absolute;
+	top: 0;
+	width: 50px;
+	display: inline-block;
+	height: 28px;
+	background-color: #5628e7;
+}

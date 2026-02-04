@@ -1,40 +1,11 @@
-import { useFrame } from "@utils/anim/useFrame.ts";
+import { Capsule } from "../Capsule/Capsule.tsx";
 import { Design } from "../Design/Design.tsx";
 import { Etical } from "../Etical/Etical.tsx";
-import {
-	SharedRow,
-	useSharedRow,
-	useWordInRow,
-} from "../SharedRow/SharedRow.tsx";
+import { SharedRow } from "../SharedRow/SharedRow.tsx";
+import { Spring } from "../Spring/Spring.tsx";
 import { Word as W } from "../Word/Word.tsx";
 
 import styles from "./AnimatedMainText.module.css";
-
-function Spring() {
-	const [ref, updateSize] = useWordInRow("spring", {
-		freeGrowWeight: 0.5,
-	});
-	const row = useSharedRow();
-
-	useFrame(() => {
-		ref.current.style.width = row.getSize("spring").width + "px";
-	});
-
-	return <span className={styles.spring} ref={ref} />;
-}
-
-function Capsule() {
-	const [ref, updateSize] = useWordInRow("capsule", {
-		freeGrowWeight: Number.POSITIVE_INFINITY,
-	});
-	const row = useSharedRow();
-
-	useFrame(() => {
-		ref.current.style.width = row.getSize("capsule").width + "px";
-	});
-
-	return <span className={styles.capsule} ref={ref} />;
-}
 
 export function AnimatedMainText() {
 	return (

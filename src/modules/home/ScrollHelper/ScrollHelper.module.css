@@ -1,0 +1,36 @@
+.host {
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	gap: 1px;
+}
+
+.dot {
+	width: 2px;
+	height: 2px;
+	border-radius: 50%;
+	background-color: #000;
+
+	animation-name: blink;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	animation-delay: var(--delay);
+	animation-timing-function: ease-in-out;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	20% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 0;
+	}
+}

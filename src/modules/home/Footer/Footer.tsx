@@ -1,6 +1,8 @@
 import { Navigation } from "@components/navigation/Navigation.tsx";
 import { useMainView } from "@stores/mainView.ts";
 import { InteractionWithWorld } from "../InteractionWithWorld/InteractionWithWorld.tsx";
+import { ScrollHelper } from "../ScrollHelper/ScrollHelper.tsx";
+import { VIEWPORT_GAP } from "../useViewportConfig.tsx";
 
 import styles from "./Footer.module.css";
 
@@ -11,16 +13,19 @@ export function Footer() {
 
 	return (
 		<div className={styles.host}>
-			<div style={{ width: forestViewportWidth }}>
-				<Navigation current="home" />
-			</div>
+			<Navigation current="home" />
 			<div
 				className={styles.houseViewport}
-				style={{ width: houseViewportWidth }}
+				style={{
+					right: VIEWPORT_GAP + chemneyViewportWidth,
+				}}
 			>
 				<InteractionWithWorld />
 			</div>
-			<div style={{ width: chemneyViewportWidth }} />
+
+			<div className={styles.chemneyViewport}>
+				<ScrollHelper />
+			</div>
 		</div>
 	);
 }

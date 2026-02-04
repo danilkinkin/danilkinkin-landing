@@ -1,0 +1,8 @@
+.host {
+	position: absolute;
+	top: 0;
+	display: inline-block;
+	height: 28px;
+	background-color: #ddd;
+	border-radius: 20px;
+}
