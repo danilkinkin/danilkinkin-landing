@@ -1,0 +1,13 @@
+.host {
+	font-weight: 600;
+	position: relative;
+	display: inline-block;
+	vertical-align: bottom;
+
+	& > * {
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		white-space: nowrap;
+	}
+}

@@ -1,5 +1,6 @@
 import { InlineLink } from "@components/InlineLink/InlineLink.tsx";
 import { Navigation } from "@components/navigation/Navigation.tsx";
+import { ArtistSlider } from "./Artists/Artists.tsx";
 import BuckwheatLogo from "./buckwheat-logo.svg?react";
 import MegaFonLogo from "./megafon-logo.svg?react";
 import RigamiLogo from "./rigami-logo.svg?react";
@@ -19,11 +20,6 @@ function LogoLink(props: LogoLinkProps) {
 			<Logo className={styles.logo} />
 		</a>
 	);
-}
-
-function ArtistSlider() {
-	// Monetochka,Ed Sheeran,Zemfira,Hurts,Imagine Dragons
-	return <span className={styles.artistSlider}>Monetochka</span>;
 }
 
 export function About() {
