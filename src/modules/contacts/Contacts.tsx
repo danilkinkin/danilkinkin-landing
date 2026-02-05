@@ -1,8 +1,12 @@
 import { LinkArrowIcon } from "@assets/icons";
 import { Navigation } from "@components/navigation/Navigation.tsx";
+import { useMediaQuery } from "@utils/helpers/useMediaQuery.tsx";
+import clsx from "clsx/lite";
 import { Link } from "wouter";
 
 import styles from "./Contacts.module.css";
+
+const NARROW_BREAKPOINT = 740;
 
 type ExternalLinkProps = {
 	children: React.ReactNode;
@@ -26,14 +30,21 @@ function ExternalLink(props: ExternalLinkProps) {
 }
 
 export function Contacts() {
+	const isNarrowScreen = useMediaQuery(`(max-width: ${NARROW_BREAKPOINT}px)`);
+
 	return (
-		<section className={styles.host} id="contacts">
-			<div className={styles.aside}>
-				<div className={styles.canvas} />
-				<div className={styles.navigation}>
-					<Navigation current="contacts" />
+		<section
+			className={clsx(styles.host, isNarrowScreen && styles.narrow)}
+			id="contacts"
+		>
+			{!isNarrowScreen && (
+				<div className={styles.aside}>
+					<div className={styles.canvas} />
+					<div className={styles.navigation}>
+						<Navigation current="contacts" />
+					</div>
 				</div>
-			</div>
+			)}
 			<div className={styles.content}>
 				<div className={styles.emailBlock}>
 					<p>
@@ -69,6 +80,11 @@ export function Contacts() {
 					</div>
 				</div>
 			</div>
+			{isNarrowScreen && (
+				<footer>
+					<Navigation current="contacts" />
+				</footer>
+			)}
 		</section>
 	);
 }

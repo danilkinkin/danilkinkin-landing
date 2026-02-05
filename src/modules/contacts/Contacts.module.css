@@ -14,6 +14,16 @@
 	box-sizing: border-box;
 }
 
+.narrow.host {
+	flex-direction: column;
+}
+
+.host {
+	footer {
+		margin-top: auto;
+	}
+}
+
 .aside {
 	flex-basis: 50%;
 	display: flex;
@@ -45,9 +55,11 @@
 	margin-top: 200px;
 	margin-bottom: 100px;
 
+	transition: margin-top 0.3s ease;
+
 	p {
 		margin: 0;
-		font-size: 20px;
+		font-size: clamp(17px, 1rem + 0.3vw - 0.5px, 20px);
 		font-weight: 500;
 		color: #000000;
 		margin-bottom: 16px;
@@ -55,17 +67,29 @@
 	}
 
 	a {
-		font-size: 48px;
+		font-size: clamp(37px, 1rem + 1.1vw + 15.5px, 48px);
 		font-weight: 600;
 		text-decoration: none;
 		color: #000000;
 	}
 }
 
+.narrow .emailBlock {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+}
+
 .linksSection {
 	display: flex;
 	flex-direction: row;
 	gap: 80px;
+}
+
+.narrow .linksSection {
+	margin: auto;
+	padding-right: 72px;
 }
 
 .linksBlock {
@@ -83,7 +107,7 @@
 }
 
 .externalLink {
-	font-size: 29px;
+	font-size: clamp(21px, 1rem + 0.8vw + 1px, 29px);
 	font-weight: 600;
 	text-decoration: none;
 	color: #000000;

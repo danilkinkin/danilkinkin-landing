@@ -10,6 +10,8 @@
 	scroll-snap-align: start; /* чаще всего start; для центрирования — center */
 	box-sizing: border-box;
 
+	--left: clamp(41px, 1rem + 7.9vw - 14.5px, 120px);
+
 	&::before {
 		content: "";
 		position: absolute;
@@ -18,14 +20,18 @@
 		width: 1px;
 		height: 100%;
 		background-color: #000000;
-		left: 120px;
+		left: var(--left);
 		opacity: 0.05;
+		transition: left 0.3s ease;
 	}
 }
 
 .block {
-	margin-left: calc(120px + 4px);
+	margin-left: calc(var(--left) + 4px);
 	margin-bottom: 96px;
+	margin-right: 24px;
+
+	transition: margin-left 0.3s ease;
 
 	&:first-child {
 		margin-top: 140px;
@@ -64,6 +70,14 @@
 			color: #ff4d00;
 			font-weight: 600;
 		}
+	}
+}
+
+.narrow .block {
+	margin-bottom: 76px;
+
+	&:first-child {
+		margin-top: 100px;
 	}
 }
 

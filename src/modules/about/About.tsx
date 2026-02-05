@@ -1,5 +1,7 @@
 import { InlineLink } from "@components/InlineLink/InlineLink.tsx";
 import { Navigation } from "@components/navigation/Navigation.tsx";
+import { useMediaQuery } from "@utils/helpers/useMediaQuery.tsx";
+import clsx from "clsx/lite";
 import { ArtistSlider } from "./Artists/Artists.tsx";
 import BuckwheatLogo from "./buckwheat-logo.svg?react";
 import MegaFonLogo from "./megafon-logo.svg?react";
@@ -23,8 +25,13 @@ function LogoLink(props: LogoLinkProps) {
 }
 
 export function About() {
+	const isNarrowScreen = useMediaQuery(`(max-width: ${740}px)`);
+
 	return (
-		<section className={styles.host} id="about">
+		<section
+			className={clsx(styles.host, isNarrowScreen && styles.narrow)}
+			id="about"
+		>
 			<div className={styles.block}>
 				<h3>WORK EXPERIENCE</h3>
 				<ol>
