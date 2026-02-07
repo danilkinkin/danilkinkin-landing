@@ -7,7 +7,7 @@
 	justify-content: center;
 
 	svg {
-		height: 57px;
+		height: var(--height);
 		transform: translateY(4px);
 	}
 }

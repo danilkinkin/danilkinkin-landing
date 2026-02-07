@@ -30,6 +30,7 @@
 	margin-left: calc(var(--left) + 4px);
 	margin-bottom: 96px;
 	margin-right: 24px;
+	font-weight: 500;
 
 	transition: margin-left 0.3s ease;
 

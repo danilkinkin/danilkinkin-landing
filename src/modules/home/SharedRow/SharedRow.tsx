@@ -264,6 +264,20 @@ export function SharedRow(props: SharedRowProps) {
 
 	useEffect(() => {
 		calcTargetPositions();
+
+		const hostEl = hostRef.current;
+		if (!hostEl) return;
+
+		const ro = new ResizeObserver(() => {
+			// On host resize, recompute target positions for all items
+			calcTargetPositions();
+		});
+
+		ro.observe(hostEl);
+
+		return () => {
+			ro.disconnect();
+		};
 	}, []);
 
 	const value = useMemo(

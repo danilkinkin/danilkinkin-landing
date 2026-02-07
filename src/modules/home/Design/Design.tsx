@@ -67,6 +67,11 @@ export function Design() {
 		if (!ref.current) return;
 
 		updateSize(ref.current.getBoundingClientRect().width);
+
+		ref.current.style.setProperty(
+			"--height",
+			ref.current.getBoundingClientRect().height + "px",
+		);
 	}, [curr, updateSize]);
 
 	const Variant = variants[curr];

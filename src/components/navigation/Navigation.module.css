@@ -37,9 +37,11 @@
 
 @media (max-width: 768px) {
 	.host {
-		a {
-			font-size: 20px;
+		a,
+		li::marker {
+			font-size: 18px;
 		}
+
 		li:not(:last-child) {
 			margin-bottom: 16px;
 		}

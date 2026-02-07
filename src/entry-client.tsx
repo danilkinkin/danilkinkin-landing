@@ -1,3 +1,4 @@
+import { loadFonts } from "@services/theme/fontLoader.ts";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Router } from "wouter";
@@ -20,9 +21,7 @@ const waitAnimationPromise = new Promise<void>((resolve) => {
 	setTimeout(resolve, waitHydrate);
 });
 
-Promise.all([
-	/* loadFonts()  waitAnimationPromise*/
-]).then(hydrate);
+Promise.all([loadFonts() /*   waitAnimationPromise*/]).then(hydrate);
 
 function hydrate() {
 	// Drop last slash from base URL. Router accept only path without slash at the end.
