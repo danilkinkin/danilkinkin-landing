@@ -74,7 +74,7 @@
 	}
 
 	.bentoSection {
-	height: auto;
+		height: auto;
 	}
 
 	.textBlock {
@@ -100,7 +100,6 @@
 	}
 
 	.footerNavigation {
-		margin-left: calc(120px + 24px);
 		margin-top: auto;
 		height: 180px;
 		display: flex;

@@ -67,7 +67,7 @@
 	}
 
 	a {
-		font-size: clamp(37px, 1rem + 1.1vw + 15.5px, 48px);
+		font-size: clamp(30px, 1rem + 1.8vw + 5px, 48px);
 		font-weight: 600;
 		text-decoration: none;
 		color: #000000;
@@ -78,18 +78,20 @@
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 100px;
+	margin-top: 50px;
+	margin-bottom: 60px;
 }
 
 .linksSection {
 	display: flex;
 	flex-direction: row;
 	gap: 80px;
+	margin-top: 0px !important;
 }
 
 .narrow .linksSection {
 	margin: auto;
-	padding-right: 72px;
+	min-width: 400px;
 }
 
 .linksBlock {
@@ -101,19 +103,19 @@
 		opacity: 0.19;
 		text-transform: uppercase;
 		margin: 0;
-		font-size: 21px;
+		font-size: clamp(17px, 1rem + 0.4vw - 1px, 21px);
 		font-weight: 600;
 	}
 }
 
 .externalLink {
-	font-size: clamp(21px, 1rem + 0.8vw + 1px, 29px);
+	font-size: clamp(17px, 1rem + 1.2vw - 5px, 29px);
 	font-weight: 600;
 	text-decoration: none;
 	color: #000000;
 }
 
 .arrowIcon {
-	width: 17px;
+	width: clamp(13px, 1rem + 0.4vw - 5px, 17px);
 	margin-left: 4px;
 }

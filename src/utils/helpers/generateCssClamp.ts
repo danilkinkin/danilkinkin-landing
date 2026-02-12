@@ -26,10 +26,10 @@
  *   fluid = `${base_px}px + ${k_vw}vw`
  */
 export default function generateFluidFont(
-	Wmin,
-	Wmax,
 	Smin,
 	Smax,
+	Wmin = 500,
+	Wmax = 1500,
 	options = {},
 ) {
 	const { useRemBase = true, remPx = 16, precision = 4 } = options;

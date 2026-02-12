@@ -109,10 +109,10 @@ export function useViewportNarrowConfig() {
 			console.log("viewBlockRect:", viewBlockRect);
 
 			const forestViewport = {
-				x: viewBlockRect.left,
+				x: footerRect.left,
 				y: hostRect.height - footerRect.bottom,
-				w: 120,
-				h: 180,
+				w: footerRect.width,
+				h: footerRect.height,
 			};
 
 			shift += viewBlockRect.left + VIEWPORT_GAP;

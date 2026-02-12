@@ -10,7 +10,7 @@
 	scroll-snap-align: start; /* чаще всего start; для центрирования — center */
 	box-sizing: border-box;
 
-	--left: clamp(41px, 1rem + 7.9vw - 14.5px, 120px);
+	--left: clamp(32px, 1rem + 8.8vw - 28px, 120px);
 
 	&::before {
 		content: "";
@@ -53,17 +53,20 @@
 		margin-block-start: 0px;
 		margin-block-end: 0px;
 
+		--font-size: clamp(17px, 1rem + 0.3vw - 0.5px, 20px);
+
 		li {
 			max-width: 600px;
 			line-height: 1.6;
-			font-size: 20px;
-			margin-bottom: 46px;
+			font-size: var(--font-size);
+			margin-bottom: clamp(32px, 1rem + 1.4vw + 9px, 46px);
 		}
 
 		/* стили маркеров списка */
 		li::marker {
 			color: #0000001a;
 			font-weight: 500;
+			font-size: var(--font-size);
 		}
 
 		/* активный пункт: маркер как у активной ссылки */
@@ -83,7 +86,7 @@
 }
 
 .logo {
-	height: 30px;
+	height: clamp(27px, 1rem + 0.3vw + 9.5px, 30px);
 	vertical-align: middle;
 	transform: translateY(-2px);
 }

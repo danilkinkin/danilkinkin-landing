@@ -1,10 +1,15 @@
 import { Navigation } from "@components/navigation/Navigation.tsx";
 import { Canvas } from "@react-three/fiber";
+import { useWind } from "@stores/windStore.ts";
+import { useMediaQuery } from "@utils/helpers/useMediaQuery.tsx";
 import clsx from "clsx/lite";
+// @ts-types="react"
+import { useEffect } from "react";
 import { NoToneMapping } from "three";
 import { ForestSceneMultiView } from "../forest/ForestScene.tsx";
 import { AnimatedMainText } from "./AnimatedMainText/AnimatedMainText.tsx";
 import { Footer } from "./Footer/Footer.tsx";
+import { InteractionWithWorld } from "./InteractionWithWorld/InteractionWithWorld.tsx";
 import {
 	useViewportConfig,
 	useViewportLargeConfig,
@@ -13,11 +18,6 @@ import {
 } from "./useViewportConfig.tsx";
 
 import styles from "./Home.module.css";
-import { useMediaQuery } from "@utils/helpers/useMediaQuery.tsx";
-import { InteractionWithWorld } from "./InteractionWithWorld/InteractionWithWorld.tsx";
-import { useWind } from "@stores/windStore.ts";
-// @ts-types="react"
-import { useEffect } from "react";
 
 function HomeLarge() {
 	const { hostRef, viewBlockRef, textBlockRef } = useViewportLargeConfig();
@@ -60,9 +60,9 @@ function HomeNarrow() {
 	const setWindForce = useWind((s) => s.setStrength);
 
 	useEffect(() => {
-	setWindForce(5);
+		setWindForce(5);
 
-	return () => setWindForce(0);
+		return () => setWindForce(0);
 	}, [setWindForce]);
 
 	return (
@@ -87,8 +87,8 @@ function HomeNarrow() {
 				</div>
 			</div>
 
-			<div className={styles.footerNavigation} ref={footerRef}>
-				<Navigation current="home" />
+			<div className={styles.footerNavigation}>
+				<Navigation current="home" viewportRef={footerRef} />
 			</div>
 
 			<div className={styles.canvas}>
@@ -105,10 +105,9 @@ function HomeNarrow() {
 }
 
 export function Home() {
-  const isNarrowScreen = useMediaQuery(`(max-width: ${870}px)`);
+	const isNarrowScreen = useMediaQuery(`(max-width: ${870}px)`);
 
-  if (isNarrowScreen) return <HomeNarrow />;
+	if (isNarrowScreen) return <HomeNarrow />;
 
-  return <HomeLarge />;
-
+	return <HomeLarge />;
 }
