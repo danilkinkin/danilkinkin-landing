@@ -49,147 +49,84 @@ function selectEase(name: string): EaseFn {
 	}
 }
 
-export function SmokeEmitter2D({
+const config = {
 	// Emission
-	emitRate = 1.5,
-	emitRateJitter = 0.2,
-	emitBurstCount = 0,
-	emitBurstInterval = 0,
-	enableBurst = false,
+	emitRate: 1.5,
+	emitRateJitter: 0.2,
+	emitBurstCount: 0,
+	emitBurstInterval: 0,
+	enableBurst: false,
 
 	// Pool
-	poolSize = 80,
+	poolSize: 80,
 
 	// Life
-	life = 25,
-	lifeJitter = 0.3,
+	life: 25,
+	lifeJitter: 0.3,
 
 	// Size
-	startHeight = 0.5,
-	endHeight = 1,
-	sizeJitter = 0.15,
-	sizeEase = "inOutQuad",
-	widthScale = 1.0,
+	startHeight: 0.5,
+	endHeight: 1,
+	sizeJitter: 0.15,
+	sizeEase: "inOutQuad",
+	widthScale: 1.0,
 
 	// Velocity / direction
-	speed = 0.15,
-	speedJitter = 0.1,
-	spreadX = 0.15,
-	spreadY = 0.05,
-	baseUpY = 1.0,
-	startRadius = 0.1,
-	startOffset = [0, 0, 0],
+	speed: 0.15,
+	speedJitter: 0.1,
+	spreadX: 0.15,
+	spreadY: 0.05,
+	baseUpY: 1.0,
+	startRadius: 0.1,
+	startOffset: [0, 0, 0],
 
 	// Forces
-	gravity = [0, 0, 0],
-	drag = 0.0,
+	gravity: [0, 0, 0],
+	drag: 0.0,
 
 	// Turbulence / noise
-	noiseAmplitude = 0.0,
-	noiseFrequency = 1.0,
-	noiseScrollSpeed = 0.25,
+	noiseAmplitude: 0.0,
+	noiseFrequency: 1.0,
+	noiseScrollSpeed: 0.25,
 
 	// Spiral
-	swirlAmplitude = 0.0,
-	swirlFrequency = 1.0,
+	swirlAmplitude: 0.0,
+	swirlFrequency: 1.0,
 
 	// Opacity
-	startOpacity = 1,
-	endOpacity = 0.7,
-	opacityEase = "outQuad",
+	startOpacity: 1,
+	endOpacity: 0.7,
+	opacityEase: "outQuad",
 
 	// Color tint
-	tintColor = new THREE.Color(0xffffff),
-	tintIntensity = 0.0,
-	enableHueShift = false,
-	hueShiftRange = 0.0,
+	tintColor: new THREE.Color(0xffffff),
+	tintIntensity: 0.0,
+	enableHueShift: false,
+	hueShiftRange: 0.0,
 
 	// Rendering
-	renderOrder = 10,
-	depthTest = false,
-	depthWrite = false,
-	blending = THREE.NormalBlending,
-	alphaTest = 0.0,
-	multisample = 0,
+	renderOrder: 10,
+	depthTest: false,
+	depthWrite: false,
+	blending: THREE.NormalBlending,
+	alphaTest: 0.0,
+	multisample: 0,
 
 	// Sprite frames / animation
-	frameUrls = ["/sprites/smoke_1.png"],
-	animateFrames = false,
-	frameRate = 8,
-	randomStartFrame = true,
+	frameUrls: ["/sprites/smoke_1.png"],
+	animateFrames: false,
+	frameRate: 8,
+	randomStartFrame: true,
 
 	// Rotation
-	enableRotation = false,
-	rotationSpeed = 0.0,
-	rotationSpeedJitter = 0.1,
+	enableRotation: false,
+	rotationSpeed: 0.0,
+	rotationSpeedJitter: 0.1,
+};
 
-	// Position
-	position = [0, 0, 0],
-}: {
-	emitRate?: number;
-	emitRateJitter?: number;
-	emitBurstCount?: number;
-	emitBurstInterval?: number;
-	enableBurst?: boolean;
-
-	poolSize?: number;
-
-	life?: number;
-	lifeJitter?: number;
-
-	startHeight?: number;
-	endHeight?: number;
-	sizeJitter?: number;
-	sizeEase?: "linear" | "inQuad" | "outQuad" | "inOutQuad";
-	widthScale?: number;
-
-	speed?: number;
-	speedJitter?: number;
-	spreadX?: number;
-	spreadY?: number;
-	baseUpY?: number;
-	startRadius?: number;
-	startOffset?: [number, number, number];
-
-	gravity?: [number, number, number];
-	drag?: number;
-
-	noiseAmplitude?: number;
-	noiseFrequency?: number;
-	noiseScrollSpeed?: number;
-
-	swirlAmplitude?: number;
-	swirlFrequency?: number;
-
-	startOpacity?: number;
-	endOpacity?: number;
-	opacityEase?: "linear" | "inQuad" | "outQuad" | "inOutQuad";
-
-	tintColor?: THREE.Color | string | number;
-	tintIntensity?: number;
-	enableHueShift?: boolean;
-	hueShiftRange?: number;
-
-	renderOrder?: number;
-	depthTest?: boolean;
-	depthWrite?: boolean;
-	blending?: THREE.Blending;
-	alphaTest?: number;
-	multisample?: number;
-
-	frameUrls?: string[];
-	animateFrames?: boolean;
-	frameRate?: number;
-	randomStartFrame?: boolean;
-
-	enableRotation?: boolean;
-	rotationSpeed?: number;
-	rotationSpeedJitter?: number;
-
-	position?: [number, number, number];
-}) {
+export function SmokeEmitter2D(props) {
 	// Load textures
-	const textures = useLoader(THREE.TextureLoader, frameUrls);
+	const textures = useLoader(THREE.TextureLoader, config.frameUrls);
 
 	useMemo(() => {
 		textures.forEach((t) => {
@@ -203,10 +140,11 @@ export function SmokeEmitter2D({
 	}, [textures]);
 
 	const tint = useMemo(() => {
-		return typeof tintColor === "string" || typeof tintColor === "number"
-			? new THREE.Color(tintColor as any)
-			: tintColor;
-	}, [tintColor]);
+		return typeof config.tintColor === "string" ||
+			typeof config.tintColor === "number"
+			? new THREE.Color(config.tintColor as any)
+			: config.tintColor;
+	}, []);
 
 	const poolRef = useRef<Bullet[]>([]);
 	const groupRef = useRef<THREE.Group>(null);
@@ -215,44 +153,44 @@ export function SmokeEmitter2D({
 	const timeRef = useRef(0);
 
 	// Eases
-	const sizeEaseFn = useMemo(() => selectEase(sizeEase), [sizeEase]);
-	const opacityEaseFn = useMemo(() => selectEase(opacityEase), [opacityEase]);
+	const sizeEaseFn = useMemo(() => selectEase(config.sizeEase), []);
+	const opacityEaseFn = useMemo(() => selectEase(config.opacityEase), []);
 
 	useEffect(() => {
 		const group = groupRef.current!;
 		const bullets: Bullet[] = [];
 
-		for (let i = 0; i < poolSize; i++) {
+		for (let i = 0; i < config.poolSize; i++) {
 			const tex = textures[i % textures.length];
 			const mat = new THREE.SpriteMaterial({
 				map: tex,
 				transparent: true,
-				depthWrite,
-				depthTest,
-				alphaTest,
-				blending,
+				depthWrite: config.depthWrite,
+				depthTest: config.depthTest,
+				alphaTest: config.alphaTest,
+				blending: config.blending,
 			});
-			if (tintIntensity > 0) {
+			if (config.tintIntensity > 0) {
 				// approximate tint by vertexColors not available for SpriteMaterial; use color multiplier
 				mat.color = tint
 					.clone()
-					.lerp(new THREE.Color(0xffffff), 1 - clamp01(tintIntensity));
+					.lerp(new THREE.Color(0xffffff), 1 - clamp01(config.tintIntensity));
 			}
 			const sprite = new THREE.Sprite(mat);
 			sprite.visible = false;
-			sprite.renderOrder = renderOrder;
+			sprite.renderOrder = config.renderOrder;
 			group.add(sprite);
 
 			bullets.push({
 				sprite,
 				alive: false,
 				age: 0,
-				life,
+				life: config.life,
 				pos: new THREE.Vector3(),
 				vel: new THREE.Vector3(),
-				sizeH: startHeight,
+				sizeH: config.startHeight,
 				aspect: getTextureAspect(tex),
-				opacity: startOpacity,
+				opacity: config.startOpacity,
 				hueShift: 0,
 			});
 		}
@@ -260,31 +198,20 @@ export function SmokeEmitter2D({
 		poolRef.current = bullets;
 
 		return () => {
+			console.log("Cleaning up SmokeEmitter2D");
 			bullets.forEach((b) => {
 				(b.sprite.material as THREE.SpriteMaterial).dispose();
 				group.remove(b.sprite);
 			});
 		};
-	}, [
-		textures,
-		renderOrder,
-		poolSize,
-		life,
-		startHeight,
-		depthTest,
-		depthWrite,
-		alphaTest,
-		blending,
-		tint,
-		tintIntensity,
-	]);
+	}, [textures, tint]);
 
 	const randRange = (base: number, jitter: number) =>
 		base + (Math.random() * 2 - 1) * jitter;
 
 	const randomUpDirection = () => {
-		const jitterX = (Math.random() * 2 - 1) * spreadX;
-		const jitterY = baseUpY + (Math.random() * 2 - 1) * spreadY;
+		const jitterX = (Math.random() * 2 - 1) * config.spreadX;
+		const jitterY = config.baseUpY + (Math.random() * 2 - 1) * config.spreadY;
 		return new THREE.Vector3(jitterX, jitterY, 0).normalize();
 	};
 
@@ -296,28 +223,30 @@ export function SmokeEmitter2D({
 		const b = inactive[Math.floor(Math.random() * inactive.length)];
 		b.alive = true;
 		b.age = 0;
-		b.life = Math.max(0.1, randRange(life, lifeJitter));
-		b.sizeH = Math.max(0.001, randRange(startHeight, sizeJitter));
-		b.opacity = clamp01(startOpacity);
-		b.hueShift = enableHueShift ? (Math.random() * 2 - 1) * hueShiftRange : 0;
+		b.life = Math.max(0.1, randRange(config.life, config.lifeJitter));
+		b.sizeH = Math.max(0.001, randRange(config.startHeight, config.sizeJitter));
+		b.opacity = clamp01(config.startOpacity);
+		b.hueShift = config.enableHueShift
+			? (Math.random() * 2 - 1) * config.hueShiftRange
+			: 0;
 
 		// Start position: single point + optional small radius
 		const angle = Math.random() * Math.PI * 2;
-		const r = startRadius * Math.random();
-		const startX = startOffset[0] + Math.cos(angle) * r;
-		const startY = startOffset[1] + Math.sin(angle) * r;
-		const startZ = startOffset[2];
+		const r = config.startRadius * Math.random();
+		const startX = config.startOffset[0] + Math.cos(angle) * r;
+		const startY = config.startOffset[1] + Math.sin(angle) * r;
+		const startZ = config.startOffset[2];
 		b.pos.set(startX, startY, startZ);
 
 		// Velocity
 		const dir = randomUpDirection();
-		const spd = Math.max(0, randRange(speed, speedJitter));
+		const spd = Math.max(0, randRange(config.speed, config.speedJitter));
 		b.vel.copy(dir).multiplyScalar(spd);
 
 		// Sprite
 		const s = b.sprite;
 		s.position.copy(b.pos);
-		const width = b.sizeH * b.aspect * widthScale;
+		const width = b.sizeH * b.aspect * config.widthScale;
 		s.scale.set(width, b.sizeH, 1);
 		s.visible = true;
 
@@ -326,15 +255,19 @@ export function SmokeEmitter2D({
 		mat.opacity = b.opacity;
 
 		// Random start frame by swapping map if provided
-		if (animateFrames && randomStartFrame && textures.length > 1) {
+		if (
+			config.animateFrames &&
+			config.randomStartFrame &&
+			textures.length > 1
+		) {
 			const idx = Math.floor(Math.random() * textures.length);
 			mat.map = textures[idx];
 			b.aspect = getTextureAspect(textures[idx]);
 		}
 
 		// Rotation
-		if (enableRotation) {
-			const rs = randRange(rotationSpeed, rotationSpeedJitter);
+		if (config.enableRotation) {
+			const rs = randRange(config.rotationSpeed, config.rotationSpeedJitter);
 			// store in sprite.userData
 			s.userData.rotationSpeed = rs;
 		}
@@ -344,7 +277,7 @@ export function SmokeEmitter2D({
 		timeRef.current += delta;
 
 		// Emission regular + jitter
-		const rate = Math.max(0, randRange(emitRate, emitRateJitter));
+		const rate = Math.max(0, randRange(config.emitRate, config.emitRateJitter));
 		emitAccRef.current += delta * rate;
 		while (emitAccRef.current >= 1) {
 			emitAccRef.current -= 1;
@@ -352,17 +285,24 @@ export function SmokeEmitter2D({
 		}
 
 		// Burst emission
-		if (enableBurst && emitBurstCount > 0 && emitBurstInterval > 0) {
-			if (timeRef.current - lastBurstTimeRef.current >= emitBurstInterval) {
+		if (
+			config.enableBurst &&
+			config.emitBurstCount > 0 &&
+			config.emitBurstInterval > 0
+		) {
+			if (
+				timeRef.current - lastBurstTimeRef.current >=
+				config.emitBurstInterval
+			) {
 				lastBurstTimeRef.current = timeRef.current;
-				for (let i = 0; i < emitBurstCount; i++) spawn();
+				for (let i = 0; i < config.emitBurstCount; i++) spawn();
 			}
 		}
 
 		// Animation frame switching
-		if (animateFrames && textures.length > 1 && frameRate > 0) {
+		if (config.animateFrames && textures.length > 1 && config.frameRate > 0) {
 			const frameIdx = Math.floor(
-				(timeRef.current * frameRate) % textures.length,
+				(timeRef.current * config.frameRate) % textures.length,
 			);
 			for (const b of poolRef.current) {
 				if (!b.alive) continue;
@@ -388,28 +328,30 @@ export function SmokeEmitter2D({
 			const u = clamp01(b.age / b.life);
 
 			// Forces
-			if (drag !== 0) {
-				b.vel.multiplyScalar(Math.max(0, 1 - drag * delta));
+			if (config.drag !== 0) {
+				b.vel.multiplyScalar(Math.max(0, 1 - config.drag * delta));
 			}
-			if (gravity) {
-				b.vel.x += gravity[0] * delta;
-				b.vel.y += gravity[1] * delta;
-				b.vel.z += gravity[2] * delta;
+			if (config.gravity) {
+				b.vel.x += config.gravity[0] * delta;
+				b.vel.y += config.gravity[1] * delta;
+				b.vel.z += config.gravity[2] * delta;
 			}
 
 			// Noise/turbulence
-			if (noiseAmplitude > 0) {
-				const t = timeRef.current * noiseScrollSpeed;
-				const angle = (b.pos.x + b.pos.y + t) * noiseFrequency * 2 * Math.PI;
-				b.vel.x += Math.cos(angle) * noiseAmplitude * delta;
-				b.vel.y += Math.sin(angle) * noiseAmplitude * delta;
+			if (config.noiseAmplitude > 0) {
+				const t = timeRef.current * config.noiseScrollSpeed;
+				const angle =
+					(b.pos.x + b.pos.y + t) * config.noiseFrequency * 2 * Math.PI;
+				b.vel.x += Math.cos(angle) * config.noiseAmplitude * delta;
+				b.vel.y += Math.sin(angle) * config.noiseAmplitude * delta;
 			}
 
 			// Swirl (around origin in XY)
-			if (swirlAmplitude !== 0) {
-				const swirlAngle = timeRef.current * swirlFrequency * 2 * Math.PI;
-				const swirlX = -Math.sin(swirlAngle) * swirlAmplitude;
-				const swirlY = Math.cos(swirlAngle) * swirlAmplitude;
+			if (config.swirlAmplitude !== 0) {
+				const swirlAngle =
+					timeRef.current * config.swirlFrequency * 2 * Math.PI;
+				const swirlX = -Math.sin(swirlAngle) * config.swirlAmplitude;
+				const swirlY = Math.cos(swirlAngle) * config.swirlAmplitude;
 				b.vel.x += swirlX * delta;
 				b.vel.y += swirlY * delta;
 			}
@@ -419,27 +361,31 @@ export function SmokeEmitter2D({
 
 			// Size over life
 			const sg = sizeEaseFn(u);
-			b.sizeH = THREE.MathUtils.lerp(startHeight, endHeight, sg);
+			b.sizeH = THREE.MathUtils.lerp(config.startHeight, config.endHeight, sg);
 
 			// Opacity over life
 			const oe = opacityEaseFn(u);
-			b.opacity = THREE.MathUtils.lerp(startOpacity, endOpacity, oe);
+			b.opacity = THREE.MathUtils.lerp(
+				config.startOpacity,
+				config.endOpacity,
+				oe,
+			);
 
 			// Apply to sprite
 			const s = b.sprite;
 			s.position.copy(b.pos);
-			const width = b.sizeH * b.aspect * widthScale;
+			const width = b.sizeH * b.aspect * config.widthScale;
 			s.scale.set(width, b.sizeH, 1);
 
 			const mat = s.material as THREE.SpriteMaterial;
 			mat.opacity = clamp01(b.opacity);
 
 			// Optional hue shift via color modulation
-			if (tintIntensity > 0 || enableHueShift) {
+			if (config.tintIntensity > 0 || config.enableHueShift) {
 				const baseColor = tint
 					.clone()
-					.lerp(new THREE.Color(0xffffff), 1 - clamp01(tintIntensity));
-				if (enableHueShift && b.hueShift !== 0) {
+					.lerp(new THREE.Color(0xffffff), 1 - clamp01(config.tintIntensity));
+				if (config.enableHueShift && b.hueShift !== 0) {
 					// simple hue shift approximation via HSL
 					const hsl = { h: 0, s: 0, l: 0 };
 					baseColor.getHSL(hsl as any);
@@ -450,12 +396,12 @@ export function SmokeEmitter2D({
 			}
 
 			// Rotation
-			if (enableRotation) {
-				const rs = s.userData.rotationSpeed ?? rotationSpeed;
+			if (config.enableRotation) {
+				const rs = s.userData.rotationSpeed ?? config.rotationSpeed;
 				s.rotation += rs * delta;
 			}
 		}
 	});
 
-	return <group position={position} ref={groupRef} />;
+	return <group position={props.position} ref={groupRef} />;
 }

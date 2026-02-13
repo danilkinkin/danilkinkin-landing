@@ -298,11 +298,6 @@ export function WindStreamEffect() {
 
 				if (flow.delay > 0) return;
 
-				console.log(
-					"delta:",
-					-0.035 * delta * windStrengthSmooth.current * flow.speedShift,
-				);
-
 				flow.flow.uniforms.pathOffset.value +=
 					-0.035 * delta * windStrengthSmooth.current * flow.speedShift;
 
